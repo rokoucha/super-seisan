@@ -1,15 +1,8 @@
-import {
-  Button,
-  Container,
-  Input,
-  MultiSelect,
-  NumberInput,
-  Select,
-  Table,
-  Title,
-} from '@mantine/core'
+import { Button, Container, Table, Title } from '@mantine/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { super_seisan } from '../generated/protobuf'
+import { TransactonEditor } from './TransactionEditor'
+import { UserEditor } from './UserEditor'
 
 type Transaction = {
   item: string
@@ -144,11 +137,11 @@ export const Caluclator: React.FC = () => {
     setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], buyer: v }))
   }, [])
 
-  const onTransactionPriceChange = useCallback((i: number, v: string) => {
+  const onTransactionPriceChange = useCallback((i: number, v: number) => {
     setTransactions((t) =>
       spliceToNew(t, i, 1, {
         ...t[i],
-        price: parseFloat(v),
+        price: v,
       }),
     )
   }, [])
@@ -203,126 +196,31 @@ export const Caluclator: React.FC = () => {
       <Container>
         <div>
           <Title order={2}>支払い関係者</Title>
-          <form onSubmit={onSubmit}>
-            <ul>
-              {users.map((u, i) => (
-                <li key={`users-${i}`}>
-                  <Input
-                    value={u}
-                    onChange={(e) => onUserInputChange(i, e.target.value)}
-                    onKeyUp={onUserInputKeyUp}
-                  />
-                  <Button onClick={() => onUserRemoveClick(i)}>×</Button>
-                </li>
-              ))}
-            </ul>
-            <Button onClick={onUserAddClick}>＋</Button>
-          </form>
+          <UserEditor
+            onSubmit={onSubmit}
+            onUserAddClick={onUserAddClick}
+            onUserInputChange={onUserInputChange}
+            onUserInputKeyUp={onUserInputKeyUp}
+            onUserRemoveClick={onUserRemoveClick}
+            users={users}
+          />
         </div>
         <div>
           <Title order={2}>支払い一覧</Title>
-          <form onSubmit={onSubmit}>
-            <Table striped={true}>
-              <thead>
-                <tr>
-                  <th rowSpan={2}></th>
-                  <th rowSpan={2}>品目</th>
-                  <th rowSpan={2}>支払った人</th>
-                  <th rowSpan={2}>単価</th>
-                  <th rowSpan={2}>個数</th>
-                  <th rowSpan={2}>計</th>
-                  <th rowSpan={2}>支払い免除</th>
-                  <th colSpan={users.length}>支払い額</th>
-                  <th rowSpan={2}></th>
-                </tr>
-                <tr>
-                  {users.map((u, i) => (
-                    <th key={`users-th-${i}`}>{u}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((t, i) => (
-                  <tr key={`transactions-${i}`}>
-                    <td>
-                      {i !== 0 ? (
-                        <Button onClick={() => onTransactionUpClick(i)}>
-                          ↑
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
-                      {transactions.length > i + 1 ? (
-                        <Button onClick={() => onTransactionDownClick(i)}>
-                          ↓
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
-                    </td>
-                    <td>
-                      <Input
-                        value={t.item}
-                        onChange={(e) =>
-                          onTransactionItemChange(i, e.target.value)
-                        }
-                      />
-                    </td>
-                    <td>
-                      <Select
-                        value={t.buyer}
-                        onChange={(v) => onTransactionBuyerChange(i, v ?? '')}
-                        data={users}
-                      />
-                    </td>
-                    <td>
-                      <Input
-                        value={t.price}
-                        type="number"
-                        onChange={(e) =>
-                          onTransactionPriceChange(i, e.target.value)
-                        }
-                      />
-                    </td>
-                    <td>
-                      <NumberInput
-                        value={t.quantity}
-                        type="number"
-                        min={1}
-                        step={1}
-                        onChange={(v) => onTransactionQuantityChange(i, v ?? 1)}
-                      />
-                    </td>
-                    <td>{t.price * t.quantity}</td>
-                    <td>
-                      <MultiSelect
-                        multiple={true}
-                        value={t.exemptions}
-                        onChange={(v) => onTransactionExemptionChange(i, v)}
-                        data={users}
-                      />
-                    </td>
-                    {users.map((u, ui) => (
-                      <td key={`transactions-${i}-users-${ui}`}>
-                        {t.exemptions.includes(u)
-                          ? 0
-                          : Math.floor(
-                              (t.price * t.quantity) /
-                                (users.length - t.exemptions.length),
-                            )}
-                      </td>
-                    ))}
-                    <td>
-                      <Button onClick={() => onTransactionRemoveClick(i)}>
-                        ×
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-            <Button onClick={onTransactionAddClick}>＋</Button>
-          </form>
+          <TransactonEditor
+            onSubmit={onSubmit}
+            onTransactionAddClick={onTransactionAddClick}
+            onTransactionBuyerChange={onTransactionBuyerChange}
+            onTransactionDownClick={onTransactionDownClick}
+            onTransactionExemptionChange={onTransactionExemptionChange}
+            onTransactionItemChange={onTransactionItemChange}
+            onTransactionPriceChange={onTransactionPriceChange}
+            onTransactionQuantityChange={onTransactionQuantityChange}
+            onTransactionRemoveClick={onTransactionRemoveClick}
+            onTransactionUpClick={onTransactionUpClick}
+            transactions={transactions}
+            users={users}
+          />
         </div>
         <div>
           <Title order={2}>割り勘結果</Title>
