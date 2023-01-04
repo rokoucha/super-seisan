@@ -1,4 +1,4 @@
-import { Button, Input } from '@mantine/core'
+import { Button, Group, Input, Stack } from '@mantine/core'
 import React, { useCallback } from 'react'
 import { spliceToNew } from '../utils'
 
@@ -37,18 +37,18 @@ export const UserEditor: React.FC<UserEditorProps> = ({ setUsers, users }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <ul>
+      <Stack>
         {users.map((u, i) => (
-          <li key={`users-${i}`}>
+          <Group key={`users-${i}`}>
             <Input
               value={u}
               onChange={(e) => onUserInputChange(i, e.target.value)}
               onKeyUp={onUserInputKeyUp}
             />
             <Button onClick={() => onUserRemoveClick(i)}>×</Button>
-          </li>
+          </Group>
         ))}
-      </ul>
+      </Stack>
       <Button onClick={onUserAddClick}>＋</Button>
     </form>
   )
