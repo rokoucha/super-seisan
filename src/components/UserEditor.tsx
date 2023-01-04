@@ -48,8 +48,8 @@ export const UserEditor: React.FC<UserEditorProps> = ({ setUsers, users }) => {
             <Button onClick={() => onUserRemoveClick(i)}>×</Button>
           </Group>
         ))}
+        <Button onClick={onUserAddClick}>＋</Button>
       </Stack>
-      <Button onClick={onUserAddClick}>＋</Button>
     </form>
   )
 }

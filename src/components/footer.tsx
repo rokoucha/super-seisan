@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
   const { classes } = useStyles()
 
   return (
-    <MantineFooter height={60} mt={120} className={classes.footer}>
+    <MantineFooter height={60} mt={30} className={classes.footer}>
       <Container className={classes.inner}>
         <Text color="dimmed" size="sm">
           Made by Rokoucha with ❤️

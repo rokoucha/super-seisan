@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
   const { classes } = useStyles()
 
   return (
-    <MaintineHeader height={60} mb={120}>
+    <MaintineHeader height={60} mb={30}>
       <Container className={classes.header}>
         <Title>スーパー精算</Title>
       </Container>

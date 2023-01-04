@@ -1,6 +1,7 @@
-import { Button, Container, Table, Title } from '@mantine/core'
+import { Button, Container, Flex, Stack, Title } from '@mantine/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { super_seisan } from '../generated/protobuf'
+import { DividedResult } from './DividedResult'
 import { TransactonEditor } from './TransactionEditor'
 import { UserEditor } from './UserEditor'
 
@@ -10,29 +11,6 @@ type Transaction = {
   price: number
   quantity: number
   exemptions: string[]
-}
-
-function getUserSpendings(
-  transactions: Transaction[],
-  users: string[],
-  user: string,
-): number {
-  return transactions
-    .filter((t) => !t.exemptions.includes(user))
-    .reduce<number>(
-      (p, c) =>
-        p +
-        Math.floor(
-          (c.price * c.quantity) / (users.length - c.exemptions.length),
-        ),
-      0,
-    )
-}
-
-function getUserPayments(transactions: Transaction[], user: string): number {
-  return transactions
-    .filter((t) => t.buyer === user)
-    .reduce<number>((p, c) => p + c.price * c.quantity, 0)
 }
 
 export const Caluclator: React.FC = () => {
@@ -95,74 +73,32 @@ export const Caluclator: React.FC = () => {
   return (
     <div>
       <Container>
-        <div>
-          <Title order={2}>支払い関係者</Title>
-          <UserEditor setUsers={setUsers} users={users} />
-        </div>
-        <div>
-          <Title order={2}>支払い一覧</Title>
-          <TransactonEditor
-            setTransactions={setTransactions}
-            transactions={transactions}
-            users={users}
-          />
-        </div>
-        <div>
-          <Title order={2}>割り勘結果</Title>
-          <Table striped={true}>
-            <tbody>
-              <tr>
-                <td />
-                {users.map((u, i) => (
-                  <th key={`caluclated-header-${i}`}>{u}</th>
-                ))}
-              </tr>
-              <tr>
-                <th>支出計</th>
-                {users.map((u, i) => (
-                  <td key={`caluclated-spending-${i}`}>
-                    {getUserSpendings(transactions, users, u)}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>支払い計</th>
-                {users.map((u, i) => (
-                  <td key={`caluclated-payment-${i}`}>
-                    {getUserPayments(transactions, u)}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>合計</th>
-                {users.map((u, i) => (
-                  <td key={`caluclated-payment-${i}`}>
-                    {getUserSpendings(transactions, users, u) -
-                      getUserPayments(transactions, u)}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>余り</th>
-                <td>
-                  {Math.abs(
-                    users.reduce<number>(
-                      (p, c) =>
-                        p +
-                        getUserSpendings(transactions, users, c) -
-                        getUserPayments(transactions, c),
-                      0,
-                    ),
-                  )}
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-        <div>
-          <Button onClick={onUrlCopyClick}>URL をコピー</Button>
-          <Button onClick={onResetClick}>リセット</Button>
-        </div>
+        <Stack spacing="xl">
+          <Stack>
+            <Title order={2}>支払い関係者</Title>
+            <Flex>
+              <UserEditor setUsers={setUsers} users={users} />
+            </Flex>
+          </Stack>
+          <Stack>
+            <Title order={2}>支払い一覧</Title>
+            <TransactonEditor
+              setTransactions={setTransactions}
+              transactions={transactions}
+              users={users}
+            />
+          </Stack>
+          <Stack>
+            <Title order={2}>割り勘結果</Title>
+            <DividedResult users={users} transactions={transactions} />
+          </Stack>
+          <Flex gap="md" justify="flex-end">
+            <Button onClick={onUrlCopyClick}>URL をコピー</Button>
+            <Button onClick={onResetClick} color="red">
+              リセット
+            </Button>
+          </Flex>
+        </Stack>
       </Container>
     </div>
   )
