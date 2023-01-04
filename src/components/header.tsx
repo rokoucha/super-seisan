@@ -1,25 +1,28 @@
-import { AppBar, Toolbar, Typography } from '@mui/material'
+import {
+  Container,
+  createStyles,
+  Header as MaintineHeader,
+  Title,
+} from '@mantine/core'
 import React from 'react'
 
+const useStyles = createStyles(() => ({
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '100%',
+  },
+}))
+
 export const Header: React.FC = () => {
+  const { classes } = useStyles()
+
   return (
-    <AppBar
-      position="relative"
-      sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-    >
-      <Toolbar
-        sx={{
-          flexWrap: 'wrap',
-          maxWidth: 'md',
-          ml: 'auto',
-          mr: 'auto',
-          width: '100%',
-        }}
-      >
-        <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-          スーパー精算
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <MaintineHeader height={60} mb={120}>
+      <Container className={classes.header}>
+        <Title>スーパー精算</Title>
+      </Container>
+    </MaintineHeader>
   )
 }

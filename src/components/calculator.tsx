@@ -1,3 +1,13 @@
+import {
+  Button,
+  Container,
+  Input,
+  MultiSelect,
+  NumberInput,
+  Select,
+  Table,
+  Title,
+} from '@mantine/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { super_seisan } from '../generated/protobuf'
 
@@ -91,23 +101,17 @@ export const Caluclator: React.FC = () => {
     [],
   )
 
-  const onUserInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const [, i] = e.target.name.split('-').map((v) => parseInt(v, 10))
-      setUsers((u) => spliceToNew(u, i, 1, e.target.value))
-    },
-    [],
-  )
+  const onUserInputChange = useCallback((i: number, v: string) => {
+    setUsers((u) => spliceToNew(u, i, 1, v))
+  }, [])
 
-  const onUserRemoveClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      const [, i] = e.currentTarget.id.split('-').map((v) => parseInt(v, 10))
-      setUsers((u) => spliceToNew(u, i, 1))
-    },
-    [],
-  )
+  const onUserRemoveClick = useCallback((i: number) => {
+    setUsers((u) => spliceToNew(u, i, 1))
+  }, [])
 
-  const onUserAddClick = useCallback(() => setUsers((u) => [...u, '']), [])
+  const onUserAddClick = useCallback(() => {
+    setUsers((u) => [...u, ''])
+  }, [])
 
   const onUserInputKeyUp = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -119,90 +123,57 @@ export const Caluclator: React.FC = () => {
     [],
   )
 
-  const onTransactionUpClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      const [, i] = e.currentTarget.id.split('-').map((v) => parseInt(v, 10))
-      if (i < 1) return
-      setTransactions((t) => spliceToNew(t, i - 1, 2, t[i], t[i - 1]))
-    },
-    [],
-  )
+  const onTransactionUpClick = useCallback((i: number) => {
+    if (i < 1) return
+    setTransactions((t) => spliceToNew(t, i - 1, 2, t[i], t[i - 1]))
+  }, [])
 
   const onTransactionDownClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      const [, i] = e.currentTarget.id.split('-').map((v) => parseInt(v, 10))
+    (i: number) => {
       if (i > transactions.length - 1) return
       setTransactions((t) => spliceToNew(t, i, 2, t[i + 1], t[i]))
     },
     [transactions],
   )
 
-  const onTransactionItemChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const [, i] = e.target.name.split('-').map((v) => parseInt(v, 10))
-      setTransactions((t) =>
-        spliceToNew(t, i, 1, { ...t[i], item: e.target.value }),
-      )
-    },
-    [],
-  )
+  const onTransactionItemChange = useCallback((i: number, v: string) => {
+    setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], item: v }))
+  }, [])
 
-  const onTransactionBuyerChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const [, i] = e.target.name.split('-').map((v) => parseInt(v, 10))
-      setTransactions((t) =>
-        spliceToNew(t, i, 1, { ...t[i], buyer: e.target.value }),
-      )
-    },
-    [],
-  )
+  const onTransactionBuyerChange = useCallback((i: number, v: string) => {
+    setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], buyer: v }))
+  }, [])
 
-  const onTransactionPriceChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const [, i] = e.target.name.split('-').map((v) => parseInt(v, 10))
-      setTransactions((t) =>
-        spliceToNew(t, i, 1, {
-          ...t[i],
-          price: parseFloat(e.target.value),
-        }),
-      )
-    },
-    [],
-  )
+  const onTransactionPriceChange = useCallback((i: number, v: string) => {
+    setTransactions((t) =>
+      spliceToNew(t, i, 1, {
+        ...t[i],
+        price: parseFloat(v),
+      }),
+    )
+  }, [])
 
-  const onTransactionQuantityChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const [, i] = e.target.name.split('-').map((v) => parseInt(v, 10))
-      setTransactions((t) =>
-        spliceToNew(t, i, 1, {
-          ...t[i],
-          quantity: parseInt(e.target.value, 10),
-        }),
-      )
-    },
-    [],
-  )
+  const onTransactionQuantityChange = useCallback((i: number, v: number) => {
+    setTransactions((t) =>
+      spliceToNew(t, i, 1, {
+        ...t[i],
+        quantity: v,
+      }),
+    )
+  }, [])
 
-  const onTransactionExemptionChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const [, i] = e.target.name.split('-').map((v) => parseInt(v, 10))
-      setTransactions((t) =>
-        spliceToNew(t, i, 1, {
-          ...t[i],
-          exemptions: [...e.target.selectedOptions].map((s) => s.value),
-        }),
-      )
-    },
-    [],
-  )
+  const onTransactionExemptionChange = useCallback((i: number, v: string[]) => {
+    setTransactions((t) =>
+      spliceToNew(t, i, 1, {
+        ...t[i],
+        exemptions: v,
+      }),
+    )
+  }, [])
 
-  const onTransactionRemoveClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      const [, i] = e.currentTarget.id.split('-').map((v) => parseInt(v, 10))
-      setTransactions((t) => spliceToNew(t, i, 1))
-    },
-    [],
-  )
+  const onTransactionRemoveClick = useCallback((i: number) => {
+    setTransactions((t) => spliceToNew(t, i, 1))
+  }, [])
 
   const onTransactionAddClick = useCallback(
     () =>
@@ -228,230 +199,188 @@ export const Caluclator: React.FC = () => {
   }, [])
 
   return (
-    <>
-      <div>
-        <h2>支払い関係者</h2>
-        <form onSubmit={onSubmit}>
-          <ul>
-            {users.map((u, i) => (
-              <li key={`users-${i}`}>
-                <input
-                  name={`user-${i}`}
-                  value={u}
-                  onChange={onUserInputChange}
-                  onKeyUp={onUserInputKeyUp}
-                />
-                <button
-                  id={`user-${i}-remove`}
-                  type="button"
-                  onClick={onUserRemoveClick}
-                >
-                  ×
-                </button>
-              </li>
-            ))}
-          </ul>
-          <button type="button" onClick={onUserAddClick}>
-            ＋
-          </button>
-        </form>
-      </div>
-      <div>
-        <h2>支払い一覧</h2>
-        <form onSubmit={onSubmit}>
-          <table border={1}>
-            <thead>
-              <tr>
-                <th></th>
-                <th>品目</th>
-                <th>支払った人</th>
-                <th>額</th>
-                <th>個数</th>
-                <th>計</th>
-                <th>支払い免除</th>
-                <th colSpan={users.length}>支払い額</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th colSpan={7}></th>
-                {users.map((u, i) => (
-                  <th key={`users-th-${i}`}>{u}</th>
-                ))}
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions.map((t, i) => (
-                <tr key={`transactions-${i}`}>
-                  <td>
-                    {i !== 0 ? (
-                      <button
-                        id={`transaction-${i}-up`}
-                        type="button"
-                        onClick={onTransactionUpClick}
-                      >
-                        ↑
-                      </button>
-                    ) : (
-                      <></>
-                    )}
-                    {transactions.length > i + 1 ? (
-                      <button
-                        id={`transaction-${i}-down`}
-                        type="button"
-                        onClick={onTransactionDownClick}
-                      >
-                        ↓
-                      </button>
-                    ) : (
-                      <></>
-                    )}
-                  </td>
-                  <td>
-                    <input
-                      name={`transaction-${i}-item`}
-                      value={t.item}
-                      onChange={onTransactionItemChange}
-                    />
-                  </td>
-                  <td>
-                    <select
-                      name={`transaction-${i}-buyer`}
-                      value={t.buyer}
-                      onChange={onTransactionBuyerChange}
-                    >
-                      <option value="" />
-                      {users.map((u, ui) => (
-                        <option
-                          key={`transactions-${i}-buyers-${ui}`}
-                          value={u}
-                        >
-                          {u}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      name={`transaction-${i}-price`}
-                      value={t.price}
-                      type="number"
-                      onChange={onTransactionPriceChange}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      name={`transaction-${i}-quantity`}
-                      value={t.quantity}
-                      type="number"
-                      min={1}
-                      step={1}
-                      onChange={onTransactionQuantityChange}
-                    />
-                  </td>
-                  <td>{t.price * t.quantity}</td>
-                  <td>
-                    <select
-                      name={`transaction-${i}-exemptions`}
-                      multiple={true}
-                      value={t.exemptions}
-                      onChange={onTransactionExemptionChange}
-                    >
-                      {users.map((u, ui) => (
-                        <option key={`transactions-${i}-exemptions-${ui}`}>
-                          {u}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  {users.map((u, ui) => (
-                    <td key={`transactions-${i}-users-${ui}`}>
-                      {t.exemptions.includes(u)
-                        ? 0
-                        : Math.floor(
-                            (t.price * t.quantity) /
-                              (users.length - t.exemptions.length),
-                          )}
-                    </td>
-                  ))}
-                  <td>
-                    <button
-                      type="button"
-                      id={`transaction-${i}-remove`}
-                      onClick={onTransactionRemoveClick}
-                    >
-                      ×
-                    </button>
-                  </td>
+    <div>
+      <Container>
+        <div>
+          <Title order={2}>支払い関係者</Title>
+          <form onSubmit={onSubmit}>
+            <ul>
+              {users.map((u, i) => (
+                <li key={`users-${i}`}>
+                  <Input
+                    value={u}
+                    onChange={(e) => onUserInputChange(i, e.target.value)}
+                    onKeyUp={onUserInputKeyUp}
+                  />
+                  <Button onClick={() => onUserRemoveClick(i)}>×</Button>
+                </li>
+              ))}
+            </ul>
+            <Button onClick={onUserAddClick}>＋</Button>
+          </form>
+        </div>
+        <div>
+          <Title order={2}>支払い一覧</Title>
+          <form onSubmit={onSubmit}>
+            <Table striped={true}>
+              <thead>
+                <tr>
+                  <th rowSpan={2}></th>
+                  <th rowSpan={2}>品目</th>
+                  <th rowSpan={2}>支払った人</th>
+                  <th rowSpan={2}>単価</th>
+                  <th rowSpan={2}>個数</th>
+                  <th rowSpan={2}>計</th>
+                  <th rowSpan={2}>支払い免除</th>
+                  <th colSpan={users.length}>支払い額</th>
+                  <th rowSpan={2}></th>
                 </tr>
-              ))}
+                <tr>
+                  {users.map((u, i) => (
+                    <th key={`users-th-${i}`}>{u}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {transactions.map((t, i) => (
+                  <tr key={`transactions-${i}`}>
+                    <td>
+                      {i !== 0 ? (
+                        <Button onClick={() => onTransactionUpClick(i)}>
+                          ↑
+                        </Button>
+                      ) : (
+                        <></>
+                      )}
+                      {transactions.length > i + 1 ? (
+                        <Button onClick={() => onTransactionDownClick(i)}>
+                          ↓
+                        </Button>
+                      ) : (
+                        <></>
+                      )}
+                    </td>
+                    <td>
+                      <Input
+                        value={t.item}
+                        onChange={(e) =>
+                          onTransactionItemChange(i, e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <Select
+                        value={t.buyer}
+                        onChange={(v) => onTransactionBuyerChange(i, v ?? '')}
+                        data={users}
+                      />
+                    </td>
+                    <td>
+                      <Input
+                        value={t.price}
+                        type="number"
+                        onChange={(e) =>
+                          onTransactionPriceChange(i, e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <NumberInput
+                        value={t.quantity}
+                        type="number"
+                        min={1}
+                        step={1}
+                        onChange={(v) => onTransactionQuantityChange(i, v ?? 1)}
+                      />
+                    </td>
+                    <td>{t.price * t.quantity}</td>
+                    <td>
+                      <MultiSelect
+                        multiple={true}
+                        value={t.exemptions}
+                        onChange={(v) => onTransactionExemptionChange(i, v)}
+                        data={users}
+                      />
+                    </td>
+                    {users.map((u, ui) => (
+                      <td key={`transactions-${i}-users-${ui}`}>
+                        {t.exemptions.includes(u)
+                          ? 0
+                          : Math.floor(
+                              (t.price * t.quantity) /
+                                (users.length - t.exemptions.length),
+                            )}
+                      </td>
+                    ))}
+                    <td>
+                      <Button onClick={() => onTransactionRemoveClick(i)}>
+                        ×
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+            <Button onClick={onTransactionAddClick}>＋</Button>
+          </form>
+        </div>
+        <div>
+          <Title order={2}>割り勘結果</Title>
+          <Table striped={true}>
+            <tbody>
+              <tr>
+                <td />
+                {users.map((u, i) => (
+                  <th key={`caluclated-header-${i}`}>{u}</th>
+                ))}
+              </tr>
+              <tr>
+                <th>支出計</th>
+                {users.map((u, i) => (
+                  <td key={`caluclated-spending-${i}`}>
+                    {getUserSpendings(transactions, users, u)}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <th>支払い計</th>
+                {users.map((u, i) => (
+                  <td key={`caluclated-payment-${i}`}>
+                    {getUserPayments(transactions, u)}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <th>合計</th>
+                {users.map((u, i) => (
+                  <td key={`caluclated-payment-${i}`}>
+                    {getUserSpendings(transactions, users, u) -
+                      getUserPayments(transactions, u)}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <th>余り</th>
+                <td>
+                  {Math.abs(
+                    users.reduce<number>(
+                      (p, c) =>
+                        p +
+                        getUserSpendings(transactions, users, c) -
+                        getUserPayments(transactions, c),
+                      0,
+                    ),
+                  )}
+                </td>
+              </tr>
             </tbody>
-          </table>
-          <button type="button" onClick={onTransactionAddClick}>
-            ＋
-          </button>
-        </form>
-      </div>
-      <div>
-        <h2>割り勘結果</h2>
-        <table border={1}>
-          <tbody>
-            <tr>
-              <td />
-              {users.map((u, i) => (
-                <th key={`caluclated-header-${i}`}>{u}</th>
-              ))}
-            </tr>
-            <tr>
-              <th>支出計</th>
-              {users.map((u, i) => (
-                <td key={`caluclated-spending-${i}`}>
-                  {getUserSpendings(transactions, users, u)}
-                </td>
-              ))}
-            </tr>
-            <tr>
-              <th>支払い計</th>
-              {users.map((u, i) => (
-                <td key={`caluclated-payment-${i}`}>
-                  {getUserPayments(transactions, u)}
-                </td>
-              ))}
-            </tr>
-            <tr>
-              <th>合計</th>
-              {users.map((u, i) => (
-                <td key={`caluclated-payment-${i}`}>
-                  {getUserSpendings(transactions, users, u) -
-                    getUserPayments(transactions, u)}
-                </td>
-              ))}
-            </tr>
-            <tr>
-              <th>余り</th>
-              <td>
-                {Math.abs(
-                  users.reduce<number>(
-                    (p, c) =>
-                      p +
-                      getUserSpendings(transactions, users, c) -
-                      getUserPayments(transactions, c),
-                    0,
-                  ),
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <button type="button" onClick={onUrlCopyClick}>
-          URL をコピー
-        </button>
-        <button type="button" onClick={onResetClick}>
-          リセット
-        </button>
-      </div>
-    </>
+          </Table>
+        </div>
+        <div>
+          <Button onClick={onUrlCopyClick}>URL をコピー</Button>
+          <Button onClick={onResetClick}>リセット</Button>
+        </div>
+      </Container>
+    </div>
   )
 }
