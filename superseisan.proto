@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package super_seisan;
+
+message Transactions {
+  required string item = 0;
+  required string buyer = 1;
+  required double price = 2;
+  required uint32 quantity = 3;
+  repeated string exemptions = 4;
+}
+
+message Payload {
+  repeated Transactions transactions = 0;
+  repeated string users = 1;
+}

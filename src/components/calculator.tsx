@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { super_seisan } from '../generated/protobuf'
 
 type Transaction = {
   item: string
@@ -43,8 +44,47 @@ function getUserPayments(transactions: Transaction[], user: string): number {
 }
 
 export const Caluclator: React.FC = () => {
+  const [initialized, setInitalized] = useState(false)
   const [users, setUsers] = useState<string[]>([''])
   const [transactions, setTransactions] = useState<Transaction[]>([])
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1)
+    let decoded: super_seisan.Payload
+    try {
+      decoded = super_seisan.Payload.decode(
+        Uint8Array.from([...atob(hash)].map((h) => h.charCodeAt(0))),
+      )
+    } catch (e) {
+      console.error('Failed to parse hash string', e)
+      return
+    }
+
+    setUsers(decoded.users)
+    setTransactions(
+      decoded.transactions.map((t) => ({
+        ...t,
+        exemptions: t.exemptions ?? [],
+      })),
+    )
+
+    setInitalized(true)
+
+    console.debug('hash loaded!')
+  }, [])
+
+  useEffect(() => {
+    if (!initialized) return
+
+    const data = super_seisan.Payload.encode({
+      transactions: transactions,
+      users: users,
+    }).finish()
+    const hash = btoa(String.fromCharCode(...data))
+    window.location.hash = hash
+
+    console.debug('hash saved!')
+  }, [initialized, transactions, users])
 
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => e.preventDefault(),
@@ -173,7 +213,19 @@ export const Caluclator: React.FC = () => {
     [],
   )
 
-  console.log(transactions)
+  const onUrlCopyClick = useCallback(async () => {
+    await navigator.clipboard.writeText(window.location.href).catch((e) => {
+      console.error('Failed to write to clipboard', e)
+      window.alert('リンクのコピーに失敗しました')
+    })
+  }, [window.location.href])
+
+  const onResetClick = useCallback(() => {
+    if (!window.confirm('本当にリセットしますか?')) return
+
+    setUsers([])
+    setTransactions([])
+  }, [])
 
   return (
     <>
@@ -391,6 +443,14 @@ export const Caluclator: React.FC = () => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div>
+        <button type="button" onClick={onUrlCopyClick}>
+          URL をコピー
+        </button>
+        <button type="button" onClick={onResetClick}>
+          リセット
+        </button>
       </div>
     </>
   )
