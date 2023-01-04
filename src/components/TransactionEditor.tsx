@@ -6,38 +6,87 @@ import {
   Select,
   Table,
 } from '@mantine/core'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Transaction } from '../types'
+import { spliceToNew } from '../utils'
 
 export type TransactonEditorProps = Readonly<{
-  onSubmit: React.FormEventHandler<HTMLFormElement>
-  onTransactionAddClick: () => any
-  onTransactionBuyerChange: (i: number, v: string) => unknown
-  onTransactionDownClick: (i: number) => any
-  onTransactionExemptionChange: (i: number, v: string[]) => any
-  onTransactionItemChange: (i: number, v: string) => any
-  onTransactionPriceChange: (i: number, v: number) => any
-  onTransactionQuantityChange: (i: number, v: number) => any
-  onTransactionRemoveClick: (i: number) => any
-  onTransactionUpClick: (i: number) => any
+  setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>
   transactions: Transaction[]
   users: string[]
 }>
 
 export const TransactonEditor: React.FC<TransactonEditorProps> = ({
-  onSubmit,
-  onTransactionAddClick,
-  onTransactionBuyerChange,
-  onTransactionDownClick,
-  onTransactionExemptionChange,
-  onTransactionItemChange,
-  onTransactionPriceChange,
-  onTransactionQuantityChange,
-  onTransactionRemoveClick,
-  onTransactionUpClick,
+  setTransactions,
   transactions,
   users,
 }) => {
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => e.preventDefault(),
+    [],
+  )
+
+  const onTransactionUpClick = useCallback((i: number) => {
+    if (i < 1) return
+    setTransactions((t) => spliceToNew(t, i - 1, 2, t[i], t[i - 1]))
+  }, [])
+
+  const onTransactionDownClick = useCallback(
+    (i: number) => {
+      if (i > transactions.length - 1) return
+      setTransactions((t) => spliceToNew(t, i, 2, t[i + 1], t[i]))
+    },
+    [transactions],
+  )
+
+  const onTransactionItemChange = useCallback((i: number, v: string) => {
+    setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], item: v }))
+  }, [])
+
+  const onTransactionBuyerChange = useCallback((i: number, v: string) => {
+    setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], buyer: v }))
+  }, [])
+
+  const onTransactionPriceChange = useCallback((i: number, v: number) => {
+    setTransactions((t) =>
+      spliceToNew(t, i, 1, {
+        ...t[i],
+        price: v,
+      }),
+    )
+  }, [])
+
+  const onTransactionQuantityChange = useCallback((i: number, v: number) => {
+    setTransactions((t) =>
+      spliceToNew(t, i, 1, {
+        ...t[i],
+        quantity: v,
+      }),
+    )
+  }, [])
+
+  const onTransactionExemptionChange = useCallback((i: number, v: string[]) => {
+    setTransactions((t) =>
+      spliceToNew(t, i, 1, {
+        ...t[i],
+        exemptions: v,
+      }),
+    )
+  }, [])
+
+  const onTransactionRemoveClick = useCallback((i: number) => {
+    setTransactions((t) => spliceToNew(t, i, 1))
+  }, [])
+
+  const onTransactionAddClick = useCallback(
+    () =>
+      setTransactions((t) => [
+        ...t,
+        { item: '', buyer: '', price: 0, quantity: 1, exemptions: [] },
+      ]),
+    [],
+  )
+
   return (
     <form onSubmit={onSubmit}>
       <Table striped={true}>

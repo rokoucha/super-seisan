@@ -12,17 +12,6 @@ type Transaction = {
   exemptions: string[]
 }
 
-function spliceToNew<T>(
-  arrayLike: Iterable<T>,
-  start: number,
-  deleteCount: number,
-  ...items: T[]
-): Array<T> {
-  const n = [...arrayLike]
-  n.splice(start, deleteCount, ...items)
-  return n
-}
-
 function getUserSpendings(
   transactions: Transaction[],
   users: string[],
@@ -89,94 +78,6 @@ export const Caluclator: React.FC = () => {
     console.debug('hash saved!')
   }, [initialized, transactions, users])
 
-  const onSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => e.preventDefault(),
-    [],
-  )
-
-  const onUserInputChange = useCallback((i: number, v: string) => {
-    setUsers((u) => spliceToNew(u, i, 1, v))
-  }, [])
-
-  const onUserRemoveClick = useCallback((i: number) => {
-    setUsers((u) => spliceToNew(u, i, 1))
-  }, [])
-
-  const onUserAddClick = useCallback(() => {
-    setUsers((u) => [...u, ''])
-  }, [])
-
-  const onUserInputKeyUp = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key !== 'Enter') return
-
-      e.preventDefault()
-      onUserAddClick()
-    },
-    [],
-  )
-
-  const onTransactionUpClick = useCallback((i: number) => {
-    if (i < 1) return
-    setTransactions((t) => spliceToNew(t, i - 1, 2, t[i], t[i - 1]))
-  }, [])
-
-  const onTransactionDownClick = useCallback(
-    (i: number) => {
-      if (i > transactions.length - 1) return
-      setTransactions((t) => spliceToNew(t, i, 2, t[i + 1], t[i]))
-    },
-    [transactions],
-  )
-
-  const onTransactionItemChange = useCallback((i: number, v: string) => {
-    setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], item: v }))
-  }, [])
-
-  const onTransactionBuyerChange = useCallback((i: number, v: string) => {
-    setTransactions((t) => spliceToNew(t, i, 1, { ...t[i], buyer: v }))
-  }, [])
-
-  const onTransactionPriceChange = useCallback((i: number, v: number) => {
-    setTransactions((t) =>
-      spliceToNew(t, i, 1, {
-        ...t[i],
-        price: v,
-      }),
-    )
-  }, [])
-
-  const onTransactionQuantityChange = useCallback((i: number, v: number) => {
-    setTransactions((t) =>
-      spliceToNew(t, i, 1, {
-        ...t[i],
-        quantity: v,
-      }),
-    )
-  }, [])
-
-  const onTransactionExemptionChange = useCallback((i: number, v: string[]) => {
-    setTransactions((t) =>
-      spliceToNew(t, i, 1, {
-        ...t[i],
-        exemptions: v,
-      }),
-    )
-  }, [])
-
-  const onTransactionRemoveClick = useCallback((i: number) => {
-    setTransactions((t) => spliceToNew(t, i, 1))
-  }, [])
-
-  const onTransactionAddClick = useCallback(
-    () =>
-      setTransactions((t) => [
-        ...t,
-        { item: '', buyer: '', price: 0, quantity: 1, exemptions: [] },
-      ]),
-    [],
-  )
-
   const onUrlCopyClick = useCallback(async () => {
     await navigator.clipboard.writeText(window.location.href).catch((e) => {
       console.error('Failed to write to clipboard', e)
@@ -196,28 +97,12 @@ export const Caluclator: React.FC = () => {
       <Container>
         <div>
           <Title order={2}>支払い関係者</Title>
-          <UserEditor
-            onSubmit={onSubmit}
-            onUserAddClick={onUserAddClick}
-            onUserInputChange={onUserInputChange}
-            onUserInputKeyUp={onUserInputKeyUp}
-            onUserRemoveClick={onUserRemoveClick}
-            users={users}
-          />
+          <UserEditor setUsers={setUsers} users={users} />
         </div>
         <div>
           <Title order={2}>支払い一覧</Title>
           <TransactonEditor
-            onSubmit={onSubmit}
-            onTransactionAddClick={onTransactionAddClick}
-            onTransactionBuyerChange={onTransactionBuyerChange}
-            onTransactionDownClick={onTransactionDownClick}
-            onTransactionExemptionChange={onTransactionExemptionChange}
-            onTransactionItemChange={onTransactionItemChange}
-            onTransactionPriceChange={onTransactionPriceChange}
-            onTransactionQuantityChange={onTransactionQuantityChange}
-            onTransactionRemoveClick={onTransactionRemoveClick}
-            onTransactionUpClick={onTransactionUpClick}
+            setTransactions={setTransactions}
             transactions={transactions}
             users={users}
           />
