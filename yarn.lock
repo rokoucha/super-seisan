@@ -2547,15 +2547,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.41.5":
-  version: 7.41.5
-  resolution: "react-hook-form@npm:7.41.5"
-  peerDependencies:
-    react: ^16.8.0 || ^17 || ^18
-  checksum: ca28b2deb4fdbf120ff726f4d66366711725df03b677f52b2577a69bf761e409644bf06b8342dbc2dd5cdfdb05efecdbc2361799f405a35d65911fd0b4d8bdde
-  languageName: node
-  linkType: hard
-
 "react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -2867,7 +2858,6 @@ __metadata:
     protobufjs-cli: ^1.0.2
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-hook-form: ^7.41.5
     typescript: ^4.9.4
     vite: ^4.0.3
   languageName: unknown
