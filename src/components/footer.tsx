@@ -5,7 +5,7 @@ import {
   Footer as MantineFooter,
   Text,
 } from '@mantine/core'
-import type React from 'react'
+import React from 'react'
 
 const useStyles = createStyles((theme) => ({
   footer: {
