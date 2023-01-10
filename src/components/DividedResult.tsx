@@ -16,7 +16,7 @@ function getUserSpendings(
 ): number {
   return transactions
     .filter((t) => !t.exemptions.includes(user))
-    .reduce<number>((p, c) => p + getDividedPrice(c, user.length), 0)
+    .reduce<number>((p, c) => p + getDividedPrice(c, users.length), 0)
 }
 
 function getUserPayments(transactions: Transaction[], user: string): number {
