@@ -6,7 +6,9 @@
   "packageManager": "yarn@3.3.1",
   "scripts": {
     "build": "vite build",
-    "dev": "vite --host '::'"
+    "dev": "vite --host '::'",
+    "generate:js": "pbjs superseisan.proto -t static-module -w es6 -o src/generated/protobuf/index.js",
+    "generate:ts": "pbts src/generated/protobuf/index.js -o src/generated/protobuf/index.d.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
