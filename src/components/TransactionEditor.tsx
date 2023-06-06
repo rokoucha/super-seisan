@@ -12,13 +12,13 @@ import React, { useCallback } from 'react'
 import { Transaction } from '../types'
 import { spliceToNew } from '../utils'
 
-export type TransactonEditorProps = Readonly<{
+export type TransactionEditorProps = Readonly<{
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>
   transactions: Transaction[]
   users: string[]
 }>
 
-export const TransactonEditor: React.FC<TransactonEditorProps> = ({
+export const TransactionEditor: React.FC<TransactionEditorProps> = ({
   setTransactions,
   transactions,
   users,

@@ -2,7 +2,7 @@ import { Button, Container, Flex, Stack, Title } from '@mantine/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { super_seisan } from '../generated/protobuf'
 import { DividedResult } from './DividedResult'
-import { TransactonEditor } from './TransactionEditor'
+import { TransactionEditor } from './TransactionEditor'
 import { UserEditor } from './UserEditor'
 
 type Transaction = {
@@ -13,8 +13,8 @@ type Transaction = {
   exemptions: string[]
 }
 
-export const Caluclator: React.FC = () => {
-  const [initialized, setInitalized] = useState(false)
+export const Calculator: React.FC = () => {
+  const [initialized, setInitialized] = useState(false)
   const [users, setUsers] = useState<string[]>([''])
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
@@ -38,7 +38,7 @@ export const Caluclator: React.FC = () => {
       })),
     )
 
-    setInitalized(true)
+    setInitialized(true)
 
     console.debug('hash loaded!')
   }, [])
@@ -82,7 +82,7 @@ export const Caluclator: React.FC = () => {
           </Stack>
           <Stack>
             <Title order={2}>支払い一覧</Title>
-            <TransactonEditor
+            <TransactionEditor
               setTransactions={setTransactions}
               transactions={transactions}
               users={users}
