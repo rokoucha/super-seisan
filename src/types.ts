@@ -4,4 +4,5 @@ export type Transaction = {
   price: number
   quantity: number
   exemptions: string[]
+  currencySymbol: string | null
 }

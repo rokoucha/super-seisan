@@ -8,9 +8,16 @@ message Transactions {
   required double price = 2;
   required uint32 quantity = 3;
   repeated string exemptions = 4;
+  string currency_symbol = 5;
+}
+
+message Currency {
+  required string symbol = 0;
+  required double rate = 1;
 }
 
 message Payload {
   repeated Transactions transactions = 0;
   repeated string users = 1;
+  repeated Currency currencies = 2;
 }

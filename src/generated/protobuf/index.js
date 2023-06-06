@@ -27,6 +27,7 @@ export const super_seisan = $root.super_seisan = (() => {
          * @property {number} price Transactions price
          * @property {number} quantity Transactions quantity
          * @property {Array.<string>|null} [exemptions] Transactions exemptions
+         * @property {string|null} [currencySymbol] Transactions currencySymbol
          */
 
         /**
@@ -86,6 +87,14 @@ export const super_seisan = $root.super_seisan = (() => {
         Transactions.prototype.exemptions = $util.emptyArray;
 
         /**
+         * Transactions currencySymbol.
+         * @member {string} currencySymbol
+         * @memberof super_seisan.Transactions
+         * @instance
+         */
+        Transactions.prototype.currencySymbol = "";
+
+        /**
          * Creates a new Transactions instance using the specified properties.
          * @function create
          * @memberof super_seisan.Transactions
@@ -116,6 +125,8 @@ export const super_seisan = $root.super_seisan = (() => {
             if (message.exemptions != null && message.exemptions.length)
                 for (let i = 0; i < message.exemptions.length; ++i)
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.exemptions[i]);
+            if (message.currencySymbol != null && Object.hasOwnProperty.call(message, "currencySymbol"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.currencySymbol);
             return writer;
         };
 
@@ -170,6 +181,10 @@ export const super_seisan = $root.super_seisan = (() => {
                         if (!(message.exemptions && message.exemptions.length))
                             message.exemptions = [];
                         message.exemptions.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        message.currencySymbol = reader.string();
                         break;
                     }
                 default:
@@ -230,6 +245,9 @@ export const super_seisan = $root.super_seisan = (() => {
                     if (!$util.isString(message.exemptions[i]))
                         return "exemptions: string[] expected";
             }
+            if (message.currencySymbol != null && message.hasOwnProperty("currencySymbol"))
+                if (!$util.isString(message.currencySymbol))
+                    return "currencySymbol: string expected";
             return null;
         };
 
@@ -260,6 +278,8 @@ export const super_seisan = $root.super_seisan = (() => {
                 for (let i = 0; i < object.exemptions.length; ++i)
                     message.exemptions[i] = String(object.exemptions[i]);
             }
+            if (object.currencySymbol != null)
+                message.currencySymbol = String(object.currencySymbol);
             return message;
         };
 
@@ -283,6 +303,7 @@ export const super_seisan = $root.super_seisan = (() => {
                 object.buyer = "";
                 object.price = 0;
                 object.quantity = 0;
+                object.currencySymbol = "";
             }
             if (message.item != null && message.hasOwnProperty("item"))
                 object.item = message.item;
@@ -297,6 +318,8 @@ export const super_seisan = $root.super_seisan = (() => {
                 for (let j = 0; j < message.exemptions.length; ++j)
                     object.exemptions[j] = message.exemptions[j];
             }
+            if (message.currencySymbol != null && message.hasOwnProperty("currencySymbol"))
+                object.currencySymbol = message.currencySymbol;
             return object;
         };
 
@@ -329,6 +352,233 @@ export const super_seisan = $root.super_seisan = (() => {
         return Transactions;
     })();
 
+    super_seisan.Currency = (function() {
+
+        /**
+         * Properties of a Currency.
+         * @memberof super_seisan
+         * @interface ICurrency
+         * @property {string} symbol Currency symbol
+         * @property {number} rate Currency rate
+         */
+
+        /**
+         * Constructs a new Currency.
+         * @memberof super_seisan
+         * @classdesc Represents a Currency.
+         * @implements ICurrency
+         * @constructor
+         * @param {super_seisan.ICurrency=} [properties] Properties to set
+         */
+        function Currency(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Currency symbol.
+         * @member {string} symbol
+         * @memberof super_seisan.Currency
+         * @instance
+         */
+        Currency.prototype.symbol = "";
+
+        /**
+         * Currency rate.
+         * @member {number} rate
+         * @memberof super_seisan.Currency
+         * @instance
+         */
+        Currency.prototype.rate = 0;
+
+        /**
+         * Creates a new Currency instance using the specified properties.
+         * @function create
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {super_seisan.ICurrency=} [properties] Properties to set
+         * @returns {super_seisan.Currency} Currency instance
+         */
+        Currency.create = function create(properties) {
+            return new Currency(properties);
+        };
+
+        /**
+         * Encodes the specified Currency message. Does not implicitly {@link super_seisan.Currency.verify|verify} messages.
+         * @function encode
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {super_seisan.ICurrency} message Currency message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Currency.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 0, wireType 2 =*/2).string(message.symbol);
+            writer.uint32(/* id 1, wireType 1 =*/9).double(message.rate);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Currency message, length delimited. Does not implicitly {@link super_seisan.Currency.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {super_seisan.ICurrency} message Currency message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Currency.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Currency message from the specified reader or buffer.
+         * @function decode
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {super_seisan.Currency} Currency
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Currency.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.super_seisan.Currency();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 0: {
+                        message.symbol = reader.string();
+                        break;
+                    }
+                case 1: {
+                        message.rate = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("symbol"))
+                throw $util.ProtocolError("missing required 'symbol'", { instance: message });
+            if (!message.hasOwnProperty("rate"))
+                throw $util.ProtocolError("missing required 'rate'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a Currency message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {super_seisan.Currency} Currency
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Currency.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Currency message.
+         * @function verify
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Currency.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isString(message.symbol))
+                return "symbol: string expected";
+            if (typeof message.rate !== "number")
+                return "rate: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a Currency message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {super_seisan.Currency} Currency
+         */
+        Currency.fromObject = function fromObject(object) {
+            if (object instanceof $root.super_seisan.Currency)
+                return object;
+            let message = new $root.super_seisan.Currency();
+            if (object.symbol != null)
+                message.symbol = String(object.symbol);
+            if (object.rate != null)
+                message.rate = Number(object.rate);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Currency message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {super_seisan.Currency} message Currency
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Currency.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.symbol = "";
+                object.rate = 0;
+            }
+            if (message.symbol != null && message.hasOwnProperty("symbol"))
+                object.symbol = message.symbol;
+            if (message.rate != null && message.hasOwnProperty("rate"))
+                object.rate = options.json && !isFinite(message.rate) ? String(message.rate) : message.rate;
+            return object;
+        };
+
+        /**
+         * Converts this Currency to JSON.
+         * @function toJSON
+         * @memberof super_seisan.Currency
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Currency.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Currency
+         * @function getTypeUrl
+         * @memberof super_seisan.Currency
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Currency.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/super_seisan.Currency";
+        };
+
+        return Currency;
+    })();
+
     super_seisan.Payload = (function() {
 
         /**
@@ -337,6 +587,7 @@ export const super_seisan = $root.super_seisan = (() => {
          * @interface IPayload
          * @property {Array.<super_seisan.ITransactions>|null} [transactions] Payload transactions
          * @property {Array.<string>|null} [users] Payload users
+         * @property {Array.<super_seisan.ICurrency>|null} [currencies] Payload currencies
          */
 
         /**
@@ -350,6 +601,7 @@ export const super_seisan = $root.super_seisan = (() => {
         function Payload(properties) {
             this.transactions = [];
             this.users = [];
+            this.currencies = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -371,6 +623,14 @@ export const super_seisan = $root.super_seisan = (() => {
          * @instance
          */
         Payload.prototype.users = $util.emptyArray;
+
+        /**
+         * Payload currencies.
+         * @member {Array.<super_seisan.ICurrency>} currencies
+         * @memberof super_seisan.Payload
+         * @instance
+         */
+        Payload.prototype.currencies = $util.emptyArray;
 
         /**
          * Creates a new Payload instance using the specified properties.
@@ -402,6 +662,9 @@ export const super_seisan = $root.super_seisan = (() => {
             if (message.users != null && message.users.length)
                 for (let i = 0; i < message.users.length; ++i)
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.users[i]);
+            if (message.currencies != null && message.currencies.length)
+                for (let i = 0; i < message.currencies.length; ++i)
+                    $root.super_seisan.Currency.encode(message.currencies[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -446,6 +709,12 @@ export const super_seisan = $root.super_seisan = (() => {
                         if (!(message.users && message.users.length))
                             message.users = [];
                         message.users.push(reader.string());
+                        break;
+                    }
+                case 2: {
+                        if (!(message.currencies && message.currencies.length))
+                            message.currencies = [];
+                        message.currencies.push($root.super_seisan.Currency.decode(reader, reader.uint32()));
                         break;
                     }
                 default:
@@ -499,6 +768,15 @@ export const super_seisan = $root.super_seisan = (() => {
                     if (!$util.isString(message.users[i]))
                         return "users: string[] expected";
             }
+            if (message.currencies != null && message.hasOwnProperty("currencies")) {
+                if (!Array.isArray(message.currencies))
+                    return "currencies: array expected";
+                for (let i = 0; i < message.currencies.length; ++i) {
+                    let error = $root.super_seisan.Currency.verify(message.currencies[i]);
+                    if (error)
+                        return "currencies." + error;
+                }
+            }
             return null;
         };
 
@@ -531,6 +809,16 @@ export const super_seisan = $root.super_seisan = (() => {
                 for (let i = 0; i < object.users.length; ++i)
                     message.users[i] = String(object.users[i]);
             }
+            if (object.currencies) {
+                if (!Array.isArray(object.currencies))
+                    throw TypeError(".super_seisan.Payload.currencies: array expected");
+                message.currencies = [];
+                for (let i = 0; i < object.currencies.length; ++i) {
+                    if (typeof object.currencies[i] !== "object")
+                        throw TypeError(".super_seisan.Payload.currencies: object expected");
+                    message.currencies[i] = $root.super_seisan.Currency.fromObject(object.currencies[i]);
+                }
+            }
             return message;
         };
 
@@ -550,6 +838,7 @@ export const super_seisan = $root.super_seisan = (() => {
             if (options.arrays || options.defaults) {
                 object.transactions = [];
                 object.users = [];
+                object.currencies = [];
             }
             if (message.transactions && message.transactions.length) {
                 object.transactions = [];
@@ -560,6 +849,11 @@ export const super_seisan = $root.super_seisan = (() => {
                 object.users = [];
                 for (let j = 0; j < message.users.length; ++j)
                     object.users[j] = message.users[j];
+            }
+            if (message.currencies && message.currencies.length) {
+                object.currencies = [];
+                for (let j = 0; j < message.currencies.length; ++j)
+                    object.currencies[j] = $root.super_seisan.Currency.toObject(message.currencies[j], options);
             }
             return object;
         };
