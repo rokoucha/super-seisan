@@ -20,6 +20,9 @@ export namespace super_seisan {
 
         /** Transactions exemptions */
         exemptions?: (string[]|null);
+
+        /** Transactions currencySymbol */
+        currencySymbol?: (string|null);
     }
 
     /** Represents a Transactions. */
@@ -45,6 +48,9 @@ export namespace super_seisan {
 
         /** Transactions exemptions. */
         public exemptions: string[];
+
+        /** Transactions currencySymbol. */
+        public currencySymbol: string;
 
         /**
          * Creates a new Transactions instance using the specified properties.
@@ -124,6 +130,109 @@ export namespace super_seisan {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a Currency. */
+    interface ICurrency {
+
+        /** Currency symbol */
+        symbol: string;
+
+        /** Currency rate */
+        rate: number;
+    }
+
+    /** Represents a Currency. */
+    class Currency implements ICurrency {
+
+        /**
+         * Constructs a new Currency.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: super_seisan.ICurrency);
+
+        /** Currency symbol. */
+        public symbol: string;
+
+        /** Currency rate. */
+        public rate: number;
+
+        /**
+         * Creates a new Currency instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Currency instance
+         */
+        public static create(properties?: super_seisan.ICurrency): super_seisan.Currency;
+
+        /**
+         * Encodes the specified Currency message. Does not implicitly {@link super_seisan.Currency.verify|verify} messages.
+         * @param message Currency message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: super_seisan.ICurrency, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Currency message, length delimited. Does not implicitly {@link super_seisan.Currency.verify|verify} messages.
+         * @param message Currency message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: super_seisan.ICurrency, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Currency message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Currency
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): super_seisan.Currency;
+
+        /**
+         * Decodes a Currency message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Currency
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): super_seisan.Currency;
+
+        /**
+         * Verifies a Currency message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Currency message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Currency
+         */
+        public static fromObject(object: { [k: string]: any }): super_seisan.Currency;
+
+        /**
+         * Creates a plain object from a Currency message. Also converts values to other types if specified.
+         * @param message Currency
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: super_seisan.Currency, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Currency to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Currency
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a Payload. */
     interface IPayload {
 
@@ -132,6 +241,9 @@ export namespace super_seisan {
 
         /** Payload users */
         users?: (string[]|null);
+
+        /** Payload currencies */
+        currencies?: (super_seisan.ICurrency[]|null);
     }
 
     /** Represents a Payload. */
@@ -148,6 +260,9 @@ export namespace super_seisan {
 
         /** Payload users. */
         public users: string[];
+
+        /** Payload currencies. */
+        public currencies: super_seisan.ICurrency[];
 
         /**
          * Creates a new Payload instance using the specified properties.

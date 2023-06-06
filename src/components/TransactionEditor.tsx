@@ -1,5 +1,6 @@
 import {
   Button,
+  Group,
   Input,
   MultiSelect,
   NumberInput,
@@ -11,17 +12,20 @@ import {
 import React, { useCallback } from 'react'
 import { Transaction } from '../types'
 import { spliceToNew } from '../utils'
+import { Currency } from './CurrencyEditor'
 
-export type TransactonEditorProps = Readonly<{
+export type TransactionEditorProps = Readonly<{
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>
   transactions: Transaction[]
   users: string[]
+  currencies: Currency[]
 }>
 
-export const TransactonEditor: React.FC<TransactonEditorProps> = ({
+export const TransactionEditor: React.FC<TransactionEditorProps> = ({
   setTransactions,
   transactions,
   users,
+  currencies,
 }) => {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => e.preventDefault(),
@@ -44,6 +48,18 @@ export const TransactonEditor: React.FC<TransactonEditorProps> = ({
       }),
     )
   }, [])
+
+  const onTransactionCurrencyChange = useCallback(
+    (i: number, v: string | null) => {
+      setTransactions((t) =>
+        spliceToNew(t, i, 1, {
+          ...t[i],
+          currencySymbol: v,
+        }),
+      )
+    },
+    [],
+  )
 
   const onTransactionQuantityChange = useCallback((i: number, v: number) => {
     setTransactions((t) =>
@@ -71,7 +87,14 @@ export const TransactonEditor: React.FC<TransactonEditorProps> = ({
     () =>
       setTransactions((t) => [
         ...t,
-        { item: '', buyer: '', price: 0, quantity: 1, exemptions: [] },
+        {
+          item: '',
+          buyer: '',
+          price: 0,
+          quantity: 1,
+          exemptions: [],
+          currencySymbol: null,
+        },
       ]),
     [],
   )
@@ -112,13 +135,28 @@ export const TransactonEditor: React.FC<TransactonEditorProps> = ({
                   />
                 </td>
                 <td>
-                  <Input
-                    value={t.price}
-                    type="number"
-                    onChange={(e) =>
-                      onTransactionPriceChange(i, parseInt(e.target.value, 10))
-                    }
-                  />
+                  <Group grow>
+                    <Input
+                      value={t.price}
+                      type="number"
+                      onChange={(e) =>
+                        onTransactionPriceChange(
+                          i,
+                          parseInt(e.target.value, 10),
+                        )
+                      }
+                    />
+                    {currencies.length > 0 && (
+                      <Select
+                        value={t.currencySymbol}
+                        placeholder="JPY"
+                        clearable
+                        allowDeselect
+                        onChange={(v) => onTransactionCurrencyChange(i, v)}
+                        data={currencies.map((c) => c.symbol)}
+                      />
+                    )}
+                  </Group>
                 </td>
                 <td>
                   <NumberInput
@@ -129,7 +167,17 @@ export const TransactonEditor: React.FC<TransactonEditorProps> = ({
                     onChange={(v) => onTransactionQuantityChange(i, v ?? 1)}
                   />
                 </td>
-                <td>{t.price * t.quantity}</td>
+                <td>
+                  {t.price * t.quantity}
+                  {currencies.length > 0 && ` ${t.currencySymbol || 'JPY'}`}
+                  {t.currencySymbol &&
+                    ` = ${(
+                      t.price *
+                      t.quantity *
+                      (currencies.find((c) => c.symbol === t.currencySymbol)
+                        ?.rate ?? 1)
+                    ).toFixed(1)} JPY`}
+                </td>
                 <td>
                   <MultiSelect
                     multiple={true}

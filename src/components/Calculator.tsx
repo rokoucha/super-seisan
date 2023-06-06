@@ -2,20 +2,15 @@ import { Button, Container, Flex, Stack, Title } from '@mantine/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { super_seisan } from '../generated/protobuf'
 import { DividedResult } from './DividedResult'
-import { TransactonEditor } from './TransactionEditor'
+import { TransactionEditor } from './TransactionEditor'
 import { UserEditor } from './UserEditor'
+import { Currency, CurrencyEditor } from './CurrencyEditor'
+import { Transaction } from '../types'
 
-type Transaction = {
-  item: string
-  buyer: string
-  price: number
-  quantity: number
-  exemptions: string[]
-}
-
-export const Caluclator: React.FC = () => {
-  const [initialized, setInitalized] = useState(false)
+export const Calculator: React.FC = () => {
+  const [initialized, setInitialized] = useState(false)
   const [users, setUsers] = useState<string[]>([''])
+  const [currencies, setCurrencies] = useState<Currency[]>([])
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
   useEffect(() => {
@@ -35,10 +30,12 @@ export const Caluclator: React.FC = () => {
       decoded.transactions.map((t) => ({
         ...t,
         exemptions: t.exemptions ?? [],
+        currencySymbol: t.currencySymbol ?? null,
       })),
     )
+    setCurrencies(decoded.currencies)
 
-    setInitalized(true)
+    setInitialized(true)
 
     console.debug('hash loaded!')
   }, [])
@@ -49,12 +46,13 @@ export const Caluclator: React.FC = () => {
     const data = super_seisan.Payload.encode({
       transactions: transactions,
       users: users,
+      currencies: currencies,
     }).finish()
     const hash = btoa(String.fromCharCode(...data))
     window.location.hash = hash
 
     console.debug('hash saved!')
-  }, [initialized, transactions, users])
+  }, [initialized, transactions, users, currencies])
 
   const onUrlCopyClick = useCallback(async () => {
     await navigator.clipboard.writeText(window.location.href).catch((e) => {
@@ -68,6 +66,7 @@ export const Caluclator: React.FC = () => {
 
     setUsers([])
     setTransactions([])
+    setCurrencies([])
   }, [])
 
   return (
@@ -81,16 +80,30 @@ export const Caluclator: React.FC = () => {
             </Flex>
           </Stack>
           <Stack>
-            <Title order={2}>支払い一覧</Title>
-            <TransactonEditor
-              setTransactions={setTransactions}
-              transactions={transactions}
-              users={users}
+            <Title order={2}>為替レート設定</Title>
+            <CurrencyEditor
+              setCurrencies={setCurrencies}
+              currencies={currencies}
             />
           </Stack>
           <Stack>
-            <Title order={2}>割り勘結果</Title>
-            <DividedResult users={users} transactions={transactions} />
+            <Title order={2}>支払い一覧</Title>
+            <TransactionEditor
+              setTransactions={setTransactions}
+              transactions={transactions}
+              users={users}
+              currencies={currencies}
+            />
+          </Stack>
+          <Stack>
+            <Title order={2}>
+              割り勘結果{currencies.length > 0 && ` (JPY)`}
+            </Title>
+            <DividedResult
+              users={users}
+              transactions={transactions}
+              currencies={currencies}
+            />
           </Stack>
           <Flex gap="md" justify="flex-end">
             <Button onClick={onUrlCopyClick}>URL をコピー</Button>
