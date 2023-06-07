@@ -10,13 +10,15 @@ import {
   Text,
 } from '@mantine/core'
 import React, { useCallback } from 'react'
-import { Transaction } from '../types'
+import { super_seisan } from '../generated/protobuf'
 import { spliceToNew } from '../utils'
 import { Currency } from './CurrencyEditor'
 
 export type TransactionEditorProps = Readonly<{
-  setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>
-  transactions: Transaction[]
+  setTransactions: React.Dispatch<
+    React.SetStateAction<super_seisan.ITransactions[]>
+  >
+  transactions: super_seisan.ITransactions[]
   users: string[]
   currencies: Currency[]
 }>
@@ -183,7 +185,7 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                 <td>
                   <MultiSelect
                     multiple={true}
-                    value={t.exemptions}
+                    value={t.exemptions ?? undefined}
                     onChange={(v) => onTransactionExemptionChange(i, v)}
                     data={users}
                   />

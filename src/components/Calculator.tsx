@@ -1,17 +1,18 @@
 import { Button, Container, Flex, Stack, Title } from '@mantine/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import { super_seisan } from '../generated/protobuf'
+import { Currency, CurrencyEditor } from './CurrencyEditor'
 import { DividedResult } from './DividedResult'
 import { TransactionEditor } from './TransactionEditor'
 import { UserEditor } from './UserEditor'
-import { Currency, CurrencyEditor } from './CurrencyEditor'
-import { Transaction } from '../types'
 
 export const Calculator: React.FC = () => {
   const [initialized, setInitialized] = useState(false)
   const [users, setUsers] = useState<string[]>([''])
   const [currencies, setCurrencies] = useState<Currency[]>([])
-  const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [transactions, setTransactions] = useState<
+    super_seisan.ITransactions[]
+  >([])
 
   useEffect(() => {
     const hash = window.location.hash.slice(1)

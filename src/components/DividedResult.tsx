@@ -1,6 +1,6 @@
 import { Table } from '@mantine/core'
 import React from 'react'
-import { Transaction } from '../types'
+import { super_seisan } from '../generated/protobuf'
 import { Currency } from './CurrencyEditor'
 
 function getCurrencyRate(currencies: Currency[], symbol: string | null) {
@@ -8,26 +8,26 @@ function getCurrencyRate(currencies: Currency[], symbol: string | null) {
 }
 
 function getDividedPrice(
-  transaction: Transaction,
+  transaction: super_seisan.ITransactions,
   userLength: number,
   currencies: Currency[],
 ) {
-  const rate = getCurrencyRate(currencies, transaction.currencySymbol)
+  const rate = getCurrencyRate(currencies, transaction.currencySymbol ?? null)
   return Math.floor(
     (transaction.price * transaction.quantity * rate) /
-      (userLength - transaction.exemptions.length),
+      (userLength - (transaction.exemptions?.length ?? 0)),
   )
 }
 
 function getUserSpendings(
-  transactions: Transaction[],
+  transactions: super_seisan.ITransactions[],
   users: string[],
   user: string,
   currencies: Currency[],
 ): number {
   return Math.floor(
     transactions
-      .filter((t) => !t.exemptions.includes(user))
+      .filter((t) => !t.exemptions?.includes(user))
       .reduce<number>(
         (p, c) => p + getDividedPrice(c, users.length, currencies),
         0,
@@ -36,7 +36,7 @@ function getUserSpendings(
 }
 
 function getUserPayments(
-  transactions: Transaction[],
+  transactions: super_seisan.ITransactions[],
   user: string,
   currencies: Currency[],
 ): number {
@@ -46,7 +46,9 @@ function getUserPayments(
       .reduce<number>(
         (p, c) =>
           p +
-          c.price * c.quantity * getCurrencyRate(currencies, c.currencySymbol),
+          c.price *
+            c.quantity *
+            getCurrencyRate(currencies, c.currencySymbol ?? null),
         0,
       ),
   )
@@ -54,7 +56,7 @@ function getUserPayments(
 
 export type DividedResultProps = Readonly<{
   users: string[]
-  transactions: Transaction[]
+  transactions: super_seisan.ITransactions[]
   currencies: Currency[]
 }>
 
@@ -77,7 +79,7 @@ export const DividedResult: React.FC<DividedResultProps> = ({
             <th>{`#${i + 1}: ${t.item}`}</th>
             {users.map((u, ui) => (
               <td key={`caluclated-transactions-${i}-users-${ui}`}>
-                {t.exemptions.includes(u)
+                {t.exemptions?.includes(u)
                   ? 0
                   : getDividedPrice(t, users.length, currencies)}
               </td>
