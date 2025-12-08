@@ -1,4 +1,4 @@
-import { Button, Group, Input, NumberInput, Select, Stack } from '@mantine/core'
+import { Button, Group, Input, Select, Stack } from '@mantine/core'
 import React, { useCallback } from 'react'
 import { spliceToNew } from '../utils'
 
@@ -252,7 +252,7 @@ export const CurrencyEditor: React.FC<CurrencyEditorProps> = ({
             <Input
               value={c.rate}
               type="number"
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onCurrencyRateChange(i, Number(e.currentTarget.value))
               }
               onKeyUp={onCurrencyInputKeyUp}

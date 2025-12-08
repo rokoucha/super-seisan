@@ -126,7 +126,9 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                 <td>
                   <Input
                     value={t.item}
-                    onChange={(e) => onTransactionItemChange(i, e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      onTransactionItemChange(i, e.target.value)
+                    }
                   />
                 </td>
                 <td>
@@ -141,7 +143,7 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                     <Input
                       value={t.price}
                       type="number"
-                      onChange={(e) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         onTransactionPriceChange(
                           i,
                           parseInt(e.target.value, 10),

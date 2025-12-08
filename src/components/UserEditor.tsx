@@ -42,7 +42,9 @@ export const UserEditor: React.FC<UserEditorProps> = ({ setUsers, users }) => {
           <Group key={`users-${i}`}>
             <Input
               value={u}
-              onChange={(e) => onUserInputChange(i, e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onUserInputChange(i, e.target.value)
+              }
               onKeyUp={onUserInputKeyUp}
             />
             <Button onClick={() => onUserRemoveClick(i)}>×</Button>
