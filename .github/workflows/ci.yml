@@ -22,6 +22,11 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
+      - name: Generate codes
+        run: |
+          pnpm run generate:js
+          pnpm run generate:ts
+
       - name: Check formatting
         run: pnpm run lint
 
