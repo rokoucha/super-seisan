@@ -7,8 +7,11 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite --host '::'",
+    "fix": "prettier --write .",
     "generate:js": "pbjs superseisan.proto -t static-module -w es6 -o src/generated/protobuf/index.js",
-    "generate:ts": "pbts src/generated/protobuf/index.js -o src/generated/protobuf/index.d.ts"
+    "generate:ts": "pbts src/generated/protobuf/index.js -o src/generated/protobuf/index.d.ts",
+    "lint": "prettier --check .",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/cache": "11.14.0",
