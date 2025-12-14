@@ -3,6 +3,10 @@ name: CI
 on:
   push:
 
+defaults:
+  run:
+    working-directory: legacy
+
 jobs:
   lint:
     runs-on: ubuntu-latest
