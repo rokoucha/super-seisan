@@ -1,7 +1,9 @@
-name: CI
+name: CI - Legacy
 
 on:
   push:
+    paths:
+      - legacy/**
 
 defaults:
   run:
