@@ -1,0 +1,3 @@
+/src/generated
+pnpm-lock.yaml
+*.d.ts

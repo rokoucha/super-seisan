@@ -1,0 +1,33 @@
+{
+  "name": "super-seisan-web",
+  "description": "史上最強割り勘計算機",
+  "type": "module",
+  "packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501",
+  "dependencies": {
+    "@opennextjs/cloudflare": "1.14.6",
+    "drizzle-orm": "0.45.1",
+    "next": "16.0.10",
+    "prettier": "3.7.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "25.0.2",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "drizzle-kit": "0.31.8",
+    "typescript": "5.9.3",
+    "wrangler": "4.54.0"
+  },
+  "scripts": {
+    "build": "next build",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "dev": "next dev",
+    "fix": "prettier --write .",
+    "generate": "pnpm run cf-typegen",
+    "lint": "prettier --check .",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "start": "next start"
+  }
+}
