@@ -21,11 +21,12 @@
   },
   "scripts": {
     "build": "next build",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev": "next dev",
     "fix": "prettier --write .",
-    "generate": "pnpm run cf-typegen",
+    "generate:cloudflare": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "generate:next": "next typegen",
+    "generate": "pnpm run generate:cloudflare && pnpm run generate:next",
     "lint": "prettier --check .",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start"
