@@ -3,6 +3,7 @@ name: CI - web
 on:
   push:
     paths:
+      - .github/workflows/ci-web.yml
       - web/**
 
 defaults:

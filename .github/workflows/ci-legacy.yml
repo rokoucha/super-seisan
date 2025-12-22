@@ -3,6 +3,7 @@ name: CI - Legacy
 on:
   push:
     paths:
+      - .github/workflows/ci-legacy.yml
       - legacy/**
 
 defaults:
