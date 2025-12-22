@@ -1,3 +1,4 @@
-/src/generated
-pnpm-lock.yaml
 *.d.ts
+/src/generated
+migrations/
+pnpm-lock.yaml
