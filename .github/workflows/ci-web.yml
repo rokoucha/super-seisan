@@ -1,0 +1,45 @@
+name: CI - web
+
+on:
+  push:
+    paths:
+      - web/**
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+        with:
+          package_json_file: ./web/package.json
+
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+        with:
+          node-version: latest
+          cache: pnpm
+          cache-dependency-path: web
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Generate codes
+        run: |
+          pnpm run generate
+
+      - name: Check formatting
+        run: pnpm run lint
+
+      - name: Check types
+        run: pnpm run type-check
+
+      - name: Run build
+        run: pnpm run build

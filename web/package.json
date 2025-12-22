@@ -29,6 +29,7 @@
     "generate": "pnpm run generate:cloudflare && pnpm run generate:next",
     "lint": "prettier --check .",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc --noEmit"
   }
 }
