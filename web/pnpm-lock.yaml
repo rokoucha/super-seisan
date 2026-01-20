@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@opennextjs/cloudflare':
-        specifier: 1.14.9
-        version: 1.14.9(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.59.2)
+        specifier: 1.14.10
+        version: 1.14.10(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.59.2)
       drizzle-orm:
         specifier: 0.45.1
         version: 0.45.1
@@ -1316,14 +1316,14 @@ packages:
     resolution: {integrity: sha512-csY4qcR7jUwiZmkreNTJhcypQfts2aY2CK+a+rXgXUImZiZiySh0FvwHjRnlqWKvg+y6ae9lHFzDRjBTmqlTIQ==}
     engines: {node: '>=16.0.0'}
 
-  '@opennextjs/aws@3.9.8':
-    resolution: {integrity: sha512-0HAB80TmqcdOzz2Msg+qL823ASi9Ikbf1UU1lzdJX00h27sVP2jurqsseDXGxylOuNLqQcKq9gopECDqAIlJIw==}
+  '@opennextjs/aws@3.9.10':
+    resolution: {integrity: sha512-a1MwDsGmy9CXA6jOWAaNMofpy87x3HnoFLYDB3pUx5sVXYl1yLs+hHW+k9AMs1ri1a92cJ1mAdpGJ2eSm1MMXg==}
     hasBin: true
     peerDependencies:
       next: ^14.2.35 || ~15.0.7 || ~15.1.11 || ~15.2.8 || ~15.3.8 || ~15.4.10 || ~15.5.9 || ^16.0.10
 
-  '@opennextjs/cloudflare@1.14.9':
-    resolution: {integrity: sha512-2NoqRQCoHaGUJdK7mNZdCCnIWV6ZrTaU/Uk0hOBRY5WxFEqz5jeCKVMocBcvAmJmMHvVEXY8yCAz1/96CMCHwg==}
+  '@opennextjs/cloudflare@1.14.10':
+    resolution: {integrity: sha512-T7B+hDR7++Yvrx56juo8LXNSfpBSdsR1yI7ZM9v/QbRJ8HdB0VAmXvEIuV/CcajdPVtqgt49oCxLEPV76mTiJw==}
     hasBin: true
     peerDependencies:
       next: ^14.2.35 || ~15.0.7 || ~15.1.11 || ~15.2.8 || ~15.3.8 || ~15.4.10 || ~15.5.9 || ^16.0.10
@@ -2806,7 +2806,7 @@ snapshots:
       '@aws-crypto/sha256-js': 3.0.0
       '@aws-crypto/supports-web-crypto': 3.0.0
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.398.0
+      '@aws-sdk/types': 3.969.0
       '@aws-sdk/util-locate-window': 3.965.2
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
@@ -2824,7 +2824,7 @@ snapshots:
   '@aws-crypto/sha256-js@3.0.0':
     dependencies:
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.398.0
+      '@aws-sdk/types': 3.969.0
       tslib: 1.14.1
 
   '@aws-crypto/sha256-js@5.2.0':
@@ -2843,7 +2843,7 @@ snapshots:
 
   '@aws-crypto/util@3.0.0':
     dependencies:
-      '@aws-sdk/types': 3.398.0
+      '@aws-sdk/types': 3.969.0
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
 
@@ -4314,7 +4314,7 @@ snapshots:
     dependencies:
       gzip-size: 6.0.0
 
-  '@opennextjs/aws@3.9.8(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+  '@opennextjs/aws@3.9.10(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
     dependencies:
       '@ast-grep/napi': 0.40.0
       '@aws-sdk/client-cloudfront': 3.398.0
@@ -4338,11 +4338,11 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.14.9(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.59.2)':
+  '@opennextjs/cloudflare@1.14.10(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.59.2)':
     dependencies:
       '@ast-grep/napi': 0.40.0
       '@dotenvx/dotenvx': 1.31.0
-      '@opennextjs/aws': 3.9.8(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
+      '@opennextjs/aws': 3.9.10(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       cloudflare: 4.5.0
       enquirer: 2.4.1
       glob: 12.0.0
