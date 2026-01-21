@@ -1,0 +1,1951 @@
+openapi: 3.0.1
+info:
+  title: super-seisan
+  description: ""
+  version: 1.0.0
+tags: []
+paths:
+  /seisan/{seisanId}/currencies:
+    post:
+      summary: Add Currency
+      deprecated: false
+      description: 通貨を追加
+      operationId: addCurrencyToSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づける精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CurrencyInput"
+            example:
+              code: キープ
+              rate: 242
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: 23addc4f-fc5b-45eb-a9f3-d07b7e0b2651
+                name: ブルンジ共和国
+                icon: ✌🏿
+                items:
+                  - id: 55f59ff2-7a13-4fca-b040-d6aff85243e8
+                    name: 和風モロヘイヤスープ
+                    icon: 🎩
+                    payer:
+                      id: 1ce21217-543e-4612-924d-cfdf91db5f50
+                      name: ハル89
+                      icon: 🏣
+                      createdAt: "2026-01-21T14:54:38.527Z"
+                      updatedAt: "2026-01-21T14:54:38.527Z"
+                    price: 153.55
+                    currency:
+                      id: 80efb7f2-2840-4da2-ae80-b9665e8c0491
+                      code: トリニダード・トバゴドル
+                      rate: 520.5
+                      createdAt: "2026-01-21T14:54:38.527Z"
+                      updatedAt: "2026-01-21T14:54:38.527Z"
+                    amount: 3
+                    total: 83.75
+                    exempts:
+                      - id: 04e83be7-4e40-4497-987d-bc07615bb20f
+                        name: 楓15
+                        icon: 🍝
+                        createdAt: "2026-01-21T14:54:38.528Z"
+                        updatedAt: "2026-01-21T14:54:38.528Z"
+                      - id: fa7ab1fc-6cf8-47c3-8bab-0805d0d4b3d9
+                        name: 勲78
+                        icon: 🇵🇪
+                        createdAt: "2026-01-21T14:54:38.528Z"
+                        updatedAt: "2026-01-21T14:54:38.528Z"
+                      - id: 942a7d67-3fdb-472f-b649-5dd296c6fb65
+                        name: 久子.田中25
+                        icon: 🦇
+                        createdAt: "2026-01-21T14:54:38.529Z"
+                        updatedAt: "2026-01-21T14:54:38.529Z"
+                    version: "1091247495865566"
+                    createdAt: "2026-01-21T14:54:38.529Z"
+                    updatedAt: "2026-01-21T14:54:38.529Z"
+                  - id: 5c09cf34-2a7f-47b2-b622-c126671895b9
+                    name: 海鮮丼
+                    icon: ✌🏿
+                    payer:
+                      id: 93fe24bd-8392-4846-a124-ab79719d24a5
+                      name: 一郎.加藤28
+                      icon: 🌛
+                      createdAt: "2026-01-21T14:54:38.529Z"
+                      updatedAt: "2026-01-21T14:54:38.529Z"
+                    price: 974.89
+                    currency: null
+                    amount: 7
+                    total: 183.5
+                    exempts:
+                      - id: e60b74e4-7cba-4923-9d18-efee9c40911f
+                        name: 裕子.小林
+                        icon: 💖
+                        createdAt: "2026-01-21T14:54:38.530Z"
+                        updatedAt: "2026-01-21T14:54:38.530Z"
+                    version: "876427448432810"
+                    createdAt: "2026-01-21T14:54:38.530Z"
+                    updatedAt: "2026-01-21T14:54:38.530Z"
+                participants:
+                  - id: 66a0b4f9-7ea4-49d1-ac5e-4eb07508231e
+                    name: 陽菜19
+                    icon: 🇸🇸
+                    createdAt: "2026-01-21T14:54:38.530Z"
+                    updatedAt: "2026-01-21T14:54:38.530Z"
+                  - id: 52f37bfe-dccc-40b3-97e5-72287b71529f
+                    name: 浩之1
+                    icon: 🟤
+                    createdAt: "2026-01-21T14:54:38.530Z"
+                    updatedAt: "2026-01-21T14:54:38.530Z"
+                  - id: 3f9072e3-596c-4c97-9727-f0ea0cd3380b
+                    name: 正雄.渡辺10
+                    icon: 🪐
+                    createdAt: "2026-01-21T14:54:38.531Z"
+                    updatedAt: "2026-01-21T14:54:38.531Z"
+                currencies:
+                  - id: 85d2b7f0-aa2e-4495-8022-aaab634b3832
+                    code: 金
+                    rate: 243.7
+                    createdAt: "2026-01-21T14:54:38.531Z"
+                    updatedAt: "2026-01-21T14:54:38.531Z"
+                  - id: d726ca3d-a280-4f3c-8bab-10dd2892818d
+                    code: タラ
+                    rate: 300.19
+                    createdAt: "2026-01-21T14:54:38.531Z"
+                    updatedAt: "2026-01-21T14:54:38.531Z"
+                result:
+                  id: c5c1742e-1f37-4692-a0ed-2fc9df7ea822
+                  surplus: 532.1
+                  details:
+                    - id: 80a1c19c-076d-4481-85ca-3ebd65f31490
+                      source:
+                        id: 88c85221-b256-4163-b705-fefb79e6cf15
+                        name: カツカレー
+                        icon: ✋
+                        payer:
+                          id: 66db82a2-1a5c-4484-a895-c7a2adb29b6c
+                          name: 崇16
+                          icon: 🧥
+                          createdAt: "2026-01-21T14:54:38.532Z"
+                          updatedAt: "2026-01-21T14:54:38.532Z"
+                        price: 833.7
+                        currency: null
+                        amount: 9
+                        total: 789.19
+                        exempts:
+                          - id: aa83411f-51bf-4b23-8098-65c42f379551
+                            name: 紀子.伊藤
+                            icon: 🛴
+                            createdAt: "2026-01-21T14:54:38.532Z"
+                            updatedAt: "2026-01-21T14:54:38.532Z"
+                          - id: 5fb3f441-e33c-48fc-a086-49aeb730a8de
+                            name: マサ47
+                            icon: 🤙🏽
+                            createdAt: "2026-01-21T14:54:38.532Z"
+                            updatedAt: "2026-01-21T14:54:38.532Z"
+                          - id: 92b103d6-0a22-4007-8a70-26d7197bc2f5
+                            name: 優太.木村6
+                            icon: 🤚🏻
+                            createdAt: "2026-01-21T14:54:38.532Z"
+                            updatedAt: "2026-01-21T14:54:38.532Z"
+                        version: "5759059195756642"
+                        createdAt: "2026-01-21T14:54:38.532Z"
+                        updatedAt: "2026-01-21T14:54:38.533Z"
+                      subtotal: 370.84
+                    - id: a4f43f75-cb6a-4150-9c42-2581b2015c0c
+                      source:
+                        id: 7303d0ba-66fb-4557-a6d7-337e761034e9
+                        name: タケノコの煮物
+                        icon: 🛑
+                        payer:
+                          id: d2223876-bbfa-4431-9d91-fa974497bc72
+                          name: 竜也11
+                          icon: 🦵🏼
+                          createdAt: "2026-01-21T14:54:38.533Z"
+                          updatedAt: "2026-01-21T14:54:38.533Z"
+                        price: 615.29
+                        currency:
+                          id: b2ba018a-8dd8-4d8d-bd1c-cce072d7e1dc
+                          code: 南スーダンポンド
+                          rate: 699.59
+                          createdAt: "2026-01-21T14:54:38.533Z"
+                          updatedAt: "2026-01-21T14:54:38.533Z"
+                        amount: 3
+                        total: 36.03
+                        exempts:
+                          - id: ce5ea5df-ef09-48ec-99af-934c8603ea2b
+                            name: 幸雄88
+                            icon: ✅
+                            createdAt: "2026-01-21T14:54:38.533Z"
+                            updatedAt: "2026-01-21T14:54:38.533Z"
+                          - id: 7232ffcf-d6df-426f-80ed-274c14ad3dd0
+                            name: 幸子65
+                            icon: 😝
+                            createdAt: "2026-01-21T14:54:38.534Z"
+                            updatedAt: "2026-01-21T14:54:38.534Z"
+                        version: "8384805221545920"
+                        createdAt: "2026-01-21T14:54:38.534Z"
+                        updatedAt: "2026-01-21T14:54:38.534Z"
+                      subtotal: 580.7
+                createdAt: "2026-01-21T14:54:38.534Z"
+                updatedAt: "2026-01-21T14:54:38.534Z"
+          headers: {}
+      security: []
+  /seisan/{seisanId}/currencies/{id}:
+    put:
+      summary: Update Currency
+      deprecated: false
+      description: 通貨を更新
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づく精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: 更新する通貨のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CurrencyInput"
+            example:
+              code: ポンド
+              rate: 149.39
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+          headers: {}
+      security: []
+    delete:
+      summary: Remove Currency
+      deprecated: false
+      description: 通貨を削除
+      operationId: removeCurrencyFromSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づく精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: 通貨のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: 01bcb4dd-a432-4ab9-8b86-adde72eb9544
+                name: カメルーン共和国
+                icon: ⏲️
+                items:
+                  - id: 075cc469-c177-4263-a9b7-c30713fe0550
+                    name: 和風重曹スープ
+                    icon: 🦏
+                    payer:
+                      id: 30bf7658-fe88-48c4-9a14-3aa087475e92
+                      name: 由佳.高橋57
+                      icon: 〽️
+                      createdAt: "2026-01-21T14:54:17.084Z"
+                      updatedAt: "2026-01-21T14:54:17.085Z"
+                    price: 299.99
+                    currency: null
+                    amount: 5
+                    total: 722.49
+                    exempts:
+                      - id: 46988ee3-2f1b-4cc1-aeaf-63e98980be64
+                        name: 博_山本
+                        icon: 🌼
+                        createdAt: "2026-01-21T14:54:17.087Z"
+                        updatedAt: "2026-01-21T14:54:17.087Z"
+                      - id: 14778a5f-46d0-43b0-afcf-7f5ae1ee3aaf
+                        name: 朝陽87
+                        icon: 💦
+                        createdAt: "2026-01-21T14:54:17.087Z"
+                        updatedAt: "2026-01-21T14:54:17.087Z"
+                    version: "8967330939569767"
+                    createdAt: "2026-01-21T14:54:17.088Z"
+                    updatedAt: "2026-01-21T14:54:17.088Z"
+                  - id: 857e27be-fb19-4c97-911d-375e3641dfb8
+                    name: 猪肉のみかんソースかけ
+                    icon: 🚑
+                    payer:
+                      id: 7850b13e-00f9-4d3b-9737-a4b3132836f1
+                      name: 茜73
+                      icon: 🍙
+                      createdAt: "2026-01-21T14:54:17.088Z"
+                      updatedAt: "2026-01-21T14:54:17.088Z"
+                    price: 717.39
+                    currency: null
+                    amount: 1
+                    total: 115.79
+                    exempts:
+                      - id: 57b67746-cf30-42f6-9fce-cad7a0947679
+                        name: 空_田中83
+                        icon: 🍭
+                        createdAt: "2026-01-21T14:54:17.089Z"
+                        updatedAt: "2026-01-21T14:54:17.089Z"
+                    version: "8426058769682781"
+                    createdAt: "2026-01-21T14:54:17.089Z"
+                    updatedAt: "2026-01-21T14:54:17.089Z"
+                  - id: 58f3daea-066b-4f2c-87fd-90514935f950
+                    name: 和風牛肉スープ
+                    icon: 🧜🏻
+                    payer:
+                      id: fd8fe8b9-7731-4663-9a52-9d303d9106c8
+                      name: 昭子_渡辺
+                      icon: 🥂
+                      createdAt: "2026-01-21T14:54:17.090Z"
+                      updatedAt: "2026-01-21T14:54:17.090Z"
+                    price: 421.25
+                    currency:
+                      id: ed314fe4-1a0f-472b-924f-a43919d7ed17
+                      code: サウジリアル
+                      rate: 801.29
+                      createdAt: "2026-01-21T14:54:17.090Z"
+                      updatedAt: "2026-01-21T14:54:17.090Z"
+                    amount: 2
+                    total: 410.69
+                    exempts:
+                      - id: 65d0c50c-6bbd-4b48-a995-e4fb2fa03ad2
+                        name: 香織.木村
+                        icon: 👨🏽‍🦽
+                        createdAt: "2026-01-21T14:54:17.090Z"
+                        updatedAt: "2026-01-21T14:54:17.091Z"
+                      - id: 3f5415bf-e7ad-4dea-841b-ff89c0b538c7
+                        name: 達也79
+                        icon: 🛕
+                        createdAt: "2026-01-21T14:54:17.091Z"
+                        updatedAt: "2026-01-21T14:54:17.091Z"
+                      - id: c3d4cde8-23a2-4ed6-85c7-87f087f612b7
+                        name: 由佳77
+                        icon: 🧶
+                        createdAt: "2026-01-21T14:54:17.091Z"
+                        updatedAt: "2026-01-21T14:54:17.091Z"
+                    version: "961622994378901"
+                    createdAt: "2026-01-21T14:54:17.091Z"
+                    updatedAt: "2026-01-21T14:54:17.091Z"
+                participants:
+                  - id: 72e1b345-d1f3-4f45-9f3f-df122e85d755
+                    name: 麻衣.斎藤17
+                    icon: ♑
+                    createdAt: "2026-01-21T14:54:17.092Z"
+                    updatedAt: "2026-01-21T14:54:17.092Z"
+                  - id: 34def6a0-b06e-4850-a1d6-e4407ea4f858
+                    name: 菜々子_田中82
+                    icon: ◽
+                    createdAt: "2026-01-21T14:54:17.092Z"
+                    updatedAt: "2026-01-21T14:54:17.092Z"
+                currencies:
+                  - id: af21cc4e-00f0-4097-a5f4-88320e49bcc4
+                    code: レオン
+                    rate: 596.75
+                    createdAt: "2026-01-21T14:54:17.092Z"
+                    updatedAt: "2026-01-21T14:54:17.092Z"
+                result:
+                  id: 94f029ae-bcef-4683-9bdc-33e0397ad219
+                  surplus: 621.29
+                  details:
+                    - id: 345b1f21-5145-41a1-9830-7d02b9508912
+                      source:
+                        id: e05ccb0d-d912-486e-825e-355be4b9f5c8
+                        name: ブルーベリーパイ
+                        icon: 👌
+                        payer:
+                          id: 7f3d5b8a-0d96-4be1-a3ef-b76232f06711
+                          name: 昇5
+                          icon: 🦻
+                          createdAt: "2026-01-21T14:54:17.093Z"
+                          updatedAt: "2026-01-21T14:54:17.093Z"
+                        price: 242.79
+                        currency: null
+                        amount: 8
+                        total: 187.15
+                        exempts:
+                          - id: e2eaa4af-e62d-4e62-9fa0-e902d045c92c
+                            name: 遥.小林
+                            icon: 🧱
+                            createdAt: "2026-01-21T14:54:17.093Z"
+                            updatedAt: "2026-01-21T14:54:17.093Z"
+                          - id: f6f5ade0-5969-4421-8b6b-a07d1e51d0d9
+                            name: 悠真33
+                            icon: 🖼️
+                            createdAt: "2026-01-21T14:54:17.093Z"
+                            updatedAt: "2026-01-21T14:54:17.094Z"
+                        version: "4662877485009408"
+                        createdAt: "2026-01-21T14:54:17.094Z"
+                        updatedAt: "2026-01-21T14:54:17.094Z"
+                      subtotal: 838.79
+                    - id: f23c5c86-2a23-456d-9fae-320184030070
+                      source:
+                        id: cac448f5-6792-4524-b320-3867fd6f5a28
+                        name: 納豆巻き
+                        icon: 👆🏻
+                        payer:
+                          id: 761337b3-fdb6-4e9c-982a-d6e3b9be18c2
+                          name: 和夫71
+                          icon: 🦶
+                          createdAt: "2026-01-21T14:54:17.094Z"
+                          updatedAt: "2026-01-21T14:54:17.094Z"
+                        price: 304.69
+                        currency:
+                          id: 97021caf-43c5-457d-b8cf-8c67fcc6f791
+                          code: クワンザ
+                          rate: 821.5
+                          createdAt: "2026-01-21T14:54:17.094Z"
+                          updatedAt: "2026-01-21T14:54:17.094Z"
+                        amount: 10
+                        total: 779.2
+                        exempts:
+                          - id: ebf6987a-5f8e-4e0e-a692-63bbd487a90a
+                            name: 節子41
+                            icon: 🎃
+                            createdAt: "2026-01-21T14:54:17.095Z"
+                            updatedAt: "2026-01-21T14:54:17.095Z"
+                          - id: 57c21229-5e5c-4609-a3b3-1f5aaf2f07de
+                            name: 颯真54
+                            icon: 🥡
+                            createdAt: "2026-01-21T14:54:17.095Z"
+                            updatedAt: "2026-01-21T14:54:17.095Z"
+                          - id: 7c2184f2-2a90-4f66-b96a-a5c45a0a51be
+                            name: 豊_佐々木15
+                            icon: 📎
+                            createdAt: "2026-01-21T14:54:17.095Z"
+                            updatedAt: "2026-01-21T14:54:17.095Z"
+                        version: "2230809548402431"
+                        createdAt: "2026-01-21T14:54:17.095Z"
+                        updatedAt: "2026-01-21T14:54:17.095Z"
+                      subtotal: 451.35
+                createdAt: "2026-01-21T14:54:17.096Z"
+                updatedAt: "2026-01-21T14:54:17.096Z"
+          headers: {}
+      security: []
+  /seisan/{seisanId}/participants:
+    post:
+      summary: Add Participant
+      deprecated: false
+      description: 参加者を追加
+      operationId: addParticipantToSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づける精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipantInput"
+            example:
+              name: 恵美子.高橋48
+              icon: 🧵
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: ab80caa0-c80a-428c-bca5-7d3d96c45098
+                name: リベリア共和国
+                icon: 😱
+                items:
+                  - id: dde80b71-1a23-490e-bdac-ec074af947ef
+                    name: 煮玉子
+                    icon: 🫐
+                    payer:
+                      id: 24766540-1eab-45eb-b010-612887792e82
+                      name: 辰雄59
+                      icon: 🔨
+                      createdAt: "2026-01-21T14:56:03.061Z"
+                      updatedAt: "2026-01-21T14:56:03.062Z"
+                    price: 662.5
+                    currency:
+                      id: 6b76202e-ff63-4575-ba0d-cb1bf6e48d18
+                      code: ガイアナドル
+                      rate: 231
+                      createdAt: "2026-01-21T14:56:03.062Z"
+                      updatedAt: "2026-01-21T14:56:03.062Z"
+                    amount: 8
+                    total: 225.05
+                    exempts:
+                      - id: cd2f2c39-d670-444d-a1b8-20f616ae36cb
+                        name: 優衣_渡辺95
+                        icon: 👌🏿
+                        createdAt: "2026-01-21T14:56:03.063Z"
+                        updatedAt: "2026-01-21T14:56:03.063Z"
+                      - id: 86f0d095-9b29-494a-bd10-841f4f48d788
+                        name: 博之89
+                        icon: 🍖
+                        createdAt: "2026-01-21T14:56:03.063Z"
+                        updatedAt: "2026-01-21T14:56:03.063Z"
+                      - id: a8c5485e-9705-494c-920c-3ecdd81a1988
+                        name: 昭子.中村
+                        icon: 👌🏾
+                        createdAt: "2026-01-21T14:56:03.063Z"
+                        updatedAt: "2026-01-21T14:56:03.063Z"
+                    version: "2702707513992853"
+                    createdAt: "2026-01-21T14:56:03.063Z"
+                    updatedAt: "2026-01-21T14:56:03.063Z"
+                participants:
+                  - id: 59fd7df1-87d2-438e-b4cb-57925b59d6ba
+                    name: 結衣.山口69
+                    icon: 🎁
+                    createdAt: "2026-01-21T14:56:03.063Z"
+                    updatedAt: "2026-01-21T14:56:03.064Z"
+                  - id: beb718f3-f4a8-4b69-b03b-f6186f30b879
+                    name: 良子_山本
+                    icon: 🤲🏻
+                    createdAt: "2026-01-21T14:56:03.064Z"
+                    updatedAt: "2026-01-21T14:56:03.064Z"
+                  - id: d63df4fd-a40e-41c4-af4a-3c00286165aa
+                    name: 新_斎藤
+                    icon: 🔱
+                    createdAt: "2026-01-21T14:56:03.064Z"
+                    updatedAt: "2026-01-21T14:56:03.064Z"
+                currencies:
+                  - id: cfc31358-d2ea-4f6d-b36d-00bcdc025349
+                    code: チェココルナ
+                    rate: 563.75
+                    createdAt: "2026-01-21T14:56:03.064Z"
+                    updatedAt: "2026-01-21T14:56:03.064Z"
+                result:
+                  id: cd062ac6-8a7c-4c18-a606-32f5250a7270
+                  surplus: 6.09
+                  details:
+                    - id: c827e691-6e80-4792-9422-d9ada30d868e
+                      source:
+                        id: ced4f9b5-92bc-4e76-815e-7754aea045b1
+                        name: 巻き寿司
+                        icon: 🕷️
+                        payer:
+                          id: b281df4c-50f2-41d0-940a-f5eaa9f0cbce
+                          name: 湊.高橋95
+                          icon: ⌚
+                          createdAt: "2026-01-21T14:56:03.065Z"
+                          updatedAt: "2026-01-21T14:56:03.065Z"
+                        price: 801.79
+                        currency:
+                          id: 92915027-678f-461f-9825-8c9a5cd182ce
+                          code: オマーンリアル
+                          rate: 571.29
+                          createdAt: "2026-01-21T14:56:03.065Z"
+                          updatedAt: "2026-01-21T14:56:03.065Z"
+                        amount: 7
+                        total: 222.23
+                        exempts:
+                          - id: d28b69ae-9c61-4ff2-a3ed-18f702e922bf
+                            name: 涼太_田中
+                            icon: 🐑
+                            createdAt: "2026-01-21T14:56:03.065Z"
+                            updatedAt: "2026-01-21T14:56:03.065Z"
+                          - id: a8819a02-a924-4f72-993e-b9a9a3b2bf2a
+                            name: 琴音87
+                            icon: 👊🏿
+                            createdAt: "2026-01-21T14:56:03.065Z"
+                            updatedAt: "2026-01-21T14:56:03.065Z"
+                        version: "7800208947813847"
+                        createdAt: "2026-01-21T14:56:03.065Z"
+                        updatedAt: "2026-01-21T14:56:03.065Z"
+                      subtotal: 14.35
+                    - id: 655d4e4e-95a4-4ef0-9f06-1c9650eb16ce
+                      source:
+                        id: 760c5581-4000-40ee-804f-27542aec6dab
+                        name: 親子丼
+                        icon: ☀️
+                        payer:
+                          id: f6d45af5-c4a6-44cb-aab5-61f7cf72ec0c
+                          name: 清子.渡辺54
+                          icon: 🩸
+                          createdAt: "2026-01-21T14:56:03.066Z"
+                          updatedAt: "2026-01-21T14:56:03.066Z"
+                        price: 830.75
+                        currency: null
+                        amount: 4
+                        total: 843.95
+                        exempts:
+                          - id: 0039c21c-402e-4be4-b394-e77a6d7dac27
+                            name: 心結1
+                            icon: 👇🏽
+                            createdAt: "2026-01-21T14:56:03.066Z"
+                            updatedAt: "2026-01-21T14:56:03.066Z"
+                          - id: 76f9678a-829b-4c83-b332-ac4b49b50b4d
+                            name: きよ_井上23
+                            icon: 🫐
+                            createdAt: "2026-01-21T14:56:03.066Z"
+                            updatedAt: "2026-01-21T14:56:03.066Z"
+                        version: "6997601540284890"
+                        createdAt: "2026-01-21T14:56:03.067Z"
+                        updatedAt: "2026-01-21T14:56:03.067Z"
+                      subtotal: 135.85
+                    - id: b6533701-f12b-4970-991d-f450e281c2ab
+                      source:
+                        id: b1283315-6440-448e-afa2-34fcb66ca6f8
+                        name: 鯖の味噌煮
+                        icon: 🤚🏼
+                        payer:
+                          id: 77c2c055-7f99-4c82-8717-c348b088fb7b
+                          name: 歩夢_佐々木
+                          icon: 🌿
+                          createdAt: "2026-01-21T14:56:03.067Z"
+                          updatedAt: "2026-01-21T14:56:03.067Z"
+                        price: 460.55
+                        currency: null
+                        amount: 1
+                        total: 711.79
+                        exempts:
+                          - id: 964f57da-ecfa-4aa8-88b0-505064e6332c
+                            name: 菜月.吉田
+                            icon: 👨🏼‍🍼
+                            createdAt: "2026-01-21T14:56:03.067Z"
+                            updatedAt: "2026-01-21T14:56:03.067Z"
+                        version: "7954917305651881"
+                        createdAt: "2026-01-21T14:56:03.067Z"
+                        updatedAt: "2026-01-21T14:56:03.067Z"
+                      subtotal: 292.89
+                createdAt: "2026-01-21T14:56:03.068Z"
+                updatedAt: "2026-01-21T14:56:03.068Z"
+          headers: {}
+      security: []
+  /seisan/{seisanId}/participants/{id}:
+    put:
+      summary: Update Participant
+      deprecated: false
+      description: 参加者を更新
+      operationId: updateParticipantInSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づく精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: 参加者のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipantInput"
+            example:
+              name: 恵.山口
+              icon: 🉐
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: 28a90dfc-704f-4c40-9cb7-0400bfb6495f
+                name: ミクロネシア連邦
+                icon: 👅
+                items:
+                  - id: 8662b805-172d-4e85-b112-1b33cc5fec01
+                    name: タコの酢の物
+                    icon: 🖖🏾
+                    payer:
+                      id: 662ba73a-36a7-4f92-8a41-4b6672f1254b
+                      name: 勉84
+                      icon: 🚁
+                      createdAt: "2026-01-21T14:56:46.183Z"
+                      updatedAt: "2026-01-21T14:56:46.183Z"
+                    price: 906.34
+                    currency:
+                      id: 4cfa4aa2-0aff-4ba4-a95a-7ae11d298d4e
+                      code: ルンピラ
+                      rate: 90.79
+                      createdAt: "2026-01-21T14:56:46.183Z"
+                      updatedAt: "2026-01-21T14:56:46.183Z"
+                    amount: 2
+                    total: 578.79
+                    exempts:
+                      - id: 58413e10-b160-4bec-aed4-5da86a59b6a0
+                        name: 瑛太_伊藤43
+                        icon: 💕
+                        createdAt: "2026-01-21T14:56:46.184Z"
+                        updatedAt: "2026-01-21T14:56:46.184Z"
+                    version: "8377399836745546"
+                    createdAt: "2026-01-21T14:56:46.184Z"
+                    updatedAt: "2026-01-21T14:56:46.184Z"
+                participants:
+                  - id: 29ccf21d-6786-44a8-87ed-8f6a997e63cc
+                    name: 竜_高橋
+                    icon: 🤘
+                    createdAt: "2026-01-21T14:56:46.184Z"
+                    updatedAt: "2026-01-21T14:56:46.184Z"
+                  - id: bd7df656-3806-4c78-8398-ebcfd1da0eed
+                    name: 栄子_田中
+                    icon: 👄
+                    createdAt: "2026-01-21T14:56:46.184Z"
+                    updatedAt: "2026-01-21T14:56:46.184Z"
+                  - id: e3f60afa-d5af-4da1-bee3-725890c38da4
+                    name: 健太郎_高橋40
+                    icon: 🧀
+                    createdAt: "2026-01-21T14:56:46.185Z"
+                    updatedAt: "2026-01-21T14:56:46.185Z"
+                currencies:
+                  - id: bd5dff46-a1f2-4f2c-a237-7f69aa0d15eb
+                    code: リベリアドル
+                    rate: 636.79
+                    createdAt: "2026-01-21T14:56:46.185Z"
+                    updatedAt: "2026-01-21T14:56:46.185Z"
+                result:
+                  id: 36e01dfa-af96-4540-bee2-c0698f8186a1
+                  surplus: 335.99
+                  details:
+                    - id: 21fcd756-dd4d-4e35-b55c-20bb46097598
+                      source:
+                        id: e689273c-07da-4433-87fb-27c17876c50b
+                        name: グアバ風味のサバ焼き鳥
+                        icon: 🍊
+                        payer:
+                          id: b85284ec-b4f9-44d4-b940-a2a94a203333
+                          name: 竜也_加藤
+                          icon: 💓
+                          createdAt: "2026-01-21T14:56:46.185Z"
+                          updatedAt: "2026-01-21T14:56:46.186Z"
+                        price: 561.15
+                        currency:
+                          id: b4842972-8144-4840-a41c-f9d200b35453
+                          code: チュニジアディナール
+                          rate: 850.45
+                          createdAt: "2026-01-21T14:56:46.186Z"
+                          updatedAt: "2026-01-21T14:56:46.186Z"
+                        amount: 6
+                        total: 683.49
+                        exempts:
+                          - id: 1962f555-e865-4217-bb22-367c2cc3111b
+                            name: 功.佐藤63
+                            icon: 🧑🏻‍❤️‍🧑🏽
+                            createdAt: "2026-01-21T14:56:46.186Z"
+                            updatedAt: "2026-01-21T14:56:46.186Z"
+                          - id: 1e203355-63ec-42b7-8f7a-19102100199d
+                            name: 恵99
+                            icon: 🔭
+                            createdAt: "2026-01-21T14:56:46.187Z"
+                            updatedAt: "2026-01-21T14:56:46.187Z"
+                        version: "8331660307587272"
+                        createdAt: "2026-01-21T14:56:46.187Z"
+                        updatedAt: "2026-01-21T14:56:46.187Z"
+                      subtotal: 50.05
+                    - id: 1223cf8a-c443-4f70-81ed-d58302a0ca1c
+                      source:
+                        id: fd2fd475-e9a9-4983-ab8b-d31beb6d2ed8
+                        name: 焼肉
+                        icon: 📤
+                        payer:
+                          id: f60e8054-e405-4808-9355-ec17dedb3860
+                          name: 拓海80
+                          icon: 🎆
+                          createdAt: "2026-01-21T14:56:46.187Z"
+                          updatedAt: "2026-01-21T14:56:46.187Z"
+                        price: 317.15
+                        currency: null
+                        amount: 1
+                        total: 950.99
+                        exempts:
+                          - id: 55709636-636a-4ef2-b309-696e1cd06106
+                            name: 和子81
+                            icon: 🧑🏿‍❤️‍🧑🏾
+                            createdAt: "2026-01-21T14:56:46.188Z"
+                            updatedAt: "2026-01-21T14:56:46.188Z"
+                        version: "3462037099303475"
+                        createdAt: "2026-01-21T14:56:46.188Z"
+                        updatedAt: "2026-01-21T14:56:46.188Z"
+                      subtotal: 208.59
+                    - id: 52951c70-76d6-4b47-8a54-68c994d5aabe
+                      source:
+                        id: ad5166c5-ee97-4838-ae88-0c8d751c876b
+                        name: ローズマリー風味の鮎
+                        icon: 🇪🇸
+                        payer:
+                          id: 5a6c3a1d-7e1f-41aa-88bd-bd383039cc24
+                          name: 輝_中村
+                          icon: ❇️
+                          createdAt: "2026-01-21T14:56:46.188Z"
+                          updatedAt: "2026-01-21T14:56:46.188Z"
+                        price: 958.09
+                        currency:
+                          id: 412116e6-aadd-4b28-a41b-c7014064f188
+                          code: ザンビアクワチャ
+                          rate: 661.58
+                          createdAt: "2026-01-21T14:56:46.189Z"
+                          updatedAt: "2026-01-21T14:56:46.189Z"
+                        amount: 2
+                        total: 432.39
+                        exempts:
+                          - id: dab3d2ac-093d-42c6-b95c-4a94d354f25b
+                            name: 正三_佐々木
+                            icon: 🥫
+                            createdAt: "2026-01-21T14:56:46.189Z"
+                            updatedAt: "2026-01-21T14:56:46.189Z"
+                          - id: fa65035e-4ca2-4342-93b0-49510b902bf8
+                            name: 実.林
+                            icon: 🔲
+                            createdAt: "2026-01-21T14:56:46.189Z"
+                            updatedAt: "2026-01-21T14:56:46.189Z"
+                        version: "2081192688623132"
+                        createdAt: "2026-01-21T14:56:46.190Z"
+                        updatedAt: "2026-01-21T14:56:46.190Z"
+                      subtotal: 892.9
+                createdAt: "2026-01-21T14:56:46.190Z"
+                updatedAt: "2026-01-21T14:56:46.190Z"
+          headers: {}
+      security: []
+    delete:
+      summary: Remove Participant
+      deprecated: false
+      description: 参加者を削除
+      operationId: removeParticipantFromSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づく精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: 参加者のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: fa9d0380-4fb8-40db-8426-3c76a2fe31a3
+                name: レバノン共和国
+                icon: 🎭
+                items:
+                  - id: 9694bc8e-8b22-4e7d-b7a4-01367d624d8f
+                    name: ビワパイ
+                    icon: 🚳
+                    payer:
+                      id: 758aec76-b67d-4cba-b161-6df72b5f0f3c
+                      name: 弘子.吉田57
+                      icon: 🇹🇫
+                      createdAt: "2026-01-21T14:57:18.325Z"
+                      updatedAt: "2026-01-21T14:57:18.325Z"
+                    price: 937.29
+                    currency:
+                      id: e40ec4c8-d79b-4465-badd-81ca5fea18ec
+                      code: セディ
+                      rate: 389.19
+                      createdAt: "2026-01-21T14:57:18.325Z"
+                      updatedAt: "2026-01-21T14:57:18.325Z"
+                    amount: 6
+                    total: 762.89
+                    exempts:
+                      - id: 89957897-df8b-4fa0-ad44-fad39b19b7e5
+                        name: 優太_井上
+                        icon: ☺️
+                        createdAt: "2026-01-21T14:57:18.326Z"
+                        updatedAt: "2026-01-21T14:57:18.326Z"
+                    version: "7242923983013556"
+                    createdAt: "2026-01-21T14:57:18.326Z"
+                    updatedAt: "2026-01-21T14:57:18.326Z"
+                participants:
+                  - id: 7b7e867a-61e8-4eaa-8330-f9fb360bb2f3
+                    name: 拓也_松本
+                    icon: 🇰🇷
+                    createdAt: "2026-01-21T14:57:18.327Z"
+                    updatedAt: "2026-01-21T14:57:18.327Z"
+                  - id: 74e6c8a1-8a11-4957-8b57-8afdd2468935
+                    name: 理恵.斎藤
+                    icon: 🎇
+                    createdAt: "2026-01-21T14:57:18.327Z"
+                    updatedAt: "2026-01-21T14:57:18.327Z"
+                currencies:
+                  - id: b943d20c-294f-4ada-9fe6-02f60bf2f896
+                    code: オーストラリアドル
+                    rate: 184.55
+                    createdAt: "2026-01-21T14:57:18.327Z"
+                    updatedAt: "2026-01-21T14:57:18.327Z"
+                result:
+                  id: 16d9e793-98bd-4795-8ad5-4eb5f5cb8413
+                  surplus: 877.05
+                  details:
+                    - id: 1b96b665-0bdc-4a4d-9683-63451af3d9e0
+                      source:
+                        id: e9c0959b-69a8-48d3-97b1-61c1ffbd2218
+                        name: Juicy（ジューシーな） ラム肉とラズベリーの蒸し物
+                        icon: ☘️
+                        payer:
+                          id: 0376e72f-c925-4793-95ba-edbbc3f36611
+                          name: 純子.松本
+                          icon: 🇳🇿
+                          createdAt: "2026-01-21T14:57:18.328Z"
+                          updatedAt: "2026-01-21T14:57:18.328Z"
+                        price: 91.99
+                        currency:
+                          id: 29532bfb-ceec-4b8a-9617-1ee21a3d1c17
+                          code: マカオパタカ
+                          rate: 21.1
+                          createdAt: "2026-01-21T14:57:18.328Z"
+                          updatedAt: "2026-01-21T14:57:18.328Z"
+                        amount: 3
+                        total: 434.89
+                        exempts:
+                          - id: 2dbdd9b8-3540-4d1b-a11f-f94ff09eecb1
+                            name: 美智子_林
+                            icon: 🐛
+                            createdAt: "2026-01-21T14:57:18.328Z"
+                            updatedAt: "2026-01-21T14:57:18.328Z"
+                          - id: e11ec463-6cab-40ed-a909-1279eceae5d1
+                            name: 恵美子.佐藤
+                            icon: 🕙
+                            createdAt: "2026-01-21T14:57:18.329Z"
+                            updatedAt: "2026-01-21T14:57:18.329Z"
+                        version: "6127577477632336"
+                        createdAt: "2026-01-21T14:57:18.329Z"
+                        updatedAt: "2026-01-21T14:57:18.329Z"
+                      subtotal: 393.79
+                createdAt: "2026-01-21T14:57:18.329Z"
+                updatedAt: "2026-01-21T14:57:18.329Z"
+          headers: {}
+      security: []
+  /seisan/{seisanId}/items:
+    post:
+      summary: Add Item
+      deprecated: false
+      description: 項目を追加
+      operationId: addItemToSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づける精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemInput"
+            example:
+              name: タンギーな 和風鍋
+              icon: 🔁
+              payerId: 6e37a5b9-e599-4b8e-8434-daae37952d5a
+              price: 627.95
+              currencyId: 5b8a430f-c7a1-4bbf-8ec2-d562fb446fbd
+              amount: 9
+              total: 615.4
+              exemptIds:
+                - ffb283b4-efb7-4d56-986a-c9eef2d61209
+                - 593b55e8-ddb5-4bc9-b893-4f9792428085
+                - c09990ab-33e1-4cc9-b3d2-e44aa5f42bb8
+              version: "6312368793303552"
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+          headers: {}
+      security: []
+  /seisan/{seisanId}/items/{id}:
+    put:
+      summary: Update Item
+      deprecated: false
+      description: 項目を更新
+      operationId: updateItemInSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づく精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: 項目のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemInput"
+            example:
+              name: 刺身盛り合わせ
+              icon: 🟠
+              payerId: ea4ecbf5-bbd2-4a9f-bd45-4497deb9581d
+              price: 955.99
+              currencyId: 8708a9f2-d4b0-4968-83a9-ef9ed0f57ae4
+              amount: 8
+              total: 503.39
+              exemptIds:
+                - 1d5fba8b-1f0e-491a-98f9-dddf89675691
+                - f4364a6d-24cb-45c2-9a3e-c975bc06cfa4
+                - cff92da0-d514-4ecf-9248-73fe7085ecba
+              version: "1263949603027466"
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: 4ca0f6f4-6904-49a8-989e-e835c072ac05
+                name: セントルシア
+                icon: ⚧️
+                items:
+                  - id: 3387afd9-7ce0-4739-b707-fd3681a35c37
+                    name: カルボナーラうどん
+                    icon: 🇹🇷
+                    payer:
+                      id: 2a85af3a-3b30-4a3e-bf21-4ee51cbb383f
+                      name: 恵子17
+                      icon: 🏑
+                      createdAt: "2026-01-21T15:01:44.014Z"
+                      updatedAt: "2026-01-21T15:01:44.014Z"
+                    price: 738.39
+                    currency:
+                      id: 97766f0b-4a05-4c19-9c59-e52cbb64dbb8
+                      code: ベラルーシルーブル
+                      rate: 975.75
+                      createdAt: "2026-01-21T15:01:44.014Z"
+                      updatedAt: "2026-01-21T15:01:44.014Z"
+                    amount: 7
+                    total: 252.79
+                    exempts:
+                      - id: 11bc531e-2516-444c-a2bb-b9f10247b132
+                        name: 浩之.林
+                        icon: ↗️
+                        createdAt: "2026-01-21T15:01:44.015Z"
+                        updatedAt: "2026-01-21T15:01:44.015Z"
+                      - id: 1626caf3-eee8-4a20-b8d6-c374f63a8fd6
+                        name: 心春73
+                        icon: ⛔
+                        createdAt: "2026-01-21T15:01:44.015Z"
+                        updatedAt: "2026-01-21T15:01:44.015Z"
+                    version: "8946121839105148"
+                    createdAt: "2026-01-21T15:01:44.015Z"
+                    updatedAt: "2026-01-21T15:01:44.015Z"
+                  - id: 40c167da-dd1d-4dc8-a598-03751c6985c1
+                    name: ふわふわした 馬肉とアイスバーグレタスの蒸し物
+                    icon: 🛷
+                    payer:
+                      id: c5f1f66f-03bd-4ec4-9f28-65dcaaf896e1
+                      name: 勝利82
+                      icon: 🏯
+                      createdAt: "2026-01-21T15:01:44.015Z"
+                      updatedAt: "2026-01-21T15:01:44.015Z"
+                    price: 59.75
+                    currency: null
+                    amount: 10
+                    total: 905.45
+                    exempts:
+                      - id: 802c6e88-eddb-4b27-a59f-150388b1ddcb
+                        name: 芽依.伊藤16
+                        icon: 🗺️
+                        createdAt: "2026-01-21T15:01:44.016Z"
+                        updatedAt: "2026-01-21T15:01:44.016Z"
+                      - id: 9d233e68-77e9-4036-877a-6fddcc2a37f5
+                        name: 凛_佐藤
+                        icon: 🛗
+                        createdAt: "2026-01-21T15:01:44.016Z"
+                        updatedAt: "2026-01-21T15:01:44.016Z"
+                    version: "2696328448592715"
+                    createdAt: "2026-01-21T15:01:44.016Z"
+                    updatedAt: "2026-01-21T15:01:44.016Z"
+                  - id: 309b1174-0a8a-42ed-b86e-3a5938858d3b
+                    name: お好み焼きロール
+                    icon: 🦫
+                    payer:
+                      id: b75af480-2bad-4adf-891d-7dce29ebc076
+                      name: 由美子.斎藤
+                      icon: 🎭
+                      createdAt: "2026-01-21T15:01:44.017Z"
+                      updatedAt: "2026-01-21T15:01:44.017Z"
+                    price: 187.49
+                    currency:
+                      id: 9ae805d1-d6f2-48dd-84b9-f131c71b1ca5
+                      code: オーストラリアドル
+                      rate: 290.49
+                      createdAt: "2026-01-21T15:01:44.017Z"
+                      updatedAt: "2026-01-21T15:01:44.017Z"
+                    amount: 6
+                    total: 449.1
+                    exempts:
+                      - id: cb89eea2-e223-4969-b35e-bbccbdb0b0fa
+                        name: さくら.山口77
+                        icon: 🧑🏻‍🔧
+                        createdAt: "2026-01-21T15:01:44.017Z"
+                        updatedAt: "2026-01-21T15:01:44.017Z"
+                      - id: 03b24082-59d1-4189-9f96-19f819cb903a
+                        name: 三郎_木村59
+                        icon: 🗳️
+                        createdAt: "2026-01-21T15:01:44.017Z"
+                        updatedAt: "2026-01-21T15:01:44.017Z"
+                    version: "6784235788133512"
+                    createdAt: "2026-01-21T15:01:44.018Z"
+                    updatedAt: "2026-01-21T15:01:44.018Z"
+                participants:
+                  - id: 3d41bfbb-2e31-4e64-af9e-05fdeec960a0
+                    name: 凜_高橋
+                    icon: 🪳
+                    createdAt: "2026-01-21T15:01:44.018Z"
+                    updatedAt: "2026-01-21T15:01:44.018Z"
+                  - id: 2d831184-f5a4-4460-a93b-63a64323992e
+                    name: 花音.伊藤40
+                    icon: 😑
+                    createdAt: "2026-01-21T15:01:44.018Z"
+                    updatedAt: "2026-01-21T15:01:44.018Z"
+                currencies:
+                  - id: 4e467dd2-59fd-4de5-9f4d-5e3df7f7e67e
+                    code: セルビアディナール
+                    rate: 945.29
+                    createdAt: "2026-01-21T15:01:44.018Z"
+                    updatedAt: "2026-01-21T15:01:44.018Z"
+                  - id: 185a069f-3e11-49f1-96aa-b8f15e1b4392
+                    code: カタールリアル
+                    rate: 973.69
+                    createdAt: "2026-01-21T15:01:44.018Z"
+                    updatedAt: "2026-01-21T15:01:44.018Z"
+                  - id: a0ee4772-bf46-4088-a1b3-742e6e8aa759
+                    code: クワンザ
+                    rate: 291.75
+                    createdAt: "2026-01-21T15:01:44.018Z"
+                    updatedAt: "2026-01-21T15:01:44.019Z"
+                result:
+                  id: 1ee6853d-52b6-4fdd-8751-60dcf61bcb44
+                  surplus: 651.45
+                  details:
+                    - id: 2ae152f4-cbff-4a9e-924a-d7abdbea9498
+                      source:
+                        id: cc8431fc-6e2a-4189-a4c6-cb4663d0c112
+                        name: たこ焼き
+                        icon: 🥅
+                        payer:
+                          id: 83c11d5c-72ac-4b25-b5e4-3f32fa43cdb1
+                          name: 美智子22
+                          icon: 🏣
+                          createdAt: "2026-01-21T15:01:44.019Z"
+                          updatedAt: "2026-01-21T15:01:44.019Z"
+                        price: 975.29
+                        currency: null
+                        amount: 8
+                        total: 207.35
+                        exempts:
+                          - id: b8fe6188-fe17-43c8-9edf-39cb85f11625
+                            name: 心結29
+                            icon: 🖐🏾
+                            createdAt: "2026-01-21T15:01:44.019Z"
+                            updatedAt: "2026-01-21T15:01:44.019Z"
+                          - id: 3be9072c-b5ab-426d-a64d-0af1b40a1c35
+                            name: 愛美.山口44
+                            icon: 🎮
+                            createdAt: "2026-01-21T15:01:44.020Z"
+                            updatedAt: "2026-01-21T15:01:44.020Z"
+                        version: "1751153875721306"
+                        createdAt: "2026-01-21T15:01:44.020Z"
+                        updatedAt: "2026-01-21T15:01:44.020Z"
+                      subtotal: 534.79
+                    - id: c0a7b6a0-fbf4-4ee3-bd82-e306300a187b
+                      source:
+                        id: 16392df5-df62-4d04-a68b-0c4bf76470d0
+                        name: ししゃも風味の牛肉
+                        icon: 👩🏾‍🌾
+                        payer:
+                          id: 9293064e-767e-45b5-8896-d489eda358d0
+                          name: 麻衣44
+                          icon: 🦶🏾
+                          createdAt: "2026-01-21T15:01:44.020Z"
+                          updatedAt: "2026-01-21T15:01:44.020Z"
+                        price: 253.7
+                        currency:
+                          id: 658884db-0348-430b-8b9e-ac2ed016c042
+                          code: トリニダード・トバゴドル
+                          rate: 271.5
+                          createdAt: "2026-01-21T15:01:44.020Z"
+                          updatedAt: "2026-01-21T15:01:44.021Z"
+                        amount: 7
+                        total: 797.59
+                        exempts:
+                          - id: aa3c5922-aee2-424f-a642-b3916f7106a9
+                            name: 早紀_小林
+                            icon: 3️⃣
+                            createdAt: "2026-01-21T15:01:44.021Z"
+                            updatedAt: "2026-01-21T15:01:44.021Z"
+                        version: "2329118461371273"
+                        createdAt: "2026-01-21T15:01:44.021Z"
+                        updatedAt: "2026-01-21T15:01:44.021Z"
+                      subtotal: 230.42
+                createdAt: "2026-01-21T15:01:44.021Z"
+                updatedAt: "2026-01-21T15:01:44.021Z"
+          headers: {}
+        "409":
+          description: 編集衝突時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current:
+                    $ref: "#/components/schemas/Item"
+                  incoming:
+                    $ref: "#/components/schemas/Item"
+                required:
+                  - current
+                  - incoming
+              example:
+                current:
+                  id: 03fe8970-affc-44b5-9fa7-034be6aaa937
+                  name: モロヘイヤと鴨肉のパイ
+                  icon: ♠️
+                  payer:
+                    id: 57738884-0c1c-4472-8333-f32c891d87ef
+                    name: 武35
+                    icon: 🎾
+                    createdAt: "2026-01-21T15:05:38.352Z"
+                    updatedAt: "2026-01-21T15:05:38.352Z"
+                  price: 188.15
+                  currency:
+                    id: a0d79935-2024-4224-8670-86925c026d09
+                    code: ジブラルタルポンド
+                    rate: 566.09
+                    createdAt: "2026-01-21T15:05:38.352Z"
+                    updatedAt: "2026-01-21T15:05:38.352Z"
+                  amount: 7
+                  total: 659.75
+                  exempts:
+                    - id: 3be97f07-f8be-4537-9aa8-41714ac5407d
+                      name: 蓮.小林94
+                      icon: 🤏🏿
+                      createdAt: "2026-01-21T15:05:38.353Z"
+                      updatedAt: "2026-01-21T15:05:38.353Z"
+                    - id: f72476ff-dee3-48f9-b01b-074b40ff837c
+                      name: 静子67
+                      icon: 🐐
+                      createdAt: "2026-01-21T15:05:38.353Z"
+                      updatedAt: "2026-01-21T15:05:38.354Z"
+                  version: "8304860782890431"
+                  createdAt: "2026-01-21T15:05:38.354Z"
+                  updatedAt: "2026-01-21T15:05:38.354Z"
+                incoming:
+                  id: 4c8e7210-d33a-4623-a888-53e11112fa15
+                  name: 照り焼きチキン
+                  icon: 🙇🏿
+                  payer:
+                    id: e234be33-487d-404e-b1ac-439c2046982b
+                    name: 正子.山本
+                    icon: 🙅🏽‍♂️
+                    createdAt: "2026-01-21T15:05:38.354Z"
+                    updatedAt: "2026-01-21T15:05:38.354Z"
+                  price: 912.05
+                  currency:
+                    id: da136d09-3a87-4def-ac71-6c9928b994fa
+                    code: トリニダード・トバゴドル
+                    rate: 777.69
+                    createdAt: "2026-01-21T15:05:38.354Z"
+                    updatedAt: "2026-01-21T15:05:38.354Z"
+                  amount: 3
+                  total: 72
+                  exempts:
+                    - id: 5f1119fc-51e1-4959-a807-88c65c823088
+                      name: 湊.山本86
+                      icon: 🐼
+                      createdAt: "2026-01-21T15:05:38.355Z"
+                      updatedAt: "2026-01-21T15:05:38.355Z"
+                    - id: 8848ddde-27a1-4794-9fb7-56665ef0c71a
+                      name: 朝陽.松本
+                      icon: 😕
+                      createdAt: "2026-01-21T15:05:38.355Z"
+                      updatedAt: "2026-01-21T15:05:38.355Z"
+                    - id: 85513dff-0c1f-44e5-acab-bb60095eec62
+                      name: 大雅.中村77
+                      icon: 🌅
+                      createdAt: "2026-01-21T15:05:38.355Z"
+                      updatedAt: "2026-01-21T15:05:38.355Z"
+                  version: "6136408544774357"
+                  createdAt: "2026-01-21T15:05:38.355Z"
+                  updatedAt: "2026-01-21T15:05:38.355Z"
+          headers: {}
+      security: []
+    delete:
+      summary: Remove Item
+      deprecated: false
+      description: 項目を削除
+      operationId: removeItemFromSeisan
+      tags: []
+      parameters:
+        - name: seisanId
+          in: path
+          description: 紐づく精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: 項目のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: d71600ee-62fd-42e7-8697-6cd40a785252
+                name: ツバル
+                icon: 🤲🏻
+                items:
+                  - id: c019aaef-a049-41af-b0a6-82fbb4dec672
+                    name: 甘い うさぎ肉とケールの蒸し物
+                    icon: 🎭
+                    payer:
+                      id: b74e1025-606c-4b2a-ae14-d284fa99538b
+                      name: 理恵.鈴木
+                      icon: 🏁
+                      createdAt: "2026-01-21T15:02:27.766Z"
+                      updatedAt: "2026-01-21T15:02:27.767Z"
+                    price: 461.89
+                    currency: null
+                    amount: 7
+                    total: 237.39
+                    exempts:
+                      - id: 8c578b23-b234-42d3-addb-a657c1d8b0dc
+                        name: 紬.鈴木40
+                        icon: 🍔
+                        createdAt: "2026-01-21T15:02:27.767Z"
+                        updatedAt: "2026-01-21T15:02:27.767Z"
+                      - id: 36156851-9532-448f-bdeb-67d6a57695cb
+                        name: 豊96
+                        icon: 💑🏽
+                        createdAt: "2026-01-21T15:02:27.768Z"
+                        updatedAt: "2026-01-21T15:02:27.768Z"
+                      - id: c07e9bba-b151-462d-9f21-82f7e80e7661
+                        name: 勉35
+                        icon: 🇧🇲
+                        createdAt: "2026-01-21T15:02:27.768Z"
+                        updatedAt: "2026-01-21T15:02:27.768Z"
+                    version: "5372799941357839"
+                    createdAt: "2026-01-21T15:02:27.768Z"
+                    updatedAt: "2026-01-21T15:02:27.768Z"
+                participants:
+                  - id: d369995d-c7c6-447d-a574-ccd461020762
+                    name: 大貴_吉田
+                    icon: 🇻🇺
+                    createdAt: "2026-01-21T15:02:27.768Z"
+                    updatedAt: "2026-01-21T15:02:27.768Z"
+                  - id: a6dd959b-ab54-4277-818c-d0058d9a0164
+                    name: 竜也_渡辺
+                    icon: 🎏
+                    createdAt: "2026-01-21T15:02:27.769Z"
+                    updatedAt: "2026-01-21T15:02:27.769Z"
+                currencies:
+                  - id: c3a1320d-4730-42eb-ada1-ba34c1402449
+                    code: 円
+                    rate: 322.39
+                    createdAt: "2026-01-21T15:02:27.769Z"
+                    updatedAt: "2026-01-21T15:02:27.769Z"
+                  - id: 1932bdb0-f503-4574-a4ca-2d392d86c7ae
+                    code: ケニアシリング
+                    rate: 508.49
+                    createdAt: "2026-01-21T15:02:27.769Z"
+                    updatedAt: "2026-01-21T15:02:27.769Z"
+                  - id: 5f9460f9-77ad-46ea-b430-e441aef1bf85
+                    code: 南スーダンポンド
+                    rate: 150.75
+                    createdAt: "2026-01-21T15:02:27.769Z"
+                    updatedAt: "2026-01-21T15:02:27.769Z"
+                result:
+                  id: 02d8dedd-481a-444f-96eb-626bb463d569
+                  surplus: 574.15
+                  details:
+                    - id: de0417c9-2026-40a7-ad73-e35c149250f5
+                      source:
+                        id: 3c9c535a-625a-4454-8bfd-e103a62d824b
+                        name: チキン南蛮
+                        icon: 🟩
+                        payer:
+                          id: ff9dbbbb-d746-42c6-91b2-81133ecabf84
+                          name: 理恵.木村
+                          icon: 🤯
+                          createdAt: "2026-01-21T15:02:27.770Z"
+                          updatedAt: "2026-01-21T15:02:27.770Z"
+                        price: 627.65
+                        currency:
+                          id: 15943cb6-9ae6-40ef-b13b-65fc608f9724
+                          code: チュニジアディナール
+                          rate: 194.25
+                          createdAt: "2026-01-21T15:02:27.770Z"
+                          updatedAt: "2026-01-21T15:02:27.770Z"
+                        amount: 9
+                        total: 540.69
+                        exempts:
+                          - id: 18898d5c-0bae-4d71-88ef-c8f9b3bee563
+                            name: 明日香.加藤61
+                            icon: 🤒
+                            createdAt: "2026-01-21T15:02:27.770Z"
+                            updatedAt: "2026-01-21T15:02:27.770Z"
+                          - id: a583a2a1-09f9-407b-a38e-16f1b654ce3e
+                            name: 湊_斎藤
+                            icon: 🙂
+                            createdAt: "2026-01-21T15:02:27.771Z"
+                            updatedAt: "2026-01-21T15:02:27.771Z"
+                        version: "7040901528506066"
+                        createdAt: "2026-01-21T15:02:27.771Z"
+                        updatedAt: "2026-01-21T15:02:27.771Z"
+                      subtotal: 282.19
+                    - id: 2ee6a7b6-f878-4d58-bc6a-b9977e11951b
+                      source:
+                        id: ed4f8522-587d-44e5-a6d0-27b4efd6cdbf
+                        name: うずらステーキ
+                        icon: 🕕
+                        payer:
+                          id: 2483767e-0cf9-4dae-8cf1-2e828e7e8825
+                          name: 新9
+                          icon: 🔣
+                          createdAt: "2026-01-21T15:02:27.773Z"
+                          updatedAt: "2026-01-21T15:02:27.773Z"
+                        price: 220.99
+                        currency:
+                          id: 7345ed2a-8925-4e22-bedd-519d770d3b14
+                          code: グールド
+                          rate: 570.39
+                          createdAt: "2026-01-21T15:02:27.774Z"
+                          updatedAt: "2026-01-21T15:02:27.774Z"
+                        amount: 7
+                        total: 928.25
+                        exempts:
+                          - id: 07c4a732-1a21-4885-bdc3-a1325251f35c
+                            name: 陽子_鈴木
+                            icon: 🙏🏾
+                            createdAt: "2026-01-21T15:02:27.774Z"
+                            updatedAt: "2026-01-21T15:02:27.774Z"
+                          - id: 92e02e4c-0a2c-4750-b7b9-8b099b2c452e
+                            name: あゆみ22
+                            icon: 🦘
+                            createdAt: "2026-01-21T15:02:27.774Z"
+                            updatedAt: "2026-01-21T15:02:27.774Z"
+                          - id: c69fa667-3a5d-41ed-9d1d-a17f470c048f
+                            name: 正三84
+                            icon: 🎗️
+                            createdAt: "2026-01-21T15:02:27.774Z"
+                            updatedAt: "2026-01-21T15:02:27.774Z"
+                        version: "7845328023224082"
+                        createdAt: "2026-01-21T15:02:27.775Z"
+                        updatedAt: "2026-01-21T15:02:27.775Z"
+                      subtotal: 746.99
+                    - id: 824452f1-5bfe-4af7-bdb3-69ec6183c921
+                      source:
+                        id: 986cbfe0-c9c8-4cd7-8d56-122789dccecf
+                        name: 鯖の味噌煮
+                        icon: ☸️
+                        payer:
+                          id: 2964fa22-faea-4be1-b466-9b14e9821b45
+                          name: 啓子49
+                          icon: 🍄
+                          createdAt: "2026-01-21T15:02:27.775Z"
+                          updatedAt: "2026-01-21T15:02:27.775Z"
+                        price: 303.79
+                        currency: null
+                        amount: 6
+                        total: 848.85
+                        exempts:
+                          - id: c0827563-0629-4fa8-9eb1-a32d0db7093c
+                            name: 千代6
+                            icon: 🟫
+                            createdAt: "2026-01-21T15:02:27.775Z"
+                            updatedAt: "2026-01-21T15:02:27.775Z"
+                        version: "5395955577112287"
+                        createdAt: "2026-01-21T15:02:27.775Z"
+                        updatedAt: "2026-01-21T15:02:27.775Z"
+                      subtotal: 883.05
+                createdAt: "2026-01-21T15:02:27.776Z"
+                updatedAt: "2026-01-21T15:02:27.776Z"
+          headers: {}
+      security: []
+  /seisan/{id}:
+    get:
+      summary: Get Seisan
+      deprecated: false
+      description: 精算を取得
+      operationId: getSeisanById
+      tags: []
+      parameters:
+        - name: id
+          in: path
+          description: 精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: bce3e8b7-7e5e-4f60-833b-346854537344
+                name: チャド共和国
+                icon: ❔
+                items:
+                  - id: 0d64ef32-b0bd-4794-9f26-0bb431f0e784
+                    name: 和風ルッコラスープ
+                    icon: 🍄
+                    payer:
+                      id: 45cd978b-81c2-4a47-bbbb-c1e2977be6e6
+                      name: 剛.渡辺97
+                      icon: 🍝
+                      createdAt: "2026-01-21T15:03:00.245Z"
+                      updatedAt: "2026-01-21T15:03:00.245Z"
+                    price: 54.35
+                    currency: null
+                    amount: 10
+                    total: 259.79
+                    exempts:
+                      - id: 038556f7-243e-4935-945e-3198d6c34f61
+                        name: 彩96
+                        icon: 🏐
+                        createdAt: "2026-01-21T15:03:00.246Z"
+                        updatedAt: "2026-01-21T15:03:00.246Z"
+                    version: "6990160482933033"
+                    createdAt: "2026-01-21T15:03:00.246Z"
+                    updatedAt: "2026-01-21T15:03:00.246Z"
+                  - id: 05fb86f0-377c-41f8-b539-27036baf46d9
+                    name: 照り焼きチキン
+                    icon: 🤿
+                    payer:
+                      id: e12d2580-147d-4d9f-8b8b-af9444f7e937
+                      name: 敏子_吉田86
+                      icon: 🍽️
+                      createdAt: "2026-01-21T15:03:00.246Z"
+                      updatedAt: "2026-01-21T15:03:00.246Z"
+                    price: 695.19
+                    currency:
+                      id: de52433b-f6a4-455b-9890-50027ab767b6
+                      code: 朝鮮ウォン
+                      rate: 486.59
+                      createdAt: "2026-01-21T15:03:00.246Z"
+                      updatedAt: "2026-01-21T15:03:00.246Z"
+                    amount: 4
+                    total: 238.95
+                    exempts:
+                      - id: 8f091edf-aef3-4f7d-ba3f-5fe2674f67c0
+                        name: 栄子.斎藤
+                        icon: ☂️
+                        createdAt: "2026-01-21T15:03:00.247Z"
+                        updatedAt: "2026-01-21T15:03:00.247Z"
+                      - id: 3011b36d-c90c-4b38-b066-845505b3165f
+                        name: 優子_清水
+                        icon: 🧝🏽‍♀️
+                        createdAt: "2026-01-21T15:03:00.247Z"
+                        updatedAt: "2026-01-21T15:03:00.247Z"
+                    version: "3687037419216608"
+                    createdAt: "2026-01-21T15:03:00.247Z"
+                    updatedAt: "2026-01-21T15:03:00.247Z"
+                  - id: 6a775635-4116-45d9-86b9-25318d88964b
+                    name: 親子丼
+                    icon: 🤽🏽‍♂️
+                    payer:
+                      id: 3b6105bf-c2a5-49f7-9238-caa3825acb4d
+                      name: 弘子_山口
+                      icon: 🕳️
+                      createdAt: "2026-01-21T15:03:00.248Z"
+                      updatedAt: "2026-01-21T15:03:00.248Z"
+                    price: 31.39
+                    currency: null
+                    amount: 7
+                    total: 199.69
+                    exempts:
+                      - id: 484c0a6d-c1c6-4273-bd8a-99e6febc3dcc
+                        name: 楓_木村67
+                        icon: 👺
+                        createdAt: "2026-01-21T15:03:00.248Z"
+                        updatedAt: "2026-01-21T15:03:00.248Z"
+                    version: "1551070140663055"
+                    createdAt: "2026-01-21T15:03:00.248Z"
+                    updatedAt: "2026-01-21T15:03:00.248Z"
+                participants:
+                  - id: 6796bcd9-971b-474a-a55c-483be7478e0c
+                    name: 陸斗57
+                    icon: 👨🏾‍🤝‍👨🏽
+                    createdAt: "2026-01-21T15:03:00.248Z"
+                    updatedAt: "2026-01-21T15:03:00.248Z"
+                currencies:
+                  - id: 0f749883-08e7-4d57-846c-b366fd174d40
+                    code: デンマーククローネ
+                    rate: 59.99
+                    createdAt: "2026-01-21T15:03:00.248Z"
+                    updatedAt: "2026-01-21T15:03:00.249Z"
+                result:
+                  id: 6bc264c8-de8c-4b5b-b698-6eb57da544b9
+                  surplus: 287.85
+                  details:
+                    - id: dc73050b-8a0b-492b-8ae0-a3faf495824b
+                      source:
+                        id: 8cacd134-f5f7-4a4c-8ead-b7920aa3eadc
+                        name: ダイコン風味のうずら焼き鳥
+                        icon: 👩🏼‍🍼
+                        payer:
+                          id: 36e9ded4-7444-427b-b6e5-15f75d63626d
+                          name: 和子.林27
+                          icon: 🎅
+                          createdAt: "2026-01-21T15:03:00.249Z"
+                          updatedAt: "2026-01-21T15:03:00.249Z"
+                        price: 607.59
+                        currency:
+                          id: 46ef9ca6-c0e8-497b-9763-5c08368569f6
+                          code: リベリアドル
+                          rate: 470.69
+                          createdAt: "2026-01-21T15:03:00.249Z"
+                          updatedAt: "2026-01-21T15:03:00.249Z"
+                        amount: 4
+                        total: 101.69
+                        exempts:
+                          - id: ca87b8e3-1309-4f9c-b7fc-d74559d0a442
+                            name: 拓哉78
+                            icon: ⚒️
+                            createdAt: "2026-01-21T15:03:00.250Z"
+                            updatedAt: "2026-01-21T15:03:00.250Z"
+                          - id: 35879433-6e4d-405f-9e4b-8bfafd4af9b4
+                            name: 凜_林
+                            icon: 🔏
+                            createdAt: "2026-01-21T15:03:00.250Z"
+                            updatedAt: "2026-01-21T15:03:00.250Z"
+                          - id: 21c38fb6-1c2a-440f-a63a-93259aa8f089
+                            name: 結菜_鈴木
+                            icon: 🎙️
+                            createdAt: "2026-01-21T15:03:00.250Z"
+                            updatedAt: "2026-01-21T15:03:00.250Z"
+                        version: "8754235228225643"
+                        createdAt: "2026-01-21T15:03:00.250Z"
+                        updatedAt: "2026-01-21T15:03:00.250Z"
+                      subtotal: 221.2
+                createdAt: "2026-01-21T15:03:00.250Z"
+                updatedAt: "2026-01-21T15:03:00.250Z"
+          headers: {}
+      security: []
+components:
+  schemas:
+    Seisan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Item"
+          description: 精算項目
+        participants:
+          type: array
+          items:
+            $ref: "#/components/schemas/Participant"
+          description: 参加者
+        currencies:
+          type: array
+          items:
+            $ref: "#/components/schemas/Currency"
+          description: 通貨
+        result:
+          $ref: "#/components/schemas/SeisanResult"
+          description: 精算結果
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - name
+        - icon
+        - items
+        - participants
+        - currencies
+        - result
+        - createdAt
+        - updatedAt
+    ParticipantInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+      required:
+        - name
+        - icon
+    CurrencyInput:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 通貨名
+        rate:
+          type: number
+          description: 対円レート
+      required:
+        - code
+        - rate
+    ItemInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+        payerId:
+          type: string
+          description: 支払い者のID
+        price:
+          type: number
+          description: 単価
+        currencyId:
+          type: string
+          description: 通貨ID
+          nullable: true
+        amount:
+          type: integer
+          description: 個数
+        total:
+          type: number
+          description: 小計
+        exemptIds:
+          type: array
+          items:
+            type: string
+          description: 割り勘から除外する参加者
+        version:
+          type: string
+          description: バージョン
+      required:
+        - name
+        - icon
+        - payerId
+        - price
+        - amount
+        - total
+        - exemptIds
+        - version
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+        payer:
+          $ref: "#/components/schemas/Participant"
+        price:
+          type: number
+          description: 単価
+        currency:
+          anyOf:
+            - $ref: "#/components/schemas/Currency"
+            - type: "null"
+          description: 通貨
+        amount:
+          type: integer
+          description: 個数
+        total:
+          type: number
+          description: 小計
+        exempts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Participant"
+          description: 割り勘から除外する参加者
+        version:
+          type: string
+          description: バージョン
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - name
+        - icon
+        - payer
+        - price
+        - amount
+        - total
+        - exempts
+        - version
+        - createdAt
+        - updatedAt
+    Participant:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - name
+        - icon
+        - createdAt
+        - updatedAt
+    Currency:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        code:
+          type: string
+          description: 通貨名
+        rate:
+          type: number
+          description: 対円レート
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - code
+        - rate
+        - createdAt
+        - updatedAt
+    SeisanResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        surplus:
+          type: number
+          description: 余り
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/SeisanResultDetailItem"
+          description: 参加者ごとの詳細
+      required:
+        - id
+        - surplus
+        - details
+    SeisanResultDetailItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        source:
+          $ref: "#/components/schemas/Item"
+        subtotal:
+          type: number
+          description: 小計
+      required:
+        - id
+        - source
+        - subtotal
+  securitySchemes: {}
+servers: []

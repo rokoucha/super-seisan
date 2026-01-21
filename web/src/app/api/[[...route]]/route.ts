@@ -1,11 +1,12 @@
-import { Hono } from 'hono'
+import { OpenAPIHono } from '@hono/zod-openapi'
 import { handle } from 'hono/vercel'
+import packageJson from '../../../../package.json' assert { type: 'json' }
 
-const app = new Hono().basePath('/api')
+const app = new OpenAPIHono().basePath('/api')
 
-app.get('/hello', (c) => {
+app.get('/', (c) => {
   return c.json({
-    message: 'Hello Next.js!',
+    version: packageJson.version,
   })
 })
 
