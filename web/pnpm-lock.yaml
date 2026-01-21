@@ -24,8 +24,8 @@ importers:
         specifier: 16.1.4
         version: 16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       prettier:
-        specifier: 3.8.0
-        version: 3.8.0
+        specifier: 3.8.1
+        version: 3.8.1
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -3108,8 +3108,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prettier@3.8.0:
-    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6961,7 +6961,7 @@ snapshots:
 
   prettier@3.7.4: {}
 
-  prettier@3.8.0: {}
+  prettier@3.8.1: {}
 
   proxy-addr@2.0.7:
     dependencies:
