@@ -27,7 +27,8 @@
     "wrangler": "4.59.3"
   },
   "scripts": {
-    "build": "opennextjs-cloudflare build",
+    "build-cloudflare": "pnpm run generate && opennextjs-cloudflare build",
+    "build": "next build",
     "deploy": " opennextjs-cloudflare deploy",
     "dev": "next dev",
     "fix": "prettier --write .",
