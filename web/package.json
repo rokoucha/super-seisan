@@ -22,19 +22,21 @@
     "@types/react-dom": "19.2.3",
     "drizzle-kit": "0.31.8",
     "hono-takibi": "0.9.77",
+    "npm-run-all2": "8.0.4",
     "typescript": "5.9.3",
     "wrangler": "4.59.3"
   },
   "scripts": {
-    "build": "next build",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "build": "opennextjs-cloudflare build",
+    "deploy": " opennextjs-cloudflare deploy",
     "dev": "next dev",
     "fix": "prettier --write .",
     "generate:cloudflare": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "generate:next": "next typegen",
-    "generate": "pnpm run generate:cloudflare && pnpm run generate:next",
+    "generate:openapi": "pnpm hono-takibi ../api.yaml -o src/generated/routes.ts",
+    "generate": "run-p generate:*",
     "lint": "prettier --check .",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "preview": "pnpm run build && opennextjs-cloudflare preview",
     "start": "next start",
     "type-check": "tsc --noEmit"
   }
