@@ -24,7 +24,7 @@
     "hono-takibi": "0.9.78",
     "npm-run-all2": "8.0.4",
     "typescript": "5.9.3",
-    "wrangler": "4.59.3"
+    "wrangler": "4.60.0"
   },
   "scripts": {
     "build-cloudflare": "pnpm run generate && opennextjs-cloudflare build",
