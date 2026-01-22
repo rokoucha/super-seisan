@@ -49,8 +49,8 @@ importers:
         specifier: 0.31.8
         version: 0.31.8
       hono-takibi:
-        specifier: 0.9.77
-        version: 0.9.77(@types/node@25.0.10)(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10)))(@typespec/openapi@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))))(openapi-types@12.1.3)
+        specifier: 0.9.78
+        version: 0.9.78(@types/node@25.0.10)(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10)))(@typespec/openapi@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))))(openapi-types@12.1.3)
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -2761,8 +2761,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono-takibi@0.9.77:
-    resolution: {integrity: sha512-gshai+oxV9TvxmgeohU8xE6GPiIvm8GDcX3RhWCb5Z4o2rg/ohOzNoNon3EazVQNCw2kiYzG44FEJyiZOt0Egw==}
+  hono-takibi@0.9.78:
+    resolution: {integrity: sha512-ygV0XHe9MHNyBWylFIRPP+VQnJNfmKPAJxGaH5kGLrStQPxE3X8EAVkdQcBGiU0MwRAejq1vkcwnighdGHm8GA==}
     hasBin: true
 
   hono@4.11.5:
@@ -6669,7 +6669,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono-takibi@0.9.77(@types/node@25.0.10)(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10)))(@typespec/openapi@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))))(openapi-types@12.1.3):
+  hono-takibi@0.9.78(@types/node@25.0.10)(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10)))(@typespec/openapi@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.10))))(openapi-types@12.1.3):
     dependencies:
       '@apidevtools/swagger-parser': 12.1.0(openapi-types@12.1.3)
       '@typespec/compiler': 1.8.0(@types/node@25.0.10)
