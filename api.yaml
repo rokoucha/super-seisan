@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: super-seisan
   description: ""
@@ -1535,6 +1535,132 @@ paths:
                 updatedAt: "2026-01-21T15:02:27.776Z"
           headers: {}
       security: []
+  /seisan:
+    post:
+      summary: Add Seisan
+      deprecated: false
+      description: 精算を作成
+      operationId: addSeisan
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SeisanInput"
+            example:
+              name: セネガル共和国
+              emoji: 🐆
+        required: true
+      responses:
+        "200":
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: cb2141e7-c4e3-47ab-a44b-71e328cbed6c
+                name: モーリタニア・イスラム共和国
+                icon: 🟦
+                items:
+                  - id: 0f746be8-0522-4295-85b6-342bc9971cd9
+                    name: ラーメン
+                    icon: 👎🏻
+                    payer:
+                      id: ea56ede9-f5f0-4e1d-a839-b8ecd82326ef
+                      name: 彩乃.松本17
+                      icon: 🛹
+                      createdAt: "2026-01-22T09:23:55.163Z"
+                      updatedAt: "2026-01-22T09:23:55.165Z"
+                    price: 123.19
+                    currency:
+                      id: f46701ab-bc0d-44a0-ade4-0a3ff04403d8
+                      code: パアンガ
+                      rate: 54.45
+                      createdAt: "2026-01-22T09:23:55.165Z"
+                      updatedAt: "2026-01-22T09:23:55.165Z"
+                    amount: 10
+                    total: 354.59
+                    exempts:
+                      - id: 661c77b5-54ae-4cbf-83c6-6e8f15081765
+                        name: 勝子.渡辺38
+                        icon: 👂
+                        createdAt: "2026-01-22T09:23:55.167Z"
+                        updatedAt: "2026-01-22T09:23:55.167Z"
+                    version: "7930060538748341"
+                    createdAt: "2026-01-22T09:23:55.167Z"
+                    updatedAt: "2026-01-22T09:23:55.167Z"
+                participants:
+                  - id: d51d218c-ff5a-4ab5-96d8-b69490663b8b
+                    name: 友美_小林
+                    icon: 🌇
+                    createdAt: "2026-01-22T09:23:55.168Z"
+                    updatedAt: "2026-01-22T09:23:55.168Z"
+                  - id: 977ff449-fbe2-421b-91a9-360af3430010
+                    name: 心春_松本
+                    icon: 🥠
+                    createdAt: "2026-01-22T09:23:55.168Z"
+                    updatedAt: "2026-01-22T09:23:55.168Z"
+                currencies:
+                  - id: f3c5e825-0748-436a-894c-a35523909d3a
+                    code: ポンド
+                    rate: 173.39
+                    createdAt: "2026-01-22T09:23:55.169Z"
+                    updatedAt: "2026-01-22T09:23:55.169Z"
+                  - id: 886718fb-5342-4e4f-a786-8a2391855c21
+                    code: ペルーソル
+                    rate: 355.09
+                    createdAt: "2026-01-22T09:23:55.169Z"
+                    updatedAt: "2026-01-22T09:23:55.169Z"
+                  - id: d27b03af-c67d-4ada-a85d-e2052a786014
+                    code: シリアポンド
+                    rate: 802.95
+                    createdAt: "2026-01-22T09:23:55.169Z"
+                    updatedAt: "2026-01-22T09:23:55.169Z"
+                result:
+                  id: 5e6de0d2-5b55-4722-b643-5cbbb5f36a86
+                  surplus: 772.48
+                  details:
+                    - id: 32ffe82e-702a-493c-b723-7784affe49ab
+                      source:
+                        id: e55a7a2f-5db1-4ab5-82de-6471c362ab2a
+                        name: ピザトースト
+                        icon: 🤳🏿
+                        payer:
+                          id: 877d6516-7152-490b-966d-9466394667c1
+                          name: 進_中村22
+                          icon: 🍫
+                          createdAt: "2026-01-22T09:23:55.170Z"
+                          updatedAt: "2026-01-22T09:23:55.170Z"
+                        price: 830.57
+                        currency:
+                          id: f1c9035e-a199-4c67-ad06-3505c0f1d7b4
+                          code: ジャマイカドル
+                          rate: 309.79
+                          createdAt: "2026-01-22T09:23:55.170Z"
+                          updatedAt: "2026-01-22T09:23:55.170Z"
+                        amount: 6
+                        total: 537.19
+                        exempts:
+                          - id: 0d233b3d-4e6d-4dbc-87a8-09056b5223d4
+                            name: 実_渡辺
+                            icon: 📺
+                            createdAt: "2026-01-22T09:23:55.171Z"
+                            updatedAt: "2026-01-22T09:23:55.171Z"
+                          - id: 57a3c880-e6e7-49f8-86a7-388b163d55fa
+                            name: 湊_吉田
+                            icon: 🤐
+                            createdAt: "2026-01-22T09:23:55.171Z"
+                            updatedAt: "2026-01-22T09:23:55.171Z"
+                        version: "3956801241237069"
+                        createdAt: "2026-01-22T09:23:55.171Z"
+                        updatedAt: "2026-01-22T09:23:55.171Z"
+                      subtotal: 749.05
+                createdAt: "2026-01-22T09:23:55.171Z"
+                updatedAt: "2026-01-22T09:23:55.171Z"
+          headers: {}
+      security: []
   /seisan/{id}:
     get:
       summary: Get Seisan
@@ -1698,6 +1824,7 @@ paths:
                 updatedAt: "2026-01-21T15:03:00.250Z"
           headers: {}
       security: []
+webhooks: {}
 components:
   schemas:
     Seisan:
@@ -1786,9 +1913,10 @@ components:
           type: number
           description: 単価
         currencyId:
-          type: string
+          type:
+            - string
+            - "null"
           description: 通貨ID
-          nullable: true
         amount:
           type: integer
           description: 個数
@@ -1812,6 +1940,18 @@ components:
         - total
         - exemptIds
         - version
+    SeisanInput:
+      type: object
+      properties:
+        name:
+          type: string
+          title: 名前
+        emoji:
+          type: string
+          title: アイコン
+      required:
+        - name
+        - emoji
     Item:
       type: object
       properties:
