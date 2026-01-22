@@ -17,7 +17,7 @@
     "zod": "4.3.5"
   },
   "devDependencies": {
-    "@types/node": "25.0.9",
+    "@types/node": "25.0.10",
     "@types/react": "19.2.9",
     "@types/react-dom": "19.2.3",
     "drizzle-kit": "0.31.8",
