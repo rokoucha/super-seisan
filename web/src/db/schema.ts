@@ -8,10 +8,6 @@ import {
   text,
 } from 'drizzle-orm/sqlite-core'
 
-// ============================================================================
-// Tables
-// ============================================================================
-
 export const seisans = sqliteTable('seisans', {
   id: text().primaryKey(),
   name: text().notNull(),
@@ -111,24 +107,23 @@ export const itemExempts = sqliteTable(
   (table) => [primaryKey({ columns: [table.itemId, table.participantId] })],
 )
 
-// ============================================================================
-// Relations
-// ============================================================================
-
 export const seisansRelations = relations(seisans, ({ many }) => ({
   participants: many(participants),
   currencies: many(currencies),
   items: many(items),
 }))
 
-export const participantsRelations = relations(participants, ({ one, many }) => ({
-  seisan: one(seisans, {
-    fields: [participants.seisanId],
-    references: [seisans.id],
+export const participantsRelations = relations(
+  participants,
+  ({ one, many }) => ({
+    seisan: one(seisans, {
+      fields: [participants.seisanId],
+      references: [seisans.id],
+    }),
+    itemsAsPayer: many(items, { relationName: 'payer' }),
+    itemExempts: many(itemExempts),
   }),
-  itemsAsPayer: many(items, { relationName: 'payer' }),
-  itemExempts: many(itemExempts),
-}))
+)
 
 export const currenciesRelations = relations(currencies, ({ one, many }) => ({
   seisan: one(seisans, {
