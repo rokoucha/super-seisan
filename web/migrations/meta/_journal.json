@@ -5,8 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1765718917840,
-      "tag": "0000_create_seisan_table",
+      "when": 1769433272008,
+      "tag": "0000_create_initial_schema",
       "breakpoints": true
     }
   ]
