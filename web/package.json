@@ -24,6 +24,7 @@
     "hono-takibi": "0.9.78",
     "npm-run-all2": "8.0.4",
     "typescript": "5.9.3",
+    "vitest": "4.0.18",
     "wrangler": "4.60.0"
   },
   "scripts": {
@@ -39,6 +40,8 @@
     "lint": "prettier --check .",
     "preview": "pnpm run build && opennextjs-cloudflare preview",
     "start": "next start",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "type-check": "tsc --noEmit"
   }
 }
