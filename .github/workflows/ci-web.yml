@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/ci-web.yml
+      - api.yaml
       - web/**
 
 defaults:
