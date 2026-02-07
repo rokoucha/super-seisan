@@ -21,7 +21,7 @@
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "drizzle-kit": "0.31.8",
-    "hono-takibi": "0.9.84",
+    "hono-takibi": "0.9.85",
     "npm-run-all2": "8.0.4",
     "typescript": "5.9.3",
     "vitest": "4.0.18",
