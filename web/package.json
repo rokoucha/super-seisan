@@ -20,7 +20,7 @@
     "@types/node": "25.2.2",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
-    "drizzle-kit": "0.31.8",
+    "drizzle-kit": "0.31.9",
     "hono-takibi": "0.9.85",
     "npm-run-all2": "8.0.4",
     "typescript": "5.9.3",
