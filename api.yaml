@@ -1689,7 +1689,7 @@ paths:
         required: true
       responses:
         "200":
-          description: ""
+          description: 成功時
           content:
             application/json:
               schema:
