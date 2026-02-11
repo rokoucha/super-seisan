@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import { z } from 'zod'
 import {
   BadRequestError,
@@ -110,6 +110,65 @@ describe('APIルート', () => {
       }
       expect(data.error.code).toBe('INTERNAL_SERVER_ERROR')
       expect(data.error.message).toBe('An unexpected error occurred')
+    })
+  })
+
+  vi.mock('../../../repositories/seisan', () => ({
+    addSeisanRepository: vi.fn(),
+  }))
+
+  describe('POST /seisan', () => {
+    test('精算を正常に作成できること', async () => {
+      const mockSeisan = {
+        id: 'uuid-123',
+        name: '新年会',
+        icon: '🍶',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+
+      const { addSeisanRepository } =
+        await import('../../../repositories/seisan')
+      vi.mocked(addSeisanRepository).mockResolvedValue(mockSeisan as any)
+
+      const res = await app.request('/api/seisan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: '新年会',
+          emoji: '🍶',
+        }),
+      })
+
+      expect(res.status).toBe(200)
+      const data = await res.json()
+      expect(data).toMatchObject({
+        id: 'uuid-123',
+        name: '新年会',
+        icon: '🍶',
+        result: {
+          surplus: 0,
+        },
+      })
+    })
+
+    test('バリデーションエラーをハンドルできること', async () => {
+      const res = await app.request('/api/seisan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: '', // バリデーション内容はスキーマに依存するが、ここでは不正な型などを試すのが一般的
+          // emoji が欠落している
+        }),
+      })
+
+      expect(res.status).toBe(400)
+      const data = (await res.json()) as any
+      expect(data.error.code).toBe('BAD_REQUEST')
     })
   })
 })

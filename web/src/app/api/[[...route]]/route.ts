@@ -9,6 +9,8 @@ import {
   InternalServerError,
   NotFoundError,
 } from '../../../errors'
+import { postSeisanRoute } from '../../../generated/routes'
+import { addSeisanHandler } from '../../../handlers/seisan'
 
 export const app = new OpenAPIHono({
   defaultHook: (result, c) => {
@@ -105,6 +107,8 @@ app.get('/', (c) => {
     version: packageJson.version,
   })
 })
+
+app.openapi(postSeisanRoute, addSeisanHandler)
 
 export const GET = handle(app)
 export const POST = handle(app)
