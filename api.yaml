@@ -1256,8 +1256,10 @@ paths:
                 properties:
                   current:
                     $ref: "#/components/schemas/Item"
+                    description: 項目
                   incoming:
                     $ref: "#/components/schemas/Item"
+                    description: 項目
                 required:
                   - current
                   - incoming
@@ -1662,6 +1664,163 @@ paths:
           headers: {}
       security: []
   /seisan/{id}:
+    put:
+      summary: Update Seisan
+      deprecated: false
+      description: 精算を更新
+      operationId: updateSeisan
+      tags: []
+      parameters:
+        - name: id
+          in: path
+          description: 精算のID
+          required: true
+          example: "{{$string.uuid}}"
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SeisanInput"
+            example:
+              name: インドネシア共和国
+              emoji: 🚲
+        required: true
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seisan"
+              example:
+                id: d11a1924-3411-4ab1-a0e5-8493057eccf0
+                name: ボリビア多民族国
+                icon: 🚤
+                items:
+                  - id: f472a8d2-d24c-46c3-96f4-3c7a884c4f48
+                    name: おにぎり
+                    icon: 🏉
+                    payer:
+                      id: f11ed60c-cbb6-4d5f-824e-11c391f9f1d3
+                      name: 由美.清水18
+                      icon: 🕵🏻
+                      createdAt: "2026-02-11T13:03:23.386Z"
+                      updatedAt: "2026-02-11T13:03:23.388Z"
+                    price: 446.09
+                    currency:
+                      id: f605ac72-fb18-4a45-9204-fe83387ef7c7
+                      code: グールド
+                      rate: 202.95
+                      createdAt: "2026-02-11T13:03:23.389Z"
+                      updatedAt: "2026-02-11T13:03:23.389Z"
+                    amount: 3
+                    total: 872.3
+                    exempts:
+                      - id: 960256d2-0051-42b0-b0aa-e0db829f4170
+                        name: 蒼_松本
+                        icon: 🔺
+                        createdAt: "2026-02-11T13:03:23.391Z"
+                        updatedAt: "2026-02-11T13:03:23.391Z"
+                    version: "7407197511320065"
+                    createdAt: "2026-02-11T13:03:23.391Z"
+                    updatedAt: "2026-02-11T13:03:23.391Z"
+                participants:
+                  - id: a7f01b23-a01d-4d76-8242-7ba12a506270
+                    name: 英樹_鈴木71
+                    icon: 🌽
+                    createdAt: "2026-02-11T13:03:23.391Z"
+                    updatedAt: "2026-02-11T13:03:23.392Z"
+                  - id: 6bfa294a-4ce4-428a-ba01-1448f89ce457
+                    name: 陽子_加藤
+                    icon: 🔉
+                    createdAt: "2026-02-11T13:03:23.392Z"
+                    updatedAt: "2026-02-11T13:03:23.392Z"
+                currencies:
+                  - id: 4cb29dfd-3840-4623-a613-b9015f1959b2
+                    code: ブラジルレアル
+                    rate: 495.19
+                    createdAt: "2026-02-11T13:03:23.392Z"
+                    updatedAt: "2026-02-11T13:03:23.393Z"
+                  - id: b92abb69-5077-4bab-88bd-9bc53fa18e04
+                    code: アフガニ
+                    rate: 601.59
+                    createdAt: "2026-02-11T13:03:23.393Z"
+                    updatedAt: "2026-02-11T13:03:23.393Z"
+                  - id: f6fc403a-1a24-48a8-b96b-b498c5c0ed7c
+                    code: リランギニ
+                    rate: 566.69
+                    createdAt: "2026-02-11T13:03:23.393Z"
+                    updatedAt: "2026-02-11T13:03:23.393Z"
+                result:
+                  id: 8e212d01-b545-439d-9b9b-ed50a89afed7
+                  surplus: 698.19
+                  details:
+                    - id: 94589137-53b3-48c3-9219-da2ff2f21046
+                      source:
+                        id: 6dcbd643-96ac-4518-9f28-0d86ecf83f68
+                        name: 七味唐辛子風味の鮎
+                        icon: 📅
+                        payer:
+                          id: 87ab4646-607e-4614-96d9-7c9d9b25f48a
+                          name: 由美子.高橋
+                          icon: 🇫🇴
+                          createdAt: "2026-02-11T13:03:23.394Z"
+                          updatedAt: "2026-02-11T13:03:23.394Z"
+                        price: 185.79
+                        currency: null
+                        amount: 9
+                        total: 275.19
+                        exempts:
+                          - id: 005dc1f2-41f3-4c7e-af81-e1bc9a8bf5a4
+                            name: 功27
+                            icon: 🆕
+                            createdAt: "2026-02-11T13:03:23.395Z"
+                            updatedAt: "2026-02-11T13:03:23.395Z"
+                          - id: 1d63cd11-5d71-4bcd-8f00-a3a0621c3e82
+                            name: 武雄.吉田32
+                            icon: 👉🏾
+                            createdAt: "2026-02-11T13:03:23.396Z"
+                            updatedAt: "2026-02-11T13:03:23.396Z"
+                        version: "3496242971524232"
+                        createdAt: "2026-02-11T13:03:23.396Z"
+                        updatedAt: "2026-02-11T13:03:23.396Z"
+                      subtotal: 305.89
+                    - id: d9f02fc5-5ca0-49ca-9028-151638d3216f
+                      source:
+                        id: 8f4eac87-a21a-4657-8b54-b4815549568e
+                        name: 和風牛肉スープ
+                        icon: 🧑🏻‍🍳
+                        payer:
+                          id: a571ca82-0199-4653-84f9-ffa0d6ef85ab
+                          name: 花_小林32
+                          icon: 🇹🇲
+                          createdAt: "2026-02-11T13:03:23.396Z"
+                          updatedAt: "2026-02-11T13:03:23.396Z"
+                        price: 540.5
+                        currency:
+                          id: bb5cd959-7ab6-4b7c-8601-59ff4916fdb3
+                          code: キナ
+                          rate: 914.09
+                          createdAt: "2026-02-11T13:03:23.397Z"
+                          updatedAt: "2026-02-11T13:03:23.397Z"
+                        amount: 4
+                        total: 424.29
+                        exempts:
+                          - id: 2f3dcb05-6fac-43f8-904f-bea8bab2634f
+                            name: 静子.山口25
+                            icon: ✌🏻
+                            createdAt: "2026-02-11T13:03:23.397Z"
+                            updatedAt: "2026-02-11T13:03:23.397Z"
+                        version: "5248961742920145"
+                        createdAt: "2026-02-11T13:03:23.398Z"
+                        updatedAt: "2026-02-11T13:03:23.398Z"
+                      subtotal: 928.19
+                createdAt: "2026-02-11T13:03:23.398Z"
+                updatedAt: "2026-02-11T13:03:23.398Z"
+          headers: {}
+      security: []
     get:
       summary: Get Seisan
       deprecated: false
@@ -1827,6 +1986,168 @@ paths:
 webhooks: {}
 components:
   schemas:
+    SeisanResultDetailItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        source:
+          $ref: "#/components/schemas/Item"
+          description: 項目
+        subtotal:
+          type: number
+          description: 小計
+      required:
+        - id
+        - source
+        - subtotal
+    SeisanResultDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        participant:
+          $ref: "#/components/schemas/Participant"
+          description: 参加者
+        total:
+          type: number
+          description: 合計
+        paid:
+          type: number
+          description: 支払い済額
+        difference:
+          type: number
+          description: 差額
+      required:
+        - id
+        - participant
+        - total
+        - paid
+        - difference
+    SeisanResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        surplus:
+          type: number
+          description: 余り
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/SeisanResultDetailItem"
+          description: 参加者ごとの詳細
+      required:
+        - id
+        - surplus
+        - details
+    Currency:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        code:
+          type: string
+          description: 通貨名
+        rate:
+          type: number
+          description: 対円レート
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - code
+        - rate
+        - createdAt
+        - updatedAt
+    Participant:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - name
+        - icon
+        - createdAt
+        - updatedAt
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: 名前
+        icon:
+          type: string
+          description: アイコン
+        payer:
+          $ref: "#/components/schemas/Participant"
+          description: 参加者
+        price:
+          type: number
+          description: 単価
+        currency:
+          anyOf:
+            - $ref: "#/components/schemas/Currency"
+            - type: "null"
+          description: 通貨
+        amount:
+          type: integer
+          description: 個数
+        total:
+          type: number
+          description: 小計
+        exempts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Participant"
+            description: 参加者
+          description: 割り勘から除外する参加者
+        version:
+          type: string
+          description: バージョン
+        createdAt:
+          type: string
+          description: 作成日時
+        updatedAt:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - name
+        - icon
+        - payer
+        - price
+        - amount
+        - total
+        - exempts
+        - version
+        - createdAt
+        - updatedAt
     Seisan:
       type: object
       properties:
@@ -1843,11 +2164,13 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Item"
+            description: 項目
           description: 精算項目
         participants:
           type: array
           items:
             $ref: "#/components/schemas/Participant"
+            description: 参加者
           description: 参加者
         currencies:
           type: array
@@ -1873,30 +2196,18 @@ components:
         - result
         - createdAt
         - updatedAt
-    ParticipantInput:
+    SeisanInput:
       type: object
       properties:
         name:
           type: string
-          description: 名前
-        icon:
+          title: 名前
+        emoji:
           type: string
-          description: アイコン
+          title: アイコン
       required:
         - name
-        - icon
-    CurrencyInput:
-      type: object
-      properties:
-        code:
-          type: string
-          description: 通貨名
-        rate:
-          type: number
-          description: 対円レート
-      required:
-        - code
-        - rate
+        - emoji
     ItemInput:
       type: object
       properties:
@@ -1940,152 +2251,29 @@ components:
         - total
         - exemptIds
         - version
-    SeisanInput:
+    CurrencyInput:
       type: object
       properties:
-        name:
-          type: string
-          title: 名前
-        emoji:
-          type: string
-          title: アイコン
-      required:
-        - name
-        - emoji
-    Item:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-        name:
-          type: string
-          description: 名前
-        icon:
-          type: string
-          description: アイコン
-        payer:
-          $ref: "#/components/schemas/Participant"
-        price:
-          type: number
-          description: 単価
-        currency:
-          anyOf:
-            - $ref: "#/components/schemas/Currency"
-            - type: "null"
-          description: 通貨
-        amount:
-          type: integer
-          description: 個数
-        total:
-          type: number
-          description: 小計
-        exempts:
-          type: array
-          items:
-            $ref: "#/components/schemas/Participant"
-          description: 割り勘から除外する参加者
-        version:
-          type: string
-          description: バージョン
-        createdAt:
-          type: string
-          description: 作成日時
-        updatedAt:
-          type: string
-          description: 更新日時
-      required:
-        - id
-        - name
-        - icon
-        - payer
-        - price
-        - amount
-        - total
-        - exempts
-        - version
-        - createdAt
-        - updatedAt
-    Participant:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-        name:
-          type: string
-          description: 名前
-        icon:
-          type: string
-          description: アイコン
-        createdAt:
-          type: string
-          description: 作成日時
-        updatedAt:
-          type: string
-          description: 更新日時
-      required:
-        - id
-        - name
-        - icon
-        - createdAt
-        - updatedAt
-    Currency:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
         code:
           type: string
           description: 通貨名
         rate:
           type: number
           description: 対円レート
-        createdAt:
-          type: string
-          description: 作成日時
-        updatedAt:
-          type: string
-          description: 更新日時
       required:
-        - id
         - code
         - rate
-        - createdAt
-        - updatedAt
-    SeisanResult:
+    ParticipantInput:
       type: object
       properties:
-        id:
+        name:
           type: string
-          description: ID
-        surplus:
-          type: number
-          description: 余り
-        details:
-          type: array
-          items:
-            $ref: "#/components/schemas/SeisanResultDetailItem"
-          description: 参加者ごとの詳細
-      required:
-        - id
-        - surplus
-        - details
-    SeisanResultDetailItem:
-      type: object
-      properties:
-        id:
+          description: 名前
+        icon:
           type: string
-          description: ID
-        source:
-          $ref: "#/components/schemas/Item"
-        subtotal:
-          type: number
-          description: 小計
+          description: アイコン
       required:
-        - id
-        - source
-        - subtotal
+        - name
+        - icon
   securitySchemes: {}
 servers: []
