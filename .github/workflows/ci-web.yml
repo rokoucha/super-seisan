@@ -1,4 +1,4 @@
-name: CI - web
+name: CI - Web
 
 on:
   push:
@@ -35,14 +35,16 @@ jobs:
         run: pnpm i
 
       - name: Generate codes
-        run: |
-          pnpm run generate
+        run: pnpm run generate
 
       - name: Check formatting
         run: pnpm run lint
 
-  typecheck:
-    name: Type Check
+      - name: Check types
+        run: pnpm run type-check
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -64,11 +66,10 @@ jobs:
         run: pnpm i
 
       - name: Generate codes
-        run: |
-          pnpm run generate
+        run: pnpm run generate
 
-      - name: Check types
-        run: pnpm run type-check
+      - name: Run build
+        run: pnpm run build
 
   test:
     name: Test
@@ -93,8 +94,7 @@ jobs:
         run: pnpm i
 
       - name: Generate codes
-        run: |
-          pnpm run generate
+        run: pnpm run generate
 
       - name: Run tests
         run: pnpm run test
