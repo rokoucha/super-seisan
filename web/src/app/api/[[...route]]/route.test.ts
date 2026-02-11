@@ -114,7 +114,7 @@ describe('APIルート', () => {
   })
 
   vi.mock('../../../repositories/seisan', () => ({
-    addSeisanRepository: vi.fn(),
+    addSeisan: vi.fn(),
   }))
 
   describe('POST /seisan', () => {
@@ -127,9 +127,8 @@ describe('APIルート', () => {
         updatedAt: new Date(),
       }
 
-      const { addSeisanRepository } =
-        await import('../../../repositories/seisan')
-      vi.mocked(addSeisanRepository).mockResolvedValue(mockSeisan as any)
+      const { addSeisan } = await import('../../../repositories/seisan')
+      vi.mocked(addSeisan).mockResolvedValue(mockSeisan as any)
 
       const res = await app.request('/api/seisan', {
         method: 'POST',

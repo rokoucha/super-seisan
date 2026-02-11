@@ -1,10 +1,7 @@
 import { seisans } from '../db/schema'
 import { drizzle } from '../lib/drizzle'
 
-export async function addSeisanRepository(data: {
-  name: string
-  icon: string
-}) {
+export async function addSeisan(data: { name: string; icon: string }) {
   const [result] = await drizzle
     .insert(seisans)
     .values({

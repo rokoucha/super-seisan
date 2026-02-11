@@ -1,12 +1,12 @@
 import { describe, expect, test, vi } from 'vitest'
 import * as seisanRepo from '../repositories/seisan'
-import { addSeisanUsecase } from './seisan'
+import * as seisanUsecase from './seisan'
 
 vi.mock('../repositories/seisan', () => ({
-  addSeisanRepository: vi.fn(),
+  addSeisan: vi.fn(),
 }))
 
-describe('addSeisanUsecase', () => {
+describe('seisanUsecase.addSeisan', () => {
   test('精算を正常に作成し、初期状態の結果を返すこと', async () => {
     const mockInput = {
       name: 'テスト精算',
@@ -21,9 +21,9 @@ describe('addSeisanUsecase', () => {
       updatedAt: new Date(),
     }
 
-    vi.mocked(seisanRepo.addSeisanRepository).mockResolvedValue(mockSavedSeisan)
+    vi.mocked(seisanRepo.addSeisan).mockResolvedValue(mockSavedSeisan)
 
-    const result = await addSeisanUsecase(mockInput)
+    const result = await seisanUsecase.addSeisan(mockInput)
 
     expect(result).toMatchObject({
       id: 'uuid-1',
@@ -40,7 +40,7 @@ describe('addSeisanUsecase', () => {
     expect(result.createdAt).toBeDefined()
     expect(result.updatedAt).toBeDefined()
 
-    expect(seisanRepo.addSeisanRepository).toHaveBeenCalledWith({
+    expect(seisanRepo.addSeisan).toHaveBeenCalledWith({
       name: 'テスト精算',
       icon: '💰',
     })

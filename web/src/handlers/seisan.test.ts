@@ -5,7 +5,7 @@ import * as seisanUsecase from '../usecases/seisan'
 import { addSeisanHandler } from './seisan'
 
 vi.mock('../usecases/seisan', () => ({
-  addSeisanUsecase: vi.fn(),
+  addSeisan: vi.fn(),
 }))
 
 describe('addSeisanHandler', () => {
@@ -26,7 +26,7 @@ describe('addSeisanHandler', () => {
       updatedAt: new Date().toISOString(),
     }
 
-    vi.mocked(seisanUsecase.addSeisanUsecase).mockResolvedValue(mockSeisan)
+    vi.mocked(seisanUsecase.addSeisan).mockResolvedValue(mockSeisan)
 
     const app = new OpenAPIHono()
     app.openapi(postSeisanRoute, addSeisanHandler)
@@ -45,7 +45,7 @@ describe('addSeisanHandler', () => {
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data).toEqual(mockSeisan)
-    expect(seisanUsecase.addSeisanUsecase).toHaveBeenCalledWith({
+    expect(seisanUsecase.addSeisan).toHaveBeenCalledWith({
       name: 'テスト精算',
       emoji: '💰',
     })

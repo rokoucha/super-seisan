@@ -1,7 +1,7 @@
-import { addSeisanRepository } from '../repositories/seisan'
+import * as seisanRepository from '../repositories/seisan'
 
-export async function addSeisanUsecase(input: { name: string; emoji: string }) {
-  const seisan = await addSeisanRepository({
+export async function addSeisan(input: { name: string; emoji: string }) {
+  const seisan = await seisanRepository.addSeisan({
     name: input.name,
     icon: input.emoji,
   })
