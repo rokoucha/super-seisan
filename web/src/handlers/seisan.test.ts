@@ -7,6 +7,7 @@ import { addSeisanHandler, updateSeisanHandler } from './seisan'
 vi.mock('../usecases/seisan', () => ({
   addSeisan: vi.fn(),
   updateSeisan: vi.fn(),
+  getSeisan: vi.fn(),
 }))
 
 describe('addSeisanHandler', () => {
@@ -95,5 +96,42 @@ describe('updateSeisanHandler', () => {
       name: '更新後の精算',
       emoji: '💳',
     })
+  })
+})
+
+describe('getSeisanHandler', () => {
+  test('指定されたIDの精算を正常に取得できること', async () => {
+    const seisanId = 'uuid-1'
+    const mockSeisan = {
+      id: seisanId,
+      name: 'テスト精算',
+      icon: '💰',
+      items: [],
+      participants: [],
+      currencies: [],
+      result: {
+        id: `result-${seisanId}`,
+        surplus: 0,
+        details: [],
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    vi.mocked(seisanUsecase.getSeisan).mockResolvedValue(mockSeisan)
+
+    const app = new OpenAPIHono()
+    const { getSeisanIdRoute } = await import('../generated/routes')
+    const { getSeisanHandler } = await import('./seisan')
+    app.openapi(getSeisanIdRoute, getSeisanHandler)
+
+    const res = await app.request(`/seisan/${seisanId}`, {
+      method: 'GET',
+    })
+
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data).toEqual(mockSeisan)
+    expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
   })
 })

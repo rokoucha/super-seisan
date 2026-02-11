@@ -1,3 +1,4 @@
+import { NotFoundError } from '../errors'
 import * as seisanRepository from '../repositories/seisan'
 
 export async function addSeisan(input: { name: string; emoji: string }) {
@@ -32,10 +33,20 @@ export async function updateSeisan(
   const seisan = await seisanRepository.get(id)
 
   if (!seisan) {
-    throw new Error('Seisan not found')
+    throw new NotFoundError('Seisan not found')
   }
 
   // 3. Format result
+  return formatSeisanDetail(seisan)
+}
+
+export async function getSeisan(id: string) {
+  const seisan = await seisanRepository.get(id)
+
+  if (!seisan) {
+    throw new Error('Seisan not found')
+  }
+
   return formatSeisanDetail(seisan)
 }
 

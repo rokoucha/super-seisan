@@ -103,3 +103,41 @@ describe('seisanUsecase.updateSeisan', () => {
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
   })
 })
+describe('seisanUsecase.getSeisan', () => {
+  test('指定されたIDの精算を正常に取得し、整形して返すこと', async () => {
+    const seisanId = 'uuid-1'
+    const mockSeisanWithRelations = {
+      id: seisanId,
+      name: 'テスト精算',
+      icon: '💰',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      items: [],
+      participants: [],
+      currencies: [],
+    }
+
+    vi.mocked(seisanRepo.get).mockResolvedValue(mockSeisanWithRelations as any)
+
+    const result = await seisanUsecase.getSeisan(seisanId)
+
+    expect(result).toMatchObject({
+      id: seisanId,
+      name: 'テスト精算',
+      icon: '💰',
+      items: [],
+      participants: [],
+      currencies: [],
+    })
+    expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
+  })
+
+  test('精算が見つからない場合にNotFoundErrorを投げること', async () => {
+    const seisanId = 'non-existent'
+    vi.mocked(seisanRepo.get).mockResolvedValue(null as any)
+
+    await expect(seisanUsecase.getSeisan(seisanId)).rejects.toThrow(
+      'Seisan not found',
+    )
+  })
+})
