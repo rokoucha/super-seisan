@@ -1,11 +1,12 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { describe, expect, test, vi } from 'vitest'
-import { postSeisanRoute } from '../generated/routes'
+import { postSeisanRoute, putSeisanIdRoute } from '../generated/routes'
 import * as seisanUsecase from '../usecases/seisan'
-import { addSeisanHandler } from './seisan'
+import { addSeisanHandler, updateSeisanHandler } from './seisan'
 
 vi.mock('../usecases/seisan', () => ({
   addSeisan: vi.fn(),
+  updateSeisan: vi.fn(),
 }))
 
 describe('addSeisanHandler', () => {
@@ -48,6 +49,51 @@ describe('addSeisanHandler', () => {
     expect(seisanUsecase.addSeisan).toHaveBeenCalledWith({
       name: 'テスト精算',
       emoji: '💰',
+    })
+  })
+})
+
+describe('updateSeisanHandler', () => {
+  test('精算を正常に更新できること', async () => {
+    const seisanId = 'uuid-1'
+    const mockSeisan = {
+      id: seisanId,
+      name: '更新後の精算',
+      icon: '💳',
+      items: [],
+      participants: [],
+      currencies: [],
+      result: {
+        id: `result-${seisanId}`,
+        surplus: 0,
+        details: [],
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    vi.mocked(seisanUsecase.updateSeisan).mockResolvedValue(mockSeisan)
+
+    const app = new OpenAPIHono()
+    app.openapi(putSeisanIdRoute, updateSeisanHandler)
+
+    const res = await app.request(`/seisan/${seisanId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: '更新後の精算',
+        emoji: '💳',
+      }),
+    })
+
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data).toEqual(mockSeisan)
+    expect(seisanUsecase.updateSeisan).toHaveBeenCalledWith(seisanId, {
+      name: '更新後の精算',
+      emoji: '💳',
     })
   })
 })
