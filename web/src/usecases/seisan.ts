@@ -1,24 +1,21 @@
 import * as seisanRepository from '../repositories/seisan'
 
 export async function addSeisan(input: { name: string; emoji: string }) {
-  const seisan = await seisanRepository.addSeisan({
+  // 1. Create seisan
+  const created = await seisanRepository.addSeisan({
     name: input.name,
     icon: input.emoji,
   })
 
-  return {
-    ...seisan,
-    items: [],
-    participants: [],
-    currencies: [],
-    result: {
-      id: `result-${seisan.id}`,
-      surplus: 0,
-      details: [],
-    },
-    createdAt: seisan.createdAt.toISOString(),
-    updatedAt: seisan.updatedAt.toISOString(),
+  // 2. Fetch full seisan with relations
+  const seisan = await seisanRepository.get(created.id)
+
+  if (!seisan) {
+    throw new Error('Failed to fetch created seisan')
   }
+
+  // 3. Format result
+  return formatSeisanDetail(seisan)
 }
 
 export async function updateSeisan(
@@ -39,6 +36,15 @@ export async function updateSeisan(
   }
 
   // 3. Format result
+  return formatSeisanDetail(seisan)
+}
+
+/**
+ * Repositoryから取得した精算データをAPIレスポンス形式に変換する
+ */
+function formatSeisanDetail(
+  seisan: NonNullable<Awaited<ReturnType<typeof seisanRepository.get>>>,
+) {
   return {
     ...seisan,
     items: seisan.items.map((item) => ({

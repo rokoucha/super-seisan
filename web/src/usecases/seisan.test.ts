@@ -23,7 +23,15 @@ describe('seisanUsecase.addSeisan', () => {
       updatedAt: new Date(),
     }
 
+    const mockSeisanWithRelations = {
+      ...mockSavedSeisan,
+      items: [],
+      participants: [],
+      currencies: [],
+    }
+
     vi.mocked(seisanRepo.addSeisan).mockResolvedValue(mockSavedSeisan)
+    vi.mocked(seisanRepo.get).mockResolvedValue(mockSeisanWithRelations as any)
 
     const result = await seisanUsecase.addSeisan(mockInput)
 
@@ -46,6 +54,7 @@ describe('seisanUsecase.addSeisan', () => {
       name: 'テスト精算',
       icon: '💰',
     })
+    expect(seisanRepo.get).toHaveBeenCalledWith('uuid-1')
   })
 })
 

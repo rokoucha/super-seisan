@@ -129,8 +129,14 @@ describe('APIルート', () => {
         updatedAt: new Date(),
       }
 
-      const { addSeisan } = await import('../../../repositories/seisan')
+      const { addSeisan, get } = await import('../../../repositories/seisan')
       vi.mocked(addSeisan).mockResolvedValue(mockSeisan as any)
+      vi.mocked(get).mockResolvedValue({
+        ...mockSeisan,
+        participants: [],
+        currencies: [],
+        items: [],
+      } as any)
 
       const res = await app.request('/api/seisan', {
         method: 'POST',
