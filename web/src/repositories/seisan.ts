@@ -86,6 +86,19 @@ export async function updateParticipant(
   return result
 }
 
+export async function deleteParticipant(id: string) {
+  const [result] = await drizzle
+    .delete(participants)
+    .where(eq(participants.id, id))
+    .returning()
+
+  if (!result) {
+    throw new Error('Failed to delete participant')
+  }
+
+  return result
+}
+
 export async function update(id: string, data: { name: string; icon: string }) {
   const [result] = await drizzle
     .update(seisans)

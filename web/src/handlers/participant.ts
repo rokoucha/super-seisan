@@ -1,5 +1,6 @@
 import { type RouteHandler } from '@hono/zod-openapi'
 import {
+  deleteSeisanSeisanIdParticipantsIdRoute,
   postSeisanSeisanIdParticipantsRoute,
   putSeisanSeisanIdParticipantsIdRoute,
 } from '../generated/routes'
@@ -22,6 +23,15 @@ export const updateParticipantInSeisanHandler: RouteHandler<
   const { seisanId, id } = c.req.valid('param')
   const input = c.req.valid('json')
   await participantUsecase.updateParticipantInSeisan(seisanId, id, input)
+  const result = await seisanUsecase.getSeisan(seisanId)
+  return c.json(result, 200)
+}
+
+export const removeParticipantFromSeisanHandler: RouteHandler<
+  typeof deleteSeisanSeisanIdParticipantsIdRoute
+> = async (c) => {
+  const { seisanId, id } = c.req.valid('param')
+  await participantUsecase.removeParticipantFromSeisan(seisanId, id)
   const result = await seisanUsecase.getSeisan(seisanId)
   return c.json(result, 200)
 }

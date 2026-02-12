@@ -33,3 +33,12 @@ export async function updateParticipantInSeisan(
     icon: input.icon,
   })
 }
+
+export async function removeParticipantFromSeisan(seisanId: string, id: string) {
+  const seisan = await seisanRepository.get(seisanId)
+  if (!seisan) {
+    throw new NotFoundError('Seisan not found')
+  }
+
+  await seisanRepository.deleteParticipant(id)
+}

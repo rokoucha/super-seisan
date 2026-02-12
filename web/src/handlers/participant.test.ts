@@ -1,6 +1,7 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { describe, expect, test, vi } from 'vitest'
 import {
+  deleteSeisanSeisanIdParticipantsIdRoute,
   postSeisanSeisanIdParticipantsRoute,
   putSeisanSeisanIdParticipantsIdRoute,
 } from '../generated/routes'
@@ -8,11 +9,13 @@ import * as participantUsecase from '../usecases/participant'
 import * as seisanUsecase from '../usecases/seisan'
 import {
   addParticipantToSeisanHandler,
+  removeParticipantFromSeisanHandler,
   updateParticipantInSeisanHandler,
 } from './participant'
 
 vi.mock('../usecases/participant', () => ({
   addParticipantToSeisan: vi.fn(),
+  removeParticipantFromSeisan: vi.fn(),
   updateParticipantInSeisan: vi.fn(),
 }))
 vi.mock('../usecases/seisan', () => ({
@@ -145,6 +148,55 @@ describe('updateParticipantInSeisanHandler', () => {
         name: '参加者B',
         icon: '😎',
       },
+    )
+    expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
+  })
+})
+
+describe('removeParticipantFromSeisanHandler', () => {
+  test('精算内の参加者を正常に削除できること', async () => {
+    const seisanId = 'uuid-1'
+    const participantId = 'participant-1'
+    const mockSeisan = {
+      id: seisanId,
+      name: 'テスト精算',
+      icon: '💰',
+      items: [],
+      participants: [],
+      currencies: [],
+      result: {
+        id: `result-${seisanId}`,
+        surplus: 0,
+        details: [],
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    vi.mocked(participantUsecase.removeParticipantFromSeisan).mockResolvedValue(
+      undefined,
+    )
+    vi.mocked(seisanUsecase.getSeisan).mockResolvedValue(mockSeisan as any)
+
+    const app = new OpenAPIHono()
+    app.openapi(
+      deleteSeisanSeisanIdParticipantsIdRoute,
+      removeParticipantFromSeisanHandler,
+    )
+
+    const res = await app.request(
+      `/seisan/${seisanId}/participants/${participantId}`,
+      {
+        method: 'DELETE',
+      },
+    )
+
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data).toEqual(mockSeisan)
+    expect(participantUsecase.removeParticipantFromSeisan).toHaveBeenCalledWith(
+      seisanId,
+      participantId,
     )
     expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
   })
