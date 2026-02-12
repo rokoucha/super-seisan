@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from 'vitest'
+import { afterAll, describe, expect, test, vi } from 'vitest'
 import { z } from 'zod'
 import {
   BadRequestError,
@@ -9,6 +9,14 @@ import {
 import { app } from './route'
 
 describe('APIルート', () => {
+  const consoleErrorSpy = vi
+    .spyOn(console, 'error')
+    .mockImplementation(() => {})
+
+  afterAll(() => {
+    consoleErrorSpy.mockRestore()
+  })
+
   test('GET /api がバージョン情報を返すこと', async () => {
     // basePathが'/api'で、app.get('/', ...)なので、'/api'でアクセス
     const res = await app.request('/api')
