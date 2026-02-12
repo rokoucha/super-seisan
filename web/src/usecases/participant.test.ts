@@ -122,7 +122,10 @@ describe('participantUsecase.removeParticipantFromSeisan', () => {
       updatedAt: new Date(),
     } as any)
 
-    await participantUsecase.removeParticipantFromSeisan(seisanId, participantId)
+    await participantUsecase.removeParticipantFromSeisan(
+      seisanId,
+      participantId,
+    )
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
     expect(seisanRepo.deleteParticipant).toHaveBeenCalledWith(participantId)

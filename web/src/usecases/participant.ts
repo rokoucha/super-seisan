@@ -34,7 +34,10 @@ export async function updateParticipantInSeisan(
   })
 }
 
-export async function removeParticipantFromSeisan(seisanId: string, id: string) {
+export async function removeParticipantFromSeisan(
+  seisanId: string,
+  id: string,
+) {
   const seisan = await seisanRepository.get(seisanId)
   if (!seisan) {
     throw new NotFoundError('Seisan not found')
