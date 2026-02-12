@@ -49,8 +49,8 @@ importers:
         specifier: 0.31.9
         version: 0.31.9
       hono-takibi:
-        specifier: 0.9.95
-        version: 0.9.95(@types/node@25.2.3)(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3)))(@typespec/openapi@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))))(openapi-types@12.1.3)
+        specifier: 0.9.96
+        version: 0.9.96(@types/node@25.2.3)(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3)))(@typespec/openapi@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))))(openapi-types@12.1.3)
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -2858,8 +2858,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono-takibi@0.9.95:
-    resolution: {integrity: sha512-tQDVs2ymxPCUTHtyTG5qQe7vqnVyNBC/Ea+8ENrz5myCApdO6i+kyqS39sn39Qyncgrul1aI/Lrf7BfZlDlqVg==}
+  hono-takibi@0.9.96:
+    resolution: {integrity: sha512-TX4LdoIycHnVNAlK23WnT4C9flT72Zc4HDmisj5EvPnZbDxE07u+30ywGghQ79vtnDw6OmQ/T7ymsATH9/tH+g==}
     hasBin: true
 
   hono@4.11.9:
@@ -6612,7 +6612,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono-takibi@0.9.95(@types/node@25.2.3)(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3)))(@typespec/openapi@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))))(openapi-types@12.1.3):
+  hono-takibi@0.9.96(@types/node@25.2.3)(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3)))(@typespec/openapi@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))(@typespec/http@1.8.0(@typespec/compiler@1.9.0(@types/node@25.2.3))))(openapi-types@12.1.3):
     dependencies:
       '@apidevtools/swagger-parser': 12.1.0(openapi-types@12.1.3)
       '@typespec/compiler': 1.9.0(@types/node@25.2.3)
