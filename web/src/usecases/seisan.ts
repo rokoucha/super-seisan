@@ -2,49 +2,33 @@ import { NotFoundError } from '../errors'
 import * as seisanRepository from '../repositories/seisan'
 
 export async function addSeisan(input: { name: string; emoji: string }) {
-  // 1. Create seisan
-  const created = await seisanRepository.addSeisan({
+  return seisanRepository.addSeisan({
     name: input.name,
     icon: input.emoji,
   })
-
-  // 2. Fetch full seisan with relations
-  const seisan = await seisanRepository.get(created.id)
-
-  if (!seisan) {
-    throw new Error('Failed to fetch created seisan')
-  }
-
-  // 3. Format result
-  return formatSeisanDetail(seisan)
 }
 
 export async function updateSeisan(
   id: string,
   input: { name: string; emoji: string },
 ) {
-  // 1. Update seisan
-  await seisanRepository.update(id, {
-    name: input.name,
-    icon: input.emoji,
-  })
-
-  // 2. Fetch full seisan with relations
   const seisan = await seisanRepository.get(id)
 
   if (!seisan) {
     throw new NotFoundError('Seisan not found')
   }
 
-  // 3. Format result
-  return formatSeisanDetail(seisan)
+  await seisanRepository.update(id, {
+    name: input.name,
+    icon: input.emoji,
+  })
 }
 
 export async function getSeisan(id: string) {
   const seisan = await seisanRepository.get(id)
 
   if (!seisan) {
-    throw new Error('Seisan not found')
+    throw new NotFoundError('Seisan not found')
   }
 
   return formatSeisanDetail(seisan)

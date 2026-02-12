@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 import * as seisanRepo from '../repositories/seisan'
 import * as seisanUsecase from './seisan'
 
@@ -8,8 +8,12 @@ vi.mock('../repositories/seisan', () => ({
   get: vi.fn(),
 }))
 
+beforeEach(() => {
+  vi.clearAllMocks()
+})
+
 describe('seisanUsecase.addSeisan', () => {
-  test('精算を正常に作成し、初期状態の結果を返すこと', async () => {
+  test('精算を正常に作成できること', async () => {
     const mockInput = {
       name: 'テスト精算',
       emoji: '💰',
@@ -23,60 +27,29 @@ describe('seisanUsecase.addSeisan', () => {
       updatedAt: new Date(),
     }
 
-    const mockSeisanWithRelations = {
-      ...mockSavedSeisan,
-      items: [],
-      participants: [],
-      currencies: [],
-    }
-
     vi.mocked(seisanRepo.addSeisan).mockResolvedValue(mockSavedSeisan)
-    vi.mocked(seisanRepo.get).mockResolvedValue(mockSeisanWithRelations as any)
 
     const result = await seisanUsecase.addSeisan(mockInput)
 
-    expect(result).toMatchObject({
-      id: 'uuid-1',
-      name: 'テスト精算',
-      icon: '💰',
-      items: [],
-      participants: [],
-      currencies: [],
-      result: {
-        surplus: 0,
-        details: [],
-      },
-    })
-    expect(result.createdAt).toBeDefined()
-    expect(result.updatedAt).toBeDefined()
+    expect(result).toEqual(mockSavedSeisan)
 
     expect(seisanRepo.addSeisan).toHaveBeenCalledWith({
       name: 'テスト精算',
       icon: '💰',
     })
-    expect(seisanRepo.get).toHaveBeenCalledWith('uuid-1')
+    expect(seisanRepo.get).not.toHaveBeenCalled()
   })
 })
 
 describe('seisanUsecase.updateSeisan', () => {
-  test('精算を正常に更新し、全データを返すこと', async () => {
+  test('精算を正常に更新できること', async () => {
     const seisanId = 'uuid-1'
     const mockInput = {
       name: '更新後の精算',
       emoji: '💳',
     }
 
-    const mockUpdatedSeisan = {
-      id: seisanId,
-      name: '更新後の精算',
-      icon: '💳',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      participants: [],
-      currencies: [],
-      items: [],
-    }
-
+    vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
     vi.mocked(seisanRepo.update).mockResolvedValue({
       id: seisanId,
       name: '更新後の精算',
@@ -84,23 +57,28 @@ describe('seisanUsecase.updateSeisan', () => {
       createdAt: new Date(),
       updatedAt: new Date(),
     })
-    vi.mocked(seisanRepo.get).mockResolvedValue(mockUpdatedSeisan as any)
+    await seisanUsecase.updateSeisan(seisanId, mockInput)
 
-    const result = await seisanUsecase.updateSeisan(seisanId, mockInput)
-
-    expect(result).toMatchObject({
-      id: seisanId,
-      name: '更新後の精算',
-      icon: '💳',
-      items: [],
-      participants: [],
-      currencies: [],
-    })
+    expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
     expect(seisanRepo.update).toHaveBeenCalledWith(seisanId, {
       name: '更新後の精算',
       icon: '💳',
     })
+  })
+
+  test('精算が見つからない場合にNotFoundErrorを投げること', async () => {
+    const seisanId = 'non-existent'
+    vi.mocked(seisanRepo.get).mockResolvedValue(null as any)
+
+    await expect(
+      seisanUsecase.updateSeisan(seisanId, {
+        name: '更新後の精算',
+        emoji: '💳',
+      }),
+    ).rejects.toThrow('Seisan not found')
+
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
+    expect(seisanRepo.update).not.toHaveBeenCalled()
   })
 })
 describe('seisanUsecase.getSeisan', () => {

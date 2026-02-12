@@ -10,7 +10,8 @@ export const addSeisanHandler: RouteHandler<typeof postSeisanRoute> = async (
   c,
 ) => {
   const input = c.req.valid('json')
-  const result = await seisanUsecase.addSeisan(input)
+  const created = await seisanUsecase.addSeisan(input)
+  const result = await seisanUsecase.getSeisan(created.id)
   return c.json(result, 200)
 }
 
@@ -19,7 +20,8 @@ export const updateSeisanHandler: RouteHandler<
 > = async (c) => {
   const { id } = c.req.valid('param')
   const input = c.req.valid('json')
-  const result = await seisanUsecase.updateSeisan(id, input)
+  await seisanUsecase.updateSeisan(id, input)
+  const result = await seisanUsecase.getSeisan(id)
   return c.json(result, 200)
 }
 

@@ -12,15 +12,22 @@ vi.mock('../usecases/seisan', () => ({
 
 describe('addSeisanHandler', () => {
   test('精算を正常に作成できること', async () => {
-    const mockSeisan = {
+    const createdSeisan = {
       id: 'uuid-1',
+      name: 'テスト精算',
+      icon: '💰',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+    const mockSeisan = {
+      id: createdSeisan.id,
       name: 'テスト精算',
       icon: '💰',
       items: [],
       participants: [],
       currencies: [],
       result: {
-        id: 'result-uuid-1',
+        id: `result-${createdSeisan.id}`,
         surplus: 0,
         details: [],
       },
@@ -28,7 +35,8 @@ describe('addSeisanHandler', () => {
       updatedAt: new Date().toISOString(),
     }
 
-    vi.mocked(seisanUsecase.addSeisan).mockResolvedValue(mockSeisan)
+    vi.mocked(seisanUsecase.addSeisan).mockResolvedValue(createdSeisan as any)
+    vi.mocked(seisanUsecase.getSeisan).mockResolvedValue(mockSeisan)
 
     const app = new OpenAPIHono()
     app.openapi(postSeisanRoute, addSeisanHandler)
@@ -51,6 +59,7 @@ describe('addSeisanHandler', () => {
       name: 'テスト精算',
       emoji: '💰',
     })
+    expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(createdSeisan.id)
   })
 })
 
@@ -73,7 +82,8 @@ describe('updateSeisanHandler', () => {
       updatedAt: new Date().toISOString(),
     }
 
-    vi.mocked(seisanUsecase.updateSeisan).mockResolvedValue(mockSeisan)
+    vi.mocked(seisanUsecase.updateSeisan).mockResolvedValue(undefined)
+    vi.mocked(seisanUsecase.getSeisan).mockResolvedValue(mockSeisan)
 
     const app = new OpenAPIHono()
     app.openapi(putSeisanIdRoute, updateSeisanHandler)
@@ -96,6 +106,7 @@ describe('updateSeisanHandler', () => {
       name: '更新後の精算',
       emoji: '💳',
     })
+    expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
   })
 })
 
