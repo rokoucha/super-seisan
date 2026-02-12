@@ -4,6 +4,7 @@ import * as seisanUsecase from './seisan'
 
 vi.mock('../repositories/seisan', () => ({
   addSeisan: vi.fn(),
+  addParticipant: vi.fn(),
   update: vi.fn(),
   get: vi.fn(),
 }))

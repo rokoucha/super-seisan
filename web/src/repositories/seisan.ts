@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm'
-import { seisans } from '../db/schema'
+import { participants, seisans } from '../db/schema'
 import { drizzle } from '../lib/drizzle'
 
 export async function addSeisan(data: { name: string; icon: string }) {
@@ -38,6 +38,28 @@ export async function get(id: string) {
       },
     },
   })
+
+  return result
+}
+
+export async function addParticipant(data: {
+  seisanId: string
+  name: string
+  icon: string
+}) {
+  const [result] = await drizzle
+    .insert(participants)
+    .values({
+      id: crypto.randomUUID(),
+      seisanId: data.seisanId,
+      name: data.name,
+      icon: data.icon,
+    })
+    .returning()
+
+  if (!result) {
+    throw new Error('Failed to add participant')
+  }
 
   return result
 }
