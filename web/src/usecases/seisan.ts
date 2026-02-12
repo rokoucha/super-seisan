@@ -50,9 +50,6 @@ export async function getSeisan(id: string) {
   return formatSeisanDetail(seisan)
 }
 
-/**
- * Repositoryから取得した精算データをAPIレスポンス形式に変換する
- */
 function formatSeisanDetail(
   seisan: NonNullable<Awaited<ReturnType<typeof seisanRepository.get>>>,
 ) {
@@ -93,8 +90,8 @@ function formatSeisanDetail(
     })),
     result: {
       id: `result-${seisan.id}`,
-      surplus: 0, // TODO: 計算ロジックを実装する
-      details: [], // TODO: 計算ロジックを実装する
+      surplus: 0,
+      details: [],
     },
     createdAt: seisan.createdAt.toISOString(),
     updatedAt: seisan.updatedAt.toISOString(),

@@ -119,6 +119,10 @@ describe('APIルート', () => {
     get: vi.fn(),
   }))
 
+  vi.mock('../../../repositories/currency', () => ({
+    addCurrency: vi.fn(),
+  }))
+
   describe('POST /seisan', () => {
     test('精算を正常に作成できること', async () => {
       const mockSeisan = {

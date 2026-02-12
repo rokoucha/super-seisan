@@ -12,8 +12,10 @@ import {
 import {
   getSeisanIdRoute,
   postSeisanRoute,
+  postSeisanSeisanIdCurrenciesRoute,
   putSeisanIdRoute,
 } from '../../../generated/routes'
+import { addCurrencyToSeisanHandler } from '../../../handlers/currency'
 import {
   addSeisanHandler,
   getSeisanHandler,
@@ -119,6 +121,7 @@ app.get('/', (c) => {
 app.openapi(postSeisanRoute, addSeisanHandler)
 app.openapi(putSeisanIdRoute, updateSeisanHandler)
 app.openapi(getSeisanIdRoute, getSeisanHandler)
+app.openapi(postSeisanSeisanIdCurrenciesRoute, addCurrencyToSeisanHandler)
 
 export const GET = handle(app)
 export const POST = handle(app)
