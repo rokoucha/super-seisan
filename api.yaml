@@ -210,6 +210,7 @@ paths:
       summary: Update Currency
       deprecated: false
       description: 通貨を更新
+      operationId: updateCurrencyInSeisan
       tags: []
       parameters:
         - name: seisanId
