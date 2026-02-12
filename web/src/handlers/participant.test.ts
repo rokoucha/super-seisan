@@ -1,12 +1,19 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { describe, expect, test, vi } from 'vitest'
-import { postSeisanSeisanIdParticipantsRoute } from '../generated/routes'
+import {
+  postSeisanSeisanIdParticipantsRoute,
+  putSeisanSeisanIdParticipantsIdRoute,
+} from '../generated/routes'
 import * as participantUsecase from '../usecases/participant'
 import * as seisanUsecase from '../usecases/seisan'
-import { addParticipantToSeisanHandler } from './participant'
+import {
+  addParticipantToSeisanHandler,
+  updateParticipantInSeisanHandler,
+} from './participant'
 
 vi.mock('../usecases/participant', () => ({
   addParticipantToSeisan: vi.fn(),
+  updateParticipantInSeisan: vi.fn(),
 }))
 vi.mock('../usecases/seisan', () => ({
   getSeisan: vi.fn(),
@@ -69,6 +76,74 @@ describe('addParticipantToSeisanHandler', () => {
       {
         name: '参加者A',
         icon: '😀',
+      },
+    )
+    expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
+  })
+})
+
+describe('updateParticipantInSeisanHandler', () => {
+  test('精算内の参加者を正常に更新できること', async () => {
+    const seisanId = 'uuid-1'
+    const participantId = 'participant-1'
+    const mockSeisan = {
+      id: seisanId,
+      name: 'テスト精算',
+      icon: '💰',
+      items: [],
+      participants: [
+        {
+          id: participantId,
+          name: '参加者B',
+          icon: '😎',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+      ],
+      currencies: [],
+      result: {
+        id: `result-${seisanId}`,
+        surplus: 0,
+        details: [],
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    vi.mocked(participantUsecase.updateParticipantInSeisan).mockResolvedValue(
+      undefined,
+    )
+    vi.mocked(seisanUsecase.getSeisan).mockResolvedValue(mockSeisan as any)
+
+    const app = new OpenAPIHono()
+    app.openapi(
+      putSeisanSeisanIdParticipantsIdRoute,
+      updateParticipantInSeisanHandler,
+    )
+
+    const res = await app.request(
+      `/seisan/${seisanId}/participants/${participantId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: '参加者B',
+          icon: '😎',
+        }),
+      },
+    )
+
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data).toEqual(mockSeisan)
+    expect(participantUsecase.updateParticipantInSeisan).toHaveBeenCalledWith(
+      seisanId,
+      participantId,
+      {
+        name: '参加者B',
+        icon: '😎',
       },
     )
     expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)

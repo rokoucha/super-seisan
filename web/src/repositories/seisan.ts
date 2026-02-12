@@ -64,6 +64,28 @@ export async function addParticipant(data: {
   return result
 }
 
+export async function updateParticipant(
+  id: string,
+  data: { seisanId: string; name: string; icon: string },
+) {
+  const [result] = await drizzle
+    .update(participants)
+    .set({
+      seisanId: data.seisanId,
+      name: data.name,
+      icon: data.icon,
+      updatedAt: new Date(),
+    })
+    .where(eq(participants.id, id))
+    .returning()
+
+  if (!result) {
+    throw new Error('Failed to update participant')
+  }
+
+  return result
+}
+
 export async function update(id: string, data: { name: string; icon: string }) {
   const [result] = await drizzle
     .update(seisans)
