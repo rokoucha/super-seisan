@@ -45,3 +45,16 @@ export async function updateCurrency(
 
   return result
 }
+
+export async function deleteCurrency(id: string) {
+  const [result] = await drizzle
+    .delete(currencies)
+    .where(eq(currencies.id, id))
+    .returning()
+
+  if (!result) {
+    throw new Error('Failed to delete currency')
+  }
+
+  return result
+}

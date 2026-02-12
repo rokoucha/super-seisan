@@ -34,3 +34,12 @@ export async function updateCurrencyInSeisan(
     rate: input.rate,
   })
 }
+
+export async function removeCurrencyFromSeisan(seisanId: string, id: string) {
+  const seisan = await seisanRepository.get(seisanId)
+  if (!seisan) {
+    throw new NotFoundError('Seisan not found')
+  }
+
+  await currencyRepository.deleteCurrency(id)
+}

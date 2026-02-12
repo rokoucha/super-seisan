@@ -10,6 +10,7 @@ import {
   NotFoundError,
 } from '../../../errors'
 import {
+  deleteSeisanSeisanIdCurrenciesIdRoute,
   getSeisanIdRoute,
   postSeisanRoute,
   postSeisanSeisanIdCurrenciesRoute,
@@ -18,6 +19,7 @@ import {
 } from '../../../generated/routes'
 import {
   addCurrencyToSeisanHandler,
+  removeCurrencyFromSeisanHandler,
   updateCurrencyInSeisanHandler,
 } from '../../../handlers/currency'
 import {
@@ -127,6 +129,10 @@ app.openapi(putSeisanIdRoute, updateSeisanHandler)
 app.openapi(getSeisanIdRoute, getSeisanHandler)
 app.openapi(postSeisanSeisanIdCurrenciesRoute, addCurrencyToSeisanHandler)
 app.openapi(putSeisanSeisanIdCurrenciesIdRoute, updateCurrencyInSeisanHandler)
+app.openapi(
+  deleteSeisanSeisanIdCurrenciesIdRoute,
+  removeCurrencyFromSeisanHandler,
+)
 
 export const GET = handle(app)
 export const POST = handle(app)

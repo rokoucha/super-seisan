@@ -7,6 +7,7 @@ import * as currencyUsecase from './currency'
 vi.mock('../repositories/currency', () => ({
   addCurrency: vi.fn(),
   updateCurrency: vi.fn(),
+  deleteCurrency: vi.fn(),
 }))
 
 vi.mock('../repositories/seisan', () => ({
@@ -110,5 +111,46 @@ describe('currencyUsecase.updateCurrencyInSeisan', () => {
 
     expect(seisanRepo.get).toHaveBeenCalledTimes(1)
     expect(currencyRepo.updateCurrency).not.toHaveBeenCalled()
+  })
+})
+
+describe('currencyUsecase.removeCurrencyFromSeisan', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  test('精算に存在する通貨を正常に削除できること', async () => {
+    const seisanId = 'uuid-1'
+    const currencyId = 'currency-1'
+
+    vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
+    vi.mocked(currencyRepo.deleteCurrency).mockResolvedValue({
+      id: currencyId,
+      seisanId,
+      code: 'EUR',
+      rate: 161.5,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
+
+    await currencyUsecase.removeCurrencyFromSeisan(seisanId, currencyId)
+
+    expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
+    expect(currencyRepo.deleteCurrency).toHaveBeenCalledWith(currencyId)
+    expect(seisanRepo.get).toHaveBeenCalledTimes(1)
+  })
+
+  test('精算が存在しない場合にNotFoundErrorを投げること', async () => {
+    const seisanId = 'not-found'
+    const currencyId = 'currency-1'
+
+    vi.mocked(seisanRepo.get).mockResolvedValue(null as any)
+
+    await expect(
+      currencyUsecase.removeCurrencyFromSeisan(seisanId, currencyId),
+    ).rejects.toThrow(NotFoundError)
+
+    expect(seisanRepo.get).toHaveBeenCalledTimes(1)
+    expect(currencyRepo.deleteCurrency).not.toHaveBeenCalled()
   })
 })
