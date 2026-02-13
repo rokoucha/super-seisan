@@ -137,6 +137,10 @@ describe('APIルート', () => {
     deleteParticipant: vi.fn(),
   }))
 
+  vi.mock('../../../repositories/item', () => ({
+    addItem: vi.fn(),
+  }))
+
   describe('POST /seisan', () => {
     test('精算を正常に作成できること', async () => {
       const mockSeisan = {
@@ -255,6 +259,78 @@ describe('APIルート', () => {
       })
 
       expect(res.status).toBe(400)
+    })
+  })
+
+  describe('POST /seisan/{seisanId}/items', () => {
+    test('精算に項目を正常に追加できること', async () => {
+      const seisanId = 'uuid-item-123'
+      const mockSeisan = {
+        id: seisanId,
+        name: 'テスト精算',
+        icon: '💰',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        participants: [
+          {
+            id: 'participant-1',
+            seisanId,
+            name: '参加者A',
+            icon: '😀',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
+        ],
+        currencies: [],
+        items: [],
+      }
+
+      const { get } = await import('../../../repositories/seisan')
+      const { addItem } = await import('../../../repositories/item')
+      vi.mocked(get).mockResolvedValue(mockSeisan as any)
+      vi.mocked(addItem).mockResolvedValue({
+        id: 'item-1',
+        seisanId,
+        name: '唐揚げ',
+        icon: '🍗',
+        payerId: 'participant-1',
+        price: 1200,
+        currencyId: null,
+        amount: 2,
+        total: 2400,
+        version: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      } as any)
+
+      const res = await app.request(`/api/seisan/${seisanId}/items`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: '唐揚げ',
+          icon: '🍗',
+          payerId: 'participant-1',
+          price: 1200,
+          currencyId: null,
+          amount: 2,
+          total: 2400,
+          exemptIds: [],
+          version: '1',
+        }),
+      })
+
+      expect(res.status).toBe(200)
+      const data = await res.json()
+      expect(data).toMatchObject({
+        id: seisanId,
+        name: 'テスト精算',
+        icon: '💰',
+        result: {
+          surplus: 0,
+        },
+      })
     })
   })
 })
