@@ -34,3 +34,37 @@ export async function addItemToSeisan(
     version: input.version,
   })
 }
+
+export async function updateItemInSeisan(
+  seisanId: string,
+  id: string,
+  input: {
+    name: string
+    icon: string
+    payerId: string
+    price: number
+    currencyId?: string | null
+    amount: number
+    total: number
+    exemptIds: string[]
+    version: string
+  },
+) {
+  const seisan = await seisanRepository.get(seisanId)
+  if (!seisan) {
+    throw new NotFoundError('Seisan not found')
+  }
+
+  await itemRepository.updateItem(id, {
+    seisanId,
+    name: input.name,
+    icon: input.icon,
+    payerId: input.payerId,
+    price: input.price,
+    currencyId: input.currencyId ?? null,
+    amount: input.amount,
+    total: input.total,
+    exemptIds: input.exemptIds,
+    version: input.version,
+  })
+}
