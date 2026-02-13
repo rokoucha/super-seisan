@@ -1,12 +1,15 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
+import * as participantRepo from '../repositories/participant'
 import * as seisanRepo from '../repositories/seisan'
 import * as participantUsecase from './participant'
 
 vi.mock('../repositories/seisan', () => ({
+  get: vi.fn(),
+}))
+vi.mock('../repositories/participant', () => ({
   addParticipant: vi.fn(),
   deleteParticipant: vi.fn(),
   updateParticipant: vi.fn(),
-  get: vi.fn(),
 }))
 
 beforeEach(() => {
@@ -22,7 +25,7 @@ describe('participantUsecase.addParticipantToSeisan', () => {
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
-    vi.mocked(seisanRepo.addParticipant).mockResolvedValue({
+    vi.mocked(participantRepo.addParticipant).mockResolvedValue({
       id: 'participant-1',
       seisanId,
       name: input.name,
@@ -34,7 +37,7 @@ describe('participantUsecase.addParticipantToSeisan', () => {
     await participantUsecase.addParticipantToSeisan(seisanId, input)
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(seisanRepo.addParticipant).toHaveBeenCalledWith({
+    expect(participantRepo.addParticipant).toHaveBeenCalledWith({
       seisanId,
       name: input.name,
       icon: input.icon,
@@ -53,7 +56,7 @@ describe('participantUsecase.addParticipantToSeisan', () => {
     ).rejects.toThrow('Seisan not found')
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(seisanRepo.addParticipant).not.toHaveBeenCalled()
+    expect(participantRepo.addParticipant).not.toHaveBeenCalled()
   })
 })
 
@@ -67,7 +70,7 @@ describe('participantUsecase.updateParticipantInSeisan', () => {
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
-    vi.mocked(seisanRepo.updateParticipant).mockResolvedValue({
+    vi.mocked(participantRepo.updateParticipant).mockResolvedValue({
       id: participantId,
       seisanId,
       name: input.name,
@@ -83,11 +86,14 @@ describe('participantUsecase.updateParticipantInSeisan', () => {
     )
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(seisanRepo.updateParticipant).toHaveBeenCalledWith(participantId, {
-      seisanId,
-      name: input.name,
-      icon: input.icon,
-    })
+    expect(participantRepo.updateParticipant).toHaveBeenCalledWith(
+      participantId,
+      {
+        seisanId,
+        name: input.name,
+        icon: input.icon,
+      },
+    )
   })
 
   test('精算が見つからない場合にNotFoundErrorを投げること', async () => {
@@ -103,7 +109,7 @@ describe('participantUsecase.updateParticipantInSeisan', () => {
     ).rejects.toThrow('Seisan not found')
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(seisanRepo.updateParticipant).not.toHaveBeenCalled()
+    expect(participantRepo.updateParticipant).not.toHaveBeenCalled()
   })
 })
 
@@ -113,7 +119,7 @@ describe('participantUsecase.removeParticipantFromSeisan', () => {
     const participantId = 'participant-1'
 
     vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
-    vi.mocked(seisanRepo.deleteParticipant).mockResolvedValue({
+    vi.mocked(participantRepo.deleteParticipant).mockResolvedValue({
       id: participantId,
       seisanId,
       name: '参加者A',
@@ -128,7 +134,7 @@ describe('participantUsecase.removeParticipantFromSeisan', () => {
     )
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(seisanRepo.deleteParticipant).toHaveBeenCalledWith(participantId)
+    expect(participantRepo.deleteParticipant).toHaveBeenCalledWith(participantId)
   })
 
   test('精算が見つからない場合にNotFoundErrorを投げること', async () => {
@@ -141,6 +147,6 @@ describe('participantUsecase.removeParticipantFromSeisan', () => {
     ).rejects.toThrow('Seisan not found')
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(seisanRepo.deleteParticipant).not.toHaveBeenCalled()
+    expect(participantRepo.deleteParticipant).not.toHaveBeenCalled()
   })
 })

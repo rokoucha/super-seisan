@@ -131,6 +131,12 @@ describe('APIルート', () => {
     addCurrency: vi.fn(),
   }))
 
+  vi.mock('../../../repositories/participant', () => ({
+    addParticipant: vi.fn(),
+    updateParticipant: vi.fn(),
+    deleteParticipant: vi.fn(),
+  }))
+
   describe('POST /seisan', () => {
     test('精算を正常に作成できること', async () => {
       const mockSeisan = {

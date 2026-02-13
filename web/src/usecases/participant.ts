@@ -1,4 +1,5 @@
 import { NotFoundError } from '../errors'
+import * as participantRepository from '../repositories/participant'
 import * as seisanRepository from '../repositories/seisan'
 
 export async function addParticipantToSeisan(
@@ -10,7 +11,7 @@ export async function addParticipantToSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  await seisanRepository.addParticipant({
+  await participantRepository.addParticipant({
     seisanId,
     name: input.name,
     icon: input.icon,
@@ -27,7 +28,7 @@ export async function updateParticipantInSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  await seisanRepository.updateParticipant(id, {
+  await participantRepository.updateParticipant(id, {
     seisanId,
     name: input.name,
     icon: input.icon,
@@ -43,5 +44,5 @@ export async function removeParticipantFromSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  await seisanRepository.deleteParticipant(id)
+  await participantRepository.deleteParticipant(id)
 }
