@@ -12,9 +12,11 @@ function getDividedPrice(
   userLength: number,
   currencies: Currency[],
 ) {
+  const price = transaction.price ?? 0
+  const quantity = transaction.quantity ?? 1
   const rate = getCurrencyRate(currencies, transaction.currencySymbol ?? null)
   return Math.floor(
-    (transaction.price * transaction.quantity * rate) /
+    (price * quantity * rate) /
       (userLength - (transaction.exemptions?.length ?? 0)),
   )
 }
@@ -46,8 +48,8 @@ function getUserPayments(
       .reduce<number>(
         (p, c) =>
           p +
-          c.price *
-            c.quantity *
+          (c.price ?? 0) *
+            (c.quantity ?? 1) *
             getCurrencyRate(currencies, c.currencySymbol ?? null),
         0,
       ),
@@ -76,7 +78,7 @@ export const DividedResult: React.FC<DividedResultProps> = ({
         </tr>
         {transactions.map((t, i) => (
           <tr key={`caluclated-transactions-${i}`}>
-            <th>{`#${i + 1}: ${t.item}`}</th>
+            <th>{`#${i + 1}: ${t.item ?? ''}`}</th>
             {users.map((u, ui) => (
               <td key={`caluclated-transactions-${i}-users-${ui}`}>
                 {t.exemptions?.includes(u)

@@ -125,7 +125,7 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                 </td>
                 <td>
                   <Input
-                    value={t.item}
+                    value={t.item ?? ''}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       onTransactionItemChange(i, e.target.value)
                     }
@@ -133,7 +133,7 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                 </td>
                 <td>
                   <Select
-                    value={t.buyer}
+                    value={t.buyer ?? null}
                     onChange={(v) => onTransactionBuyerChange(i, v ?? '')}
                     data={users}
                   />
@@ -141,7 +141,7 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                 <td>
                   <Group grow>
                     <Input
-                      value={t.price}
+                      value={t.price ?? 0}
                       type="number"
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         onTransactionPriceChange(
@@ -164,7 +164,7 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                 </td>
                 <td>
                   <NumberInput
-                    value={t.quantity}
+                    value={t.quantity ?? 1}
                     type="number"
                     min={1}
                     step={1}
@@ -174,12 +174,12 @@ export const TransactionEditor: React.FC<TransactionEditorProps> = ({
                   />
                 </td>
                 <td>
-                  {t.price * t.quantity}
+                  {(t.price ?? 0) * (t.quantity ?? 1)}
                   {currencies.length > 0 && ` ${t.currencySymbol || 'JPY'}`}
                   {t.currencySymbol &&
                     ` = ${(
-                      t.price *
-                      t.quantity *
+                      (t.price ?? 0) *
+                      (t.quantity ?? 1) *
                       (currencies.find((c) => c.symbol === t.currencySymbol)
                         ?.rate ?? 1)
                     ).toFixed(1)} JPY`}

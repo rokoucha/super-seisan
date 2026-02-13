@@ -29,12 +29,15 @@ export const Calculator: React.FC = () => {
     setUsers(decoded.users)
     setTransactions(
       decoded.transactions.map((t) => ({
-        ...t,
+        item: t.item ?? '',
+        buyer: t.buyer ?? '',
+        price: t.price ?? 0,
+        quantity: t.quantity ?? 1,
         exemptions: t.exemptions ?? [],
         currencySymbol: t.currencySymbol ?? null,
       })),
     )
-    setCurrencies(decoded.currencies)
+    setCurrencies(decoded.currencies.filter((c): c is Currency => c !== null))
 
     setInitialized(true)
 
