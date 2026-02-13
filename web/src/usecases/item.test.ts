@@ -7,6 +7,7 @@ import * as itemUsecase from './item'
 vi.mock('../repositories/item', () => ({
   addItem: vi.fn(),
   updateItem: vi.fn(),
+  deleteItem: vi.fn(),
 }))
 
 vi.mock('../repositories/seisan', () => ({
@@ -132,5 +133,46 @@ describe('itemUsecase.updateItemInSeisan', () => {
     ).rejects.toThrow(NotFoundError)
 
     expect(itemRepo.updateItem).not.toHaveBeenCalled()
+  })
+})
+
+describe('itemUsecase.removeItemFromSeisan', () => {
+  test('精算に存在する項目を正常に削除できること', async () => {
+    const seisanId = 'uuid-1'
+    const itemId = 'item-1'
+
+    vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
+    vi.mocked(itemRepo.deleteItem).mockResolvedValue({
+      id: itemId,
+      seisanId,
+      name: '焼き鳥',
+      icon: '🍢',
+      payerId: 'participant-1',
+      price: 1800,
+      currencyId: null,
+      amount: 2,
+      total: 3600,
+      version: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    } as any)
+
+    await itemUsecase.removeItemFromSeisan(seisanId, itemId)
+
+    expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
+    expect(itemRepo.deleteItem).toHaveBeenCalledWith(itemId)
+  })
+
+  test('精算が見つからない場合にNotFoundErrorを投げること', async () => {
+    const seisanId = 'not-found'
+    const itemId = 'item-1'
+
+    vi.mocked(seisanRepo.get).mockResolvedValue(null as any)
+
+    await expect(
+      itemUsecase.removeItemFromSeisan(seisanId, itemId),
+    ).rejects.toThrow(NotFoundError)
+
+    expect(itemRepo.deleteItem).not.toHaveBeenCalled()
   })
 })

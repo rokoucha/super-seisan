@@ -140,6 +140,7 @@ describe('APIルート', () => {
   vi.mock('../../../repositories/item', () => ({
     addItem: vi.fn(),
     updateItem: vi.fn(),
+    deleteItem: vi.fn(),
   }))
 
   describe('POST /seisan', () => {
@@ -393,6 +394,56 @@ describe('APIルート', () => {
           exemptIds: [],
           version: '2',
         }),
+      })
+
+      expect(res.status).toBe(200)
+      const data = await res.json()
+      expect(data).toMatchObject({
+        id: seisanId,
+        name: 'テスト精算',
+        icon: '💰',
+        result: {
+          surplus: 0,
+        },
+      })
+    })
+  })
+
+  describe('DELETE /seisan/{seisanId}/items/{id}', () => {
+    test('精算内の項目を正常に削除できること', async () => {
+      const seisanId = 'uuid-item-123'
+      const itemId = 'item-1'
+      const mockSeisan = {
+        id: seisanId,
+        name: 'テスト精算',
+        icon: '💰',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        participants: [],
+        currencies: [],
+        items: [],
+      }
+
+      const { get } = await import('../../../repositories/seisan')
+      const { deleteItem } = await import('../../../repositories/item')
+      vi.mocked(get).mockResolvedValue(mockSeisan as any)
+      vi.mocked(deleteItem).mockResolvedValue({
+        id: itemId,
+        seisanId,
+        name: '焼き鳥',
+        icon: '🍢',
+        payerId: 'participant-1',
+        price: 1800,
+        currencyId: null,
+        amount: 2,
+        total: 3600,
+        version: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      } as any)
+
+      const res = await app.request(`/api/seisan/${seisanId}/items/${itemId}`, {
+        method: 'DELETE',
       })
 
       expect(res.status).toBe(200)

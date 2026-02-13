@@ -96,3 +96,13 @@ export async function updateItem(
 
   return result
 }
+
+export async function deleteItem(id: string) {
+  const [result] = await drizzle.delete(items).where(eq(items.id, id)).returning()
+
+  if (!result) {
+    throw new Error('Failed to delete item')
+  }
+
+  return result
+}

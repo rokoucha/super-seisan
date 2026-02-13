@@ -68,3 +68,12 @@ export async function updateItemInSeisan(
     version: input.version,
   })
 }
+
+export async function removeItemFromSeisan(seisanId: string, id: string) {
+  const seisan = await seisanRepository.get(seisanId)
+  if (!seisan) {
+    throw new NotFoundError('Seisan not found')
+  }
+
+  await itemRepository.deleteItem(id)
+}

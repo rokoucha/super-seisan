@@ -11,6 +11,7 @@ import {
 } from '../../../errors'
 import {
   deleteSeisanSeisanIdCurrenciesIdRoute,
+  deleteSeisanSeisanIdItemsIdRoute,
   deleteSeisanSeisanIdParticipantsIdRoute,
   getSeisanIdRoute,
   postSeisanSeisanIdItemsRoute,
@@ -34,6 +35,7 @@ import {
 } from '../../../handlers/participant'
 import {
   addItemToSeisanHandler,
+  removeItemFromSeisanHandler,
   updateItemInSeisanHandler,
 } from '../../../handlers/item'
 import {
@@ -152,6 +154,7 @@ app.openapi(
 )
 app.openapi(postSeisanSeisanIdItemsRoute, addItemToSeisanHandler)
 app.openapi(putSeisanSeisanIdItemsIdRoute, updateItemInSeisanHandler)
+app.openapi(deleteSeisanSeisanIdItemsIdRoute, removeItemFromSeisanHandler)
 app.openapi(postSeisanSeisanIdCurrenciesRoute, addCurrencyToSeisanHandler)
 app.openapi(putSeisanSeisanIdCurrenciesIdRoute, updateCurrencyInSeisanHandler)
 app.openapi(
