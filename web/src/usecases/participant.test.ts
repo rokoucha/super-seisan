@@ -134,7 +134,9 @@ describe('participantUsecase.removeParticipantFromSeisan', () => {
     )
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(participantRepo.deleteParticipant).toHaveBeenCalledWith(participantId)
+    expect(participantRepo.deleteParticipant).toHaveBeenCalledWith(
+      participantId,
+    )
   })
 
   test('精算が見つからない場合にNotFoundErrorを投げること', async () => {
