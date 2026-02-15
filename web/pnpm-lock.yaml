@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@hono/zod-openapi':
-        specifier: 1.2.1
-        version: 1.2.1(hono@4.11.9)(zod@4.3.6)
+        specifier: 1.2.2
+        version: 1.2.2(hono@4.11.9)(zod@4.3.6)
       '@opennextjs/cloudflare':
         specifier: 1.16.5
         version: 1.16.5(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.65.0)
@@ -144,8 +144,8 @@ packages:
     resolution: {integrity: sha512-hJA62OeBKUQT68DD2gDyhOqJxZxycqg8wLxbqjgqSzYttCMSDL9tiAQ9abgekBYNHudbJosm9sWOEbmCDfpX2A==}
     engines: {node: '>= 10'}
 
-  '@asteasolutions/zod-to-openapi@8.4.0':
-    resolution: {integrity: sha512-Ckp971tmTw4pnv+o7iK85ldBHBKk6gxMaoNyLn3c2Th/fKoTG8G3jdYuOanpdGqwlDB0z01FOjry2d32lfTqrA==}
+  '@asteasolutions/zod-to-openapi@8.4.1':
+    resolution: {integrity: sha512-WmJUsFINbnWxGvHSd16aOjgKf+5GsfdxruO2YDLcgplsidakCauik1lhlk83YDH06265Yd1XtUyF24o09uygpw==}
     peerDependencies:
       zod: ^4.0.0
 
@@ -1021,8 +1021,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@hono/zod-openapi@1.2.1':
-    resolution: {integrity: sha512-aZza4V8wkqpdHBWFNPiCeWd0cGOXbYuQW9AyezHs/jwQm5p67GkUyXwfthAooAwnG7thTpvOJkThZpCoY6us8w==}
+  '@hono/zod-openapi@1.2.2':
+    resolution: {integrity: sha512-va6vsL23wCJ1d0Vd+vGL1XOt+wPwItxirYafuhlW9iC2MstYr2FvsI7mctb45eBTjZfkqB/3LYDJEppPjOEiHw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=4.3.6'
@@ -3562,7 +3562,7 @@ snapshots:
       '@ast-grep/napi-win32-ia32-msvc': 0.40.5
       '@ast-grep/napi-win32-x64-msvc': 0.40.5
 
-  '@asteasolutions/zod-to-openapi@8.4.0(zod@4.3.6)':
+  '@asteasolutions/zod-to-openapi@8.4.1(zod@4.3.6)':
     dependencies:
       openapi3-ts: 4.5.0
       zod: 4.3.6
@@ -4645,9 +4645,9 @@ snapshots:
   '@esbuild/win32-x64@0.27.3':
     optional: true
 
-  '@hono/zod-openapi@1.2.1(hono@4.11.9)(zod@4.3.6)':
+  '@hono/zod-openapi@1.2.2(hono@4.11.9)(zod@4.3.6)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 8.4.0(zod@4.3.6)
+      '@asteasolutions/zod-to-openapi': 8.4.1(zod@4.3.6)
       '@hono/zod-validator': 0.7.6(hono@4.11.9)(zod@4.3.6)
       hono: 4.11.9
       openapi3-ts: 4.5.0
