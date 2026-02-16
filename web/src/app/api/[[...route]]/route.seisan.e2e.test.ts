@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
+import { app } from './route'
 
 vi.mock('../../../repositories/seisan', () => ({
   addSeisan: vi.fn(),
@@ -24,9 +25,41 @@ vi.mock('../../../repositories/item', () => ({
   deleteItem: vi.fn(),
 }))
 
-import { app } from './route'
-
 describe('Seisan API E2E', () => {
+  describe('GET /seisan/{id}', () => {
+    test('精算を正常に取得できること', async () => {
+      const seisanId = 'uuid-get-123'
+      const mockSeisan = {
+        id: seisanId,
+        name: '取得テスト精算',
+        icon: '📘',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        participants: [],
+        currencies: [],
+        items: [],
+      }
+
+      const { get } = await import('../../../repositories/seisan')
+      vi.mocked(get).mockResolvedValue(mockSeisan as any)
+
+      const res = await app.request(`/api/seisan/${seisanId}`, {
+        method: 'GET',
+      })
+
+      expect(res.status).toBe(200)
+      const data = await res.json()
+      expect(data).toMatchObject({
+        id: seisanId,
+        name: '取得テスト精算',
+        icon: '📘',
+        result: {
+          surplus: 0,
+        },
+      })
+    })
+  })
+
   describe('POST /seisan', () => {
     test('精算を正常に作成できること', async () => {
       const mockSeisan = {

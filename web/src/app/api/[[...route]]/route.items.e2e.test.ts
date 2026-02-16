@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
+import { app } from './route'
 
 vi.mock('../../../repositories/seisan', () => ({
   addSeisan: vi.fn(),
@@ -23,8 +24,6 @@ vi.mock('../../../repositories/item', () => ({
   updateItem: vi.fn(),
   deleteItem: vi.fn(),
 }))
-
-import { app } from './route'
 
 describe('Item API E2E', () => {
   describe('POST /seisan/{seisanId}/items', () => {
