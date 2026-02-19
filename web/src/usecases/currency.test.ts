@@ -88,10 +88,14 @@ describe('currencyUsecase.updateCurrencyInSeisan', () => {
     await currencyUsecase.updateCurrencyInSeisan(seisanId, currencyId, input)
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(currencyRepo.updateCurrency).toHaveBeenCalledWith(seisanId, currencyId, {
-      code: 'EUR',
-      rate: 161.5,
-    })
+    expect(currencyRepo.updateCurrency).toHaveBeenCalledWith(
+      seisanId,
+      currencyId,
+      {
+        code: 'EUR',
+        rate: 161.5,
+      },
+    )
     expect(seisanRepo.get).toHaveBeenCalledTimes(1)
   })
 
