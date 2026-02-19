@@ -25,9 +25,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/CurrencyInput"
-            example:
-              code: キープ
-              rate: 242
+            examples: {}
         required: true
       responses:
         "200":
@@ -65,9 +63,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/CurrencyInput"
-            example:
-              code: ポンド
-              rate: 149.39
+            examples: {}
         required: true
       responses:
         "200":
@@ -128,9 +124,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ParticipantInput"
-            example:
-              name: 恵美子.高橋48
-              icon: 🧵
+            examples: {}
         required: true
       responses:
         "200":
@@ -168,9 +162,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ParticipantInput"
-            example:
-              name: 恵.山口
-              icon: 🉐
+            examples: {}
         required: true
       responses:
         "200":
@@ -231,19 +223,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ItemInput"
-            example:
-              name: タンギーな 和風鍋
-              icon: 🔁
-              payerId: 6e37a5b9-e599-4b8e-8434-daae37952d5a
-              price: 627.95
-              currencyId: 5b8a430f-c7a1-4bbf-8ec2-d562fb446fbd
-              amount: 9
-              total: 615.4
-              exemptIds:
-                - ffb283b4-efb7-4d56-986a-c9eef2d61209
-                - 593b55e8-ddb5-4bc9-b893-4f9792428085
-                - c09990ab-33e1-4cc9-b3d2-e44aa5f42bb8
-              version: "6312368793303552"
+            examples: {}
         required: true
       responses:
         "200":
@@ -281,19 +261,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ItemInput"
-            example:
-              name: 刺身盛り合わせ
-              icon: 🟠
-              payerId: ea4ecbf5-bbd2-4a9f-bd45-4497deb9581d
-              price: 955.99
-              currencyId: 8708a9f2-d4b0-4968-83a9-ef9ed0f57ae4
-              amount: 8
-              total: 503.39
-              exemptIds:
-                - 1d5fba8b-1f0e-491a-98f9-dddf89675691
-                - f4364a6d-24cb-45c2-9a3e-c975bc06cfa4
-                - cff92da0-d514-4ecf-9248-73fe7085ecba
-              version: "1263949603027466"
+            examples: {}
         required: true
       responses:
         "200":
@@ -436,9 +404,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/SeisanInput"
-            example:
-              name: セネガル共和国
-              emoji: 🐆
+            examples: {}
         required: true
       responses:
         "200":
@@ -469,9 +435,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/SeisanInput"
-            example:
-              name: インドネシア共和国
-              emoji: 🚲
+            examples: {}
         required: true
       responses:
         "200":
