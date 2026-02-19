@@ -30,7 +30,7 @@ describe('settlement logic', () => {
         amount: 1,
         total: 1000,
         exempts: [],
-        version: '1',
+        version: 1,
         createdAt: '2026-01-01',
         updatedAt: '2026-01-01',
       }
@@ -48,7 +48,7 @@ describe('settlement logic', () => {
         amount: 1,
         total: 100,
         exempts: [],
-        version: '1',
+        version: 1,
         createdAt: '2026-01-01',
         updatedAt: '2026-01-01',
       }
@@ -67,7 +67,7 @@ describe('settlement logic', () => {
         amount: 1,
         total: 1000,
         exempts: [p2],
-        version: '1',
+        version: 1,
         createdAt: '2026-01-01',
         updatedAt: '2026-01-01',
       }
@@ -93,7 +93,7 @@ describe('settlement logic', () => {
         amount: 1,
         total: 1500,
         exempts: [],
-        version: '1',
+        version: 1,
         createdAt: '2026-01-01',
         updatedAt: '2026-01-01',
       }
@@ -122,7 +122,7 @@ describe('settlement logic', () => {
         amount: 1,
         total: 100,
         exempts: [],
-        version: '1',
+        version: 1,
         createdAt: '2026-01-01',
         updatedAt: '2026-01-01',
       }

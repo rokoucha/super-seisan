@@ -62,7 +62,7 @@ describe('addItemToSeisanHandler', () => {
         amount: 2,
         total: 2400,
         exemptIds: ['participant-2'],
-        version: '1',
+        version: 1,
       }),
     })
 
@@ -78,7 +78,7 @@ describe('addItemToSeisanHandler', () => {
       amount: 2,
       total: 2400,
       exemptIds: ['participant-2'],
-      version: '1',
+      version: 1,
     })
     expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
   })
@@ -103,7 +103,7 @@ describe('updateItemInSeisanHandler', () => {
           amount: 2,
           total: 3600,
           exemptIds: ['participant-2'],
-          version: '2',
+          version: 2,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },
@@ -139,7 +139,7 @@ describe('updateItemInSeisanHandler', () => {
         amount: 2,
         total: 3600,
         exemptIds: ['participant-2'],
-        version: '2',
+        version: 2,
       }),
     })
 
@@ -158,7 +158,7 @@ describe('updateItemInSeisanHandler', () => {
         amount: 2,
         total: 3600,
         exemptIds: ['participant-2'],
-        version: '2',
+        version: 2,
       },
     )
     expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)

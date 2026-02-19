@@ -24,7 +24,7 @@ export type Item = {
   amount: number
   total: number
   exempts: Participant[]
-  version: string
+  version: number
   createdAt: string
   updatedAt: string
 }

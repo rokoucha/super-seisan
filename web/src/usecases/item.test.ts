@@ -31,7 +31,7 @@ describe('itemUsecase.addItemToSeisan', () => {
       amount: 2,
       total: 2400,
       exemptIds: ['participant-2'],
-      version: '1',
+      version: 1,
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
@@ -64,7 +64,7 @@ describe('itemUsecase.addItemToSeisan', () => {
       amount: 2,
       total: 2400,
       exemptIds: [],
-      version: '1',
+      version: 1,
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue(null as any)
@@ -90,7 +90,7 @@ describe('itemUsecase.updateItemInSeisan', () => {
       amount: 2,
       total: 3600,
       exemptIds: ['participant-2'],
-      version: '2',
+      version: 2,
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
@@ -123,7 +123,7 @@ describe('itemUsecase.updateItemInSeisan', () => {
       amount: 2,
       total: 3600,
       exemptIds: [],
-      version: '2',
+      version: 2,
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue(null as any)
@@ -147,7 +147,7 @@ describe('itemUsecase.updateItemInSeisan', () => {
       amount: 2,
       total: 3600,
       exemptIds: [],
-      version: '2',
+      version: 2,
     }
 
     vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
@@ -164,6 +164,30 @@ describe('itemUsecase.updateItemInSeisan', () => {
     await expect(
       itemUsecase.updateItemInSeisan(seisanId, itemId, input),
     ).rejects.toThrow(ConflictError)
+  })
+
+  test('項目が見つからない場合にNotFoundErrorを投げること', async () => {
+    const seisanId = 'uuid-1'
+    const itemId = 'item-1'
+    const input = {
+      name: '焼き鳥',
+      icon: '🍢',
+      payerId: 'participant-1',
+      price: 1800,
+      currencyId: null,
+      amount: 2,
+      total: 3600,
+      exemptIds: [],
+      version: 2,
+    }
+
+    vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
+    vi.mocked(itemRepo.updateItem).mockResolvedValue(undefined)
+    vi.mocked(itemRepo.getItem).mockResolvedValue(undefined)
+
+    await expect(
+      itemUsecase.updateItemInSeisan(seisanId, itemId, input),
+    ).rejects.toThrow(NotFoundError)
   })
 })
 

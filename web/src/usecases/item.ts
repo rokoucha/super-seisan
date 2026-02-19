@@ -13,7 +13,7 @@ export async function addItemToSeisan(
     amount: number
     total: number
     exemptIds: string[]
-    version: string
+    version: number
   },
 ) {
   const seisan = await seisanRepository.get(seisanId)
@@ -47,7 +47,7 @@ export async function updateItemInSeisan(
     amount: number
     total: number
     exemptIds: string[]
-    version: string
+    version: number
   },
 ) {
   const seisan = await seisanRepository.get(seisanId)

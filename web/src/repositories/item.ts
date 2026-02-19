@@ -12,7 +12,7 @@ export async function addItem(data: {
   amount: number
   total: number
   exemptIds: string[]
-  version: string
+  version: number
 }) {
   const itemId = crypto.randomUUID()
 
@@ -29,7 +29,7 @@ export async function addItem(data: {
         currencyId: data.currencyId,
         amount: data.amount,
         total: data.total,
-        version: Number(data.version),
+        version: data.version,
       })
       .returning(),
     ...(data.exemptIds.length > 0
@@ -64,39 +64,49 @@ export async function updateItem(
     amount: number
     total: number
     exemptIds: string[]
-    version: string
+    version: number
   },
 ) {
-  const [itemsResult] = await drizzle.batch([
-    drizzle
-      .update(items)
-      .set({
-        name: data.name,
-        icon: data.icon,
-        payerId: data.payerId,
-        price: data.price,
-        currencyId: data.currencyId,
-        amount: data.amount,
-        total: data.total,
-        version: Number(data.version),
-        updatedAt: new Date(),
-      })
-      .where(and(eq(items.id, id), eq(items.seisanId, seisanId)))
-      .returning(),
-    drizzle.delete(itemExempts).where(eq(itemExempts.itemId, id)),
-    ...(data.exemptIds.length > 0
-      ? [
-          drizzle.insert(itemExempts).values(
-            data.exemptIds.map((participantId) => ({
-              itemId: id,
-              participantId,
-            })),
-          ),
-        ]
-      : []),
-  ])
+  const nextVersion = data.version
 
-  return itemsResult[0]
+  const [updatedItem] = await drizzle
+    .update(items)
+    .set({
+      name: data.name,
+      icon: data.icon,
+      payerId: data.payerId,
+      price: data.price,
+      currencyId: data.currencyId,
+      amount: data.amount,
+      total: data.total,
+      version: nextVersion,
+      updatedAt: new Date(),
+    })
+    .where(
+      and(
+        eq(items.id, id),
+        eq(items.seisanId, seisanId),
+        eq(items.version, nextVersion - 1),
+      ),
+    )
+    .returning()
+
+  if (!updatedItem) {
+    return undefined
+  }
+
+  await drizzle.delete(itemExempts).where(eq(itemExempts.itemId, id))
+
+  if (data.exemptIds.length > 0) {
+    await drizzle.insert(itemExempts).values(
+      data.exemptIds.map((participantId) => ({
+        itemId: id,
+        participantId,
+      })),
+    )
+  }
+
+  return updatedItem
 }
 
 export async function getItem(seisanId: string, id: string) {

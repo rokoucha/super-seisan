@@ -82,7 +82,7 @@ describe('Item API E2E', () => {
           amount: 2,
           total: 2400,
           exemptIds: [],
-          version: '1',
+          version: 1,
         }),
       })
 
@@ -155,7 +155,7 @@ describe('Item API E2E', () => {
           amount: 2,
           total: 3600,
           exemptIds: [],
-          version: '2',
+          version: 2,
         }),
       })
 

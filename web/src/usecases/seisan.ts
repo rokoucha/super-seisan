@@ -65,7 +65,7 @@ function formatSeisanDetail(
       createdAt: e.participant.createdAt.toISOString(),
       updatedAt: e.participant.updatedAt.toISOString(),
     })),
-    version: item.version.toString(),
+    version: item.version,
     createdAt: item.createdAt.toISOString(),
     updatedAt: item.updatedAt.toISOString(),
   }))

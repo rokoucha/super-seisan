@@ -655,7 +655,7 @@ components:
             description: 参加者
           description: 割り勘から除外する参加者
         version:
-          type: string
+          type: integer
           description: バージョン
         createdAt:
           type: string
@@ -767,7 +767,7 @@ components:
             type: string
           description: 割り勘から除外する参加者
         version:
-          type: string
+          type: integer
           description: バージョン
       required:
         - name
