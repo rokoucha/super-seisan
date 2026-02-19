@@ -49,8 +49,8 @@ importers:
         specifier: 0.31.9
         version: 0.31.9
       hono-takibi:
-        specifier: 0.9.981
-        version: 0.9.981(@types/node@25.3.0)(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0)))(@typespec/openapi@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))))(openapi-types@12.1.3)
+        specifier: 0.9.983
+        version: 0.9.983(@types/node@25.3.0)(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0)))(@typespec/openapi@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))))(openapi-types@12.1.3)
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -2657,8 +2657,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono-takibi@0.9.981:
-    resolution: {integrity: sha512-Lhq2F4KEoV8W1i8iqFosuhMH/D0oNBurVvwlc1ZaZZFGzCcQhA8FQalMqZuyrmiGVF8RNdKbWRHZlG71a2p3Kg==}
+  hono-takibi@0.9.983:
+    resolution: {integrity: sha512-GVznf5bXHX9/sYxq3VbUO60auI3Q9avqPeNURwOI3SYMLJs6Du0Qe26lI/8ziMAmTlkcB7iZ1OXcRGISVMhm5w==}
     hasBin: true
 
   hono@4.11.10:
@@ -6198,7 +6198,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono-takibi@0.9.981(@types/node@25.3.0)(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0)))(@typespec/openapi@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))))(openapi-types@12.1.3):
+  hono-takibi@0.9.983(@types/node@25.3.0)(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0)))(@typespec/openapi@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))(@typespec/http@1.9.0(@typespec/compiler@1.9.0(@types/node@25.3.0))))(openapi-types@12.1.3):
     dependencies:
       '@apidevtools/swagger-parser': 12.1.0(openapi-types@12.1.3)
       '@typespec/compiler': 1.9.0(@types/node@25.3.0)
