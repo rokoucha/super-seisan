@@ -107,6 +107,11 @@ describe('seisanUsecase.getSeisan', () => {
       items: [],
       participants: [],
       currencies: [],
+      result: {
+        id: `result-${seisanId}`,
+        surplus: 0,
+        details: [],
+      },
     })
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
   })

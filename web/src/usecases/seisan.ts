@@ -1,5 +1,6 @@
 import { NotFoundError } from '../errors'
 import * as seisanRepository from '../repositories/seisan'
+import { calculateSettlement } from './settlement'
 
 export async function addSeisan(input: { name: string; emoji: string }) {
   return seisanRepository.addSeisan({
@@ -37,46 +38,48 @@ export async function getSeisan(id: string) {
 function formatSeisanDetail(
   seisan: NonNullable<Awaited<ReturnType<typeof seisanRepository.get>>>,
 ) {
+  const items = seisan.items.map((item) => ({
+    ...item,
+    payer: {
+      ...item.payer,
+      createdAt: item.payer.createdAt.toISOString(),
+      updatedAt: item.payer.updatedAt.toISOString(),
+    },
+    currency: item.currency
+      ? {
+          ...item.currency,
+          createdAt: item.currency.createdAt.toISOString(),
+          updatedAt: item.currency.updatedAt.toISOString(),
+        }
+      : null,
+    exempts: item.exempts.map((e) => ({
+      ...e.participant,
+      createdAt: e.participant.createdAt.toISOString(),
+      updatedAt: e.participant.updatedAt.toISOString(),
+    })),
+    version: item.version.toString(),
+    createdAt: item.createdAt.toISOString(),
+    updatedAt: item.updatedAt.toISOString(),
+  }))
+
+  const participants = seisan.participants.map((p) => ({
+    ...p,
+    createdAt: p.createdAt.toISOString(),
+    updatedAt: p.updatedAt.toISOString(),
+  }))
+
+  const currencies = seisan.currencies.map((c) => ({
+    ...c,
+    createdAt: c.createdAt.toISOString(),
+    updatedAt: c.updatedAt.toISOString(),
+  }))
+
   return {
     ...seisan,
-    items: seisan.items.map((item) => ({
-      ...item,
-      payer: {
-        ...item.payer,
-        createdAt: item.payer.createdAt.toISOString(),
-        updatedAt: item.payer.updatedAt.toISOString(),
-      },
-      currency: item.currency
-        ? {
-            ...item.currency,
-            createdAt: item.currency.createdAt.toISOString(),
-            updatedAt: item.currency.updatedAt.toISOString(),
-          }
-        : null,
-      exempts: item.exempts.map((e) => ({
-        ...e.participant,
-        createdAt: e.participant.createdAt.toISOString(),
-        updatedAt: e.participant.updatedAt.toISOString(),
-      })),
-      version: item.version.toString(),
-      createdAt: item.createdAt.toISOString(),
-      updatedAt: item.updatedAt.toISOString(),
-    })),
-    participants: seisan.participants.map((p) => ({
-      ...p,
-      createdAt: p.createdAt.toISOString(),
-      updatedAt: p.updatedAt.toISOString(),
-    })),
-    currencies: seisan.currencies.map((c) => ({
-      ...c,
-      createdAt: c.createdAt.toISOString(),
-      updatedAt: c.updatedAt.toISOString(),
-    })),
-    result: {
-      id: `result-${seisan.id}`,
-      surplus: 0,
-      details: [],
-    },
+    items,
+    participants,
+    currencies,
+    result: calculateSettlement(items, participants, currencies, seisan.id),
     createdAt: seisan.createdAt.toISOString(),
     updatedAt: seisan.updatedAt.toISOString(),
   }
