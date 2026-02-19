@@ -55,7 +55,7 @@ export async function updateItemInSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  await itemRepository.updateItem(id, {
+  const result = await itemRepository.updateItem(id, {
     seisanId,
     name: input.name,
     icon: input.icon,
@@ -67,6 +67,10 @@ export async function updateItemInSeisan(
     exemptIds: input.exemptIds,
     version: input.version,
   })
+
+  if (!result) {
+    throw new NotFoundError('Item not found')
+  }
 }
 
 export async function removeItemFromSeisan(seisanId: string, id: string) {
@@ -75,5 +79,8 @@ export async function removeItemFromSeisan(seisanId: string, id: string) {
     throw new NotFoundError('Seisan not found')
   }
 
-  await itemRepository.deleteItem(id)
+  const result = await itemRepository.deleteItem(id)
+  if (!result) {
+    throw new NotFoundError('Item not found')
+  }
 }

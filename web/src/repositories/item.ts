@@ -15,33 +15,34 @@ export async function addItem(data: {
   version: string
 }) {
   const itemId = crypto.randomUUID()
-  const [result] = await drizzle
-    .insert(items)
-    .values({
-      id: itemId,
-      seisanId: data.seisanId,
-      name: data.name,
-      icon: data.icon,
-      payerId: data.payerId,
-      price: data.price,
-      currencyId: data.currencyId,
-      amount: data.amount,
-      total: data.total,
-      version: Number(data.version),
-    })
-    .returning()
 
-  if (!result) {
-    throw new Error('Failed to add item')
-  }
-
-  if (data.exemptIds.length > 0) {
-    await drizzle.insert(itemExempts).values(
+  const [itemsResult] = await drizzle.batch([
+    drizzle
+      .insert(items)
+      .values({
+        id: itemId,
+        seisanId: data.seisanId,
+        name: data.name,
+        icon: data.icon,
+        payerId: data.payerId,
+        price: data.price,
+        currencyId: data.currencyId,
+        amount: data.amount,
+        total: data.total,
+        version: Number(data.version),
+      })
+      .returning(),
+    drizzle.insert(itemExempts).values(
       data.exemptIds.map((participantId) => ({
         itemId,
         participantId,
       })),
-    )
+    ),
+  ])
+
+  const result = itemsResult[0]
+  if (!result) {
+    throw new Error('Failed to add item')
   }
 
   return result
@@ -62,39 +63,37 @@ export async function updateItem(
     version: string
   },
 ) {
-  const [result] = await drizzle
-    .update(items)
-    .set({
-      seisanId: data.seisanId,
-      name: data.name,
-      icon: data.icon,
-      payerId: data.payerId,
-      price: data.price,
-      currencyId: data.currencyId,
-      amount: data.amount,
-      total: data.total,
-      version: Number(data.version),
-      updatedAt: new Date(),
-    })
-    .where(eq(items.id, id))
-    .returning()
+  const [itemsResult] = await drizzle.batch([
+    drizzle
+      .update(items)
+      .set({
+        seisanId: data.seisanId,
+        name: data.name,
+        icon: data.icon,
+        payerId: data.payerId,
+        price: data.price,
+        currencyId: data.currencyId,
+        amount: data.amount,
+        total: data.total,
+        version: Number(data.version),
+        updatedAt: new Date(),
+      })
+      .where(eq(items.id, id))
+      .returning(),
+    drizzle.delete(itemExempts).where(eq(itemExempts.itemId, id)),
+    ...(data.exemptIds.length > 0
+      ? [
+          drizzle.insert(itemExempts).values(
+            data.exemptIds.map((participantId) => ({
+              itemId: id,
+              participantId,
+            })),
+          ),
+        ]
+      : []),
+  ])
 
-  if (!result) {
-    throw new Error('Failed to update item')
-  }
-
-  await drizzle.delete(itemExempts).where(eq(itemExempts.itemId, id))
-
-  if (data.exemptIds.length > 0) {
-    await drizzle.insert(itemExempts).values(
-      data.exemptIds.map((participantId) => ({
-        itemId: id,
-        participantId,
-      })),
-    )
-  }
-
-  return result
+  return itemsResult[0]
 }
 
 export async function deleteItem(id: string) {
@@ -102,10 +101,6 @@ export async function deleteItem(id: string) {
     .delete(items)
     .where(eq(items.id, id))
     .returning()
-
-  if (!result) {
-    throw new Error('Failed to delete item')
-  }
 
   return result
 }

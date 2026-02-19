@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { describe, expect, test, vi } from 'vitest'
+import { NotFoundError } from '../errors'
 import {
   deleteSeisanSeisanIdItemsIdRoute,
   postSeisanSeisanIdItemsRoute,
@@ -202,5 +203,30 @@ describe('removeItemFromSeisanHandler', () => {
       itemId,
     )
     expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
+  })
+
+  test('精算が見つからない場合に404エラーを返すこと', async () => {
+    const seisanId = 'invalid-id'
+    const itemId = 'item-1'
+    vi.mocked(seisanUsecase.getSeisan).mockRejectedValue(
+      new NotFoundError('Seisan not found'),
+    )
+
+    const app = new OpenAPIHono()
+    app.onError((err, c) => {
+      if (err instanceof NotFoundError) {
+        return c.json({ message: err.message }, 404)
+      }
+      return c.json({ message: err.message }, 500)
+    })
+    app.openapi(deleteSeisanSeisanIdItemsIdRoute, removeItemFromSeisanHandler)
+
+    const res = await app.request(`/seisan/${seisanId}/items/${itemId}`, {
+      method: 'DELETE',
+    })
+
+    expect(res.status).toBe(404)
+    const data = (await res.json()) as { message: string }
+    expect(data.message).toBe('Seisan not found')
   })
 })

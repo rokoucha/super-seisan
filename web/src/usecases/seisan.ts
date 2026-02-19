@@ -2,11 +2,15 @@ import { NotFoundError } from '../errors'
 import * as seisanRepository from '../repositories/seisan'
 import { calculateSettlement } from './settlement'
 
-export async function addSeisan(input: { name: string; emoji: string }) {
-  return seisanRepository.addSeisan({
+export async function addSeisan(input: {
+  name: string
+  emoji: string
+}): Promise<{ id: string }> {
+  const created = await seisanRepository.addSeisan({
     name: input.name,
     icon: input.emoji,
   })
+  return { id: created.id }
 }
 
 export async function updateSeisan(
@@ -19,10 +23,14 @@ export async function updateSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  await seisanRepository.update(id, {
+  const result = await seisanRepository.update(id, {
     name: input.name,
     icon: input.emoji,
   })
+
+  if (!result) {
+    throw new NotFoundError('Seisan not found')
+  }
 }
 
 export async function getSeisan(id: string) {
@@ -79,7 +87,7 @@ function formatSeisanDetail(
     items,
     participants,
     currencies,
-    result: calculateSettlement(items, participants, currencies, seisan.id),
+    result: calculateSettlement(items, participants, seisan.id),
     createdAt: seisan.createdAt.toISOString(),
     updatedAt: seisan.updatedAt.toISOString(),
   }

@@ -39,10 +39,6 @@ export async function updateParticipant(
     .where(eq(participants.id, id))
     .returning()
 
-  if (!result) {
-    throw new Error('Failed to update participant')
-  }
-
   return result
 }
 
@@ -51,10 +47,6 @@ export async function deleteParticipant(id: string) {
     .delete(participants)
     .where(eq(participants.id, id))
     .returning()
-
-  if (!result) {
-    throw new Error('Failed to delete participant')
-  }
 
   return result
 }

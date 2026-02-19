@@ -32,7 +32,7 @@ describe('seisanUsecase.addSeisan', () => {
 
     const result = await seisanUsecase.addSeisan(mockInput)
 
-    expect(result).toEqual(mockSavedSeisan)
+    expect(result).toEqual({ id: mockSavedSeisan.id })
 
     expect(seisanRepo.addSeisan).toHaveBeenCalledWith({
       name: 'テスト精算',

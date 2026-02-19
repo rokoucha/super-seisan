@@ -53,9 +53,5 @@ export async function update(id: string, data: { name: string; icon: string }) {
     .where(eq(seisans.id, id))
     .returning()
 
-  if (!result) {
-    throw new Error('Failed to update seisan')
-  }
-
   return result
 }
