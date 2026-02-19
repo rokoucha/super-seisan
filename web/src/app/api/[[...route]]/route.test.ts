@@ -30,6 +30,7 @@ vi.mock('../../../repositories/item', () => ({
   addItem: vi.fn(),
   updateItem: vi.fn(),
   deleteItem: vi.fn(),
+  getItem: vi.fn(),
 }))
 
 describe('APIルート', () => {

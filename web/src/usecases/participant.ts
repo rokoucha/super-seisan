@@ -28,8 +28,7 @@ export async function updateParticipantInSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  const result = await participantRepository.updateParticipant(id, {
-    seisanId,
+  const result = await participantRepository.updateParticipant(seisanId, id, {
     name: input.name,
     icon: input.icon,
   })
@@ -48,7 +47,7 @@ export async function removeParticipantFromSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  const result = await participantRepository.deleteParticipant(id)
+  const result = await participantRepository.deleteParticipant(seisanId, id)
   if (!result) {
     throw new NotFoundError('Participant not found')
   }

@@ -88,8 +88,7 @@ describe('currencyUsecase.updateCurrencyInSeisan', () => {
     await currencyUsecase.updateCurrencyInSeisan(seisanId, currencyId, input)
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(currencyRepo.updateCurrency).toHaveBeenCalledWith(currencyId, {
-      seisanId,
+    expect(currencyRepo.updateCurrency).toHaveBeenCalledWith(seisanId, currencyId, {
       code: 'EUR',
       rate: 161.5,
     })
@@ -136,7 +135,10 @@ describe('currencyUsecase.removeCurrencyFromSeisan', () => {
     await currencyUsecase.removeCurrencyFromSeisan(seisanId, currencyId)
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(currencyRepo.deleteCurrency).toHaveBeenCalledWith(currencyId)
+    expect(currencyRepo.deleteCurrency).toHaveBeenCalledWith(
+      seisanId,
+      currencyId,
+    )
     expect(seisanRepo.get).toHaveBeenCalledTimes(1)
   })
 

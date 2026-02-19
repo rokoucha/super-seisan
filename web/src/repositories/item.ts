@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { and, eq } from 'drizzle-orm'
 import { itemExempts, items } from '../db/schema'
 import { drizzle } from '../lib/drizzle'
 
@@ -32,12 +32,16 @@ export async function addItem(data: {
         version: Number(data.version),
       })
       .returning(),
-    drizzle.insert(itemExempts).values(
-      data.exemptIds.map((participantId) => ({
-        itemId,
-        participantId,
-      })),
-    ),
+    ...(data.exemptIds.length > 0
+      ? [
+          drizzle.insert(itemExempts).values(
+            data.exemptIds.map((participantId) => ({
+              itemId,
+              participantId,
+            })),
+          ),
+        ]
+      : []),
   ])
 
   const result = itemsResult[0]
@@ -49,9 +53,9 @@ export async function addItem(data: {
 }
 
 export async function updateItem(
+  seisanId: string,
   id: string,
   data: {
-    seisanId: string
     name: string
     icon: string
     payerId: string
@@ -67,7 +71,6 @@ export async function updateItem(
     drizzle
       .update(items)
       .set({
-        seisanId: data.seisanId,
         name: data.name,
         icon: data.icon,
         payerId: data.payerId,
@@ -78,7 +81,7 @@ export async function updateItem(
         version: Number(data.version),
         updatedAt: new Date(),
       })
-      .where(eq(items.id, id))
+      .where(and(eq(items.id, id), eq(items.seisanId, seisanId)))
       .returning(),
     drizzle.delete(itemExempts).where(eq(itemExempts.itemId, id)),
     ...(data.exemptIds.length > 0
@@ -96,10 +99,20 @@ export async function updateItem(
   return itemsResult[0]
 }
 
-export async function deleteItem(id: string) {
+export async function getItem(seisanId: string, id: string) {
+  const [result] = await drizzle
+    .select()
+    .from(items)
+    .where(and(eq(items.id, id), eq(items.seisanId, seisanId)))
+    .limit(1)
+
+  return result
+}
+
+export async function deleteItem(seisanId: string, id: string) {
   const [result] = await drizzle
     .delete(items)
-    .where(eq(items.id, id))
+    .where(and(eq(items.id, id), eq(items.seisanId, seisanId)))
     .returning()
 
   return result

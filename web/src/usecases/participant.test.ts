@@ -87,9 +87,9 @@ describe('participantUsecase.updateParticipantInSeisan', () => {
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
     expect(participantRepo.updateParticipant).toHaveBeenCalledWith(
+      seisanId,
       participantId,
       {
-        seisanId,
         name: input.name,
         icon: input.icon,
       },
@@ -135,6 +135,7 @@ describe('participantUsecase.removeParticipantFromSeisan', () => {
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
     expect(participantRepo.deleteParticipant).toHaveBeenCalledWith(
+      seisanId,
       participantId,
     )
   })

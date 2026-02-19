@@ -1,4 +1,4 @@
-import { NotFoundError } from '../errors'
+import { ConflictError, NotFoundError } from '../errors'
 import * as itemRepository from '../repositories/item'
 import * as seisanRepository from '../repositories/seisan'
 
@@ -55,8 +55,7 @@ export async function updateItemInSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  const result = await itemRepository.updateItem(id, {
-    seisanId,
+  const result = await itemRepository.updateItem(seisanId, id, {
     name: input.name,
     icon: input.icon,
     payerId: input.payerId,
@@ -69,6 +68,10 @@ export async function updateItemInSeisan(
   })
 
   if (!result) {
+    const current = await itemRepository.getItem(seisanId, id)
+    if (current) {
+      throw new ConflictError('Item version conflict')
+    }
     throw new NotFoundError('Item not found')
   }
 }
@@ -79,7 +82,7 @@ export async function removeItemFromSeisan(seisanId: string, id: string) {
     throw new NotFoundError('Seisan not found')
   }
 
-  const result = await itemRepository.deleteItem(id)
+  const result = await itemRepository.deleteItem(seisanId, id)
   if (!result) {
     throw new NotFoundError('Item not found')
   }

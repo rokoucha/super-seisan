@@ -28,8 +28,7 @@ export async function updateCurrencyInSeisan(
     throw new NotFoundError('Seisan not found')
   }
 
-  const result = await currencyRepository.updateCurrency(id, {
-    seisanId,
+  const result = await currencyRepository.updateCurrency(seisanId, id, {
     code: input.code,
     rate: input.rate,
   })
@@ -45,7 +44,7 @@ export async function removeCurrencyFromSeisan(seisanId: string, id: string) {
     throw new NotFoundError('Seisan not found')
   }
 
-  const result = await currencyRepository.deleteCurrency(id)
+  const result = await currencyRepository.deleteCurrency(seisanId, id)
   if (!result) {
     throw new NotFoundError('Currency not found')
   }

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { NotFoundError } from '../errors'
+import { ConflictError, NotFoundError } from '../errors'
 import * as itemRepo from '../repositories/item'
 import * as seisanRepo from '../repositories/seisan'
 import * as itemUsecase from './item'
@@ -8,6 +8,7 @@ vi.mock('../repositories/item', () => ({
   addItem: vi.fn(),
   updateItem: vi.fn(),
   deleteItem: vi.fn(),
+  getItem: vi.fn(),
 }))
 
 vi.mock('../repositories/seisan', () => ({
@@ -105,8 +106,7 @@ describe('itemUsecase.updateItemInSeisan', () => {
     await itemUsecase.updateItemInSeisan(seisanId, itemId, input)
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(itemRepo.updateItem).toHaveBeenCalledWith(itemId, {
-      seisanId,
+    expect(itemRepo.updateItem).toHaveBeenCalledWith(seisanId, itemId, {
       ...input,
     })
   })
@@ -134,6 +134,37 @@ describe('itemUsecase.updateItemInSeisan', () => {
 
     expect(itemRepo.updateItem).not.toHaveBeenCalled()
   })
+
+  test('バージョン競合時にConflictErrorを投げること', async () => {
+    const seisanId = 'uuid-1'
+    const itemId = 'item-1'
+    const input = {
+      name: '焼き鳥',
+      icon: '🍢',
+      payerId: 'participant-1',
+      price: 1800,
+      currencyId: null,
+      amount: 2,
+      total: 3600,
+      exemptIds: [],
+      version: '2',
+    }
+
+    vi.mocked(seisanRepo.get).mockResolvedValue({ id: seisanId } as any)
+    vi.mocked(itemRepo.updateItem).mockResolvedValue(undefined)
+    vi.mocked(itemRepo.getItem).mockResolvedValue({
+      id: itemId,
+      seisanId,
+      ...input,
+      version: 3,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    } as any)
+
+    await expect(
+      itemUsecase.updateItemInSeisan(seisanId, itemId, input),
+    ).rejects.toThrow(ConflictError)
+  })
 })
 
 describe('itemUsecase.removeItemFromSeisan', () => {
@@ -160,7 +191,7 @@ describe('itemUsecase.removeItemFromSeisan', () => {
     await itemUsecase.removeItemFromSeisan(seisanId, itemId)
 
     expect(seisanRepo.get).toHaveBeenCalledWith(seisanId)
-    expect(itemRepo.deleteItem).toHaveBeenCalledWith(itemId)
+    expect(itemRepo.deleteItem).toHaveBeenCalledWith(seisanId, itemId)
   })
 
   test('精算が見つからない場合にNotFoundErrorを投げること', async () => {

@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { and, eq } from 'drizzle-orm'
 import { participants } from '../db/schema'
 import { drizzle } from '../lib/drizzle'
 
@@ -25,27 +25,27 @@ export async function addParticipant(data: {
 }
 
 export async function updateParticipant(
+  seisanId: string,
   id: string,
-  data: { seisanId: string; name: string; icon: string },
+  data: { name: string; icon: string },
 ) {
   const [result] = await drizzle
     .update(participants)
     .set({
-      seisanId: data.seisanId,
       name: data.name,
       icon: data.icon,
       updatedAt: new Date(),
     })
-    .where(eq(participants.id, id))
+    .where(and(eq(participants.id, id), eq(participants.seisanId, seisanId)))
     .returning()
 
   return result
 }
 
-export async function deleteParticipant(id: string) {
+export async function deleteParticipant(seisanId: string, id: string) {
   const [result] = await drizzle
     .delete(participants)
-    .where(eq(participants.id, id))
+    .where(and(eq(participants.id, id), eq(participants.seisanId, seisanId)))
     .returning()
 
   return result
