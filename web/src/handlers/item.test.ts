@@ -1,6 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { describe, expect, test, vi } from 'vitest'
-import { NotFoundError } from '../errors'
+import { ConflictError, NotFoundError } from '../errors'
 import {
   deleteSeisanSeisanIdItemsIdRoute,
   postSeisanSeisanIdItemsRoute,
@@ -161,6 +161,93 @@ describe('updateItemInSeisanHandler', () => {
         version: 2,
       },
     )
+    expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
+  })
+
+  test('更新衝突時にcurrent/incomingを含む409レスポンスを返すこと', async () => {
+    const seisanId = 'uuid-1'
+    const itemId = 'item-1'
+    const mockSeisan = {
+      id: seisanId,
+      name: 'テスト精算',
+      icon: '💰',
+      items: [
+        {
+          id: itemId,
+          name: '焼き鳥',
+          icon: '🍢',
+          payer: {
+            id: 'participant-1',
+            name: '参加者A',
+            icon: '😀',
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+          },
+          price: 1800,
+          currency: null,
+          amount: 2,
+          total: 3600,
+          exempts: [],
+          version: 3,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+      ],
+      participants: [
+        {
+          id: 'participant-1',
+          name: '参加者A',
+          icon: '😀',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+      ],
+      currencies: [],
+      result: {
+        id: `result-${seisanId}`,
+        surplus: 0,
+        details: [],
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    vi.mocked(itemUsecase.updateItemInSeisan).mockRejectedValue(
+      new ConflictError('Item version conflict'),
+    )
+    vi.mocked(seisanUsecase.getSeisan).mockResolvedValue(mockSeisan as any)
+
+    const app = new OpenAPIHono()
+    app.openapi(putSeisanSeisanIdItemsIdRoute, updateItemInSeisanHandler)
+
+    const res = await app.request(`/seisan/${seisanId}/items/${itemId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: '上書き更新',
+        icon: '🔥',
+        payerId: 'participant-1',
+        price: 2000,
+        currencyId: null,
+        amount: 3,
+        total: 6000,
+        exemptIds: [],
+        version: 2,
+      }),
+    })
+
+    expect(res.status).toBe(409)
+    const data = (await res.json()) as {
+      current: { id: string; version: number }
+      incoming: { id: string; name: string; version: number }
+    }
+    expect(data.current.id).toBe(itemId)
+    expect(data.current.version).toBe(3)
+    expect(data.incoming.id).toBe(itemId)
+    expect(data.incoming.name).toBe('上書き更新')
+    expect(data.incoming.version).toBe(2)
     expect(seisanUsecase.getSeisan).toHaveBeenCalledWith(seisanId)
   })
 })
