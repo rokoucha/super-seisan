@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.2.2
-        version: 1.2.2(hono@4.12.0)(zod@4.3.6)
+        version: 1.2.2(hono@4.12.1)(zod@4.3.6)
       '@opennextjs/cloudflare':
         specifier: 1.16.5
         version: 1.16.5(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.67.0)
@@ -18,8 +18,8 @@ importers:
         specifier: 0.45.1
         version: 0.45.1
       hono:
-        specifier: 4.12.0
-        version: 4.12.0
+        specifier: 4.12.1
+        version: 4.12.1
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -2661,8 +2661,8 @@ packages:
     resolution: {integrity: sha512-GVznf5bXHX9/sYxq3VbUO60auI3Q9avqPeNURwOI3SYMLJs6Du0Qe26lI/8ziMAmTlkcB7iZ1OXcRGISVMhm5w==}
     hasBin: true
 
-  hono@4.12.0:
-    resolution: {integrity: sha512-NekXntS5M94pUfiVZ8oXXK/kkri+5WpX2/Ik+LVsl+uvw+soj4roXIsPqO+XsWrAw20mOzaXOZf3Q7PfB9A/IA==}
+  hono@4.12.1:
+    resolution: {integrity: sha512-hi9afu8g0lfJVLolxElAZGANCTTl6bewIdsRNhaywfP9K8BPf++F2z6OLrYGIinUwpRKzbZHMhPwvc0ZEpAwGw==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -4617,17 +4617,17 @@ snapshots:
   '@esbuild/win32-x64@0.27.3':
     optional: true
 
-  '@hono/zod-openapi@1.2.2(hono@4.12.0)(zod@4.3.6)':
+  '@hono/zod-openapi@1.2.2(hono@4.12.1)(zod@4.3.6)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 8.4.1(zod@4.3.6)
-      '@hono/zod-validator': 0.7.6(hono@4.12.0)(zod@4.3.6)
-      hono: 4.12.0
+      '@hono/zod-validator': 0.7.6(hono@4.12.1)(zod@4.3.6)
+      hono: 4.12.1
       openapi3-ts: 4.5.0
       zod: 4.3.6
 
-  '@hono/zod-validator@0.7.6(hono@4.12.0)(zod@4.3.6)':
+  '@hono/zod-validator@0.7.6(hono@4.12.1)(zod@4.3.6)':
     dependencies:
-      hono: 4.12.0
+      hono: 4.12.1
       zod: 4.3.6
 
   '@img/colour@1.0.0': {}
@@ -6220,7 +6220,7 @@ snapshots:
       - '@typespec/xml'
       - openapi-types
 
-  hono@4.12.0: {}
+  hono@4.12.1: {}
 
   http-errors@2.0.1:
     dependencies:
