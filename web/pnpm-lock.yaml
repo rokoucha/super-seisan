@@ -13,7 +13,7 @@ importers:
         version: 1.2.2(hono@4.12.2)(zod@4.3.6)
       '@opennextjs/cloudflare':
         specifier: 1.17.0
-        version: 1.17.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.68.0)
+        version: 1.17.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.68.1)
       drizzle-orm:
         specifier: 0.45.1
         version: 0.45.1
@@ -61,8 +61,8 @@ importers:
         specifier: 4.0.18
         version: 4.0.18(@types/node@25.3.0)(terser@5.16.9)(tsx@4.21.0)(yaml@2.8.2)
       wrangler:
-        specifier: 4.68.0
-        version: 4.68.0
+        specifier: 4.68.1
+        version: 4.68.1
 
 packages:
 
@@ -3435,8 +3435,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.68.0:
-    resolution: {integrity: sha512-DCjl2ZfjwWV10iH4Zn+97isitPkb7BYxpbt4E/Okd/QKLFTp9xdwoa999UN9lugToqPm5Zz/UsRu6hpKZuT8BA==}
+  wrangler@4.68.1:
+    resolution: {integrity: sha512-G+TI3k/olEGBAVkPtUlhAX/DIbL/190fv3aK+r+45/wPclNEymjxCc35T8QGTDhc2fEMXiw51L5bH9aNsBg+yQ==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     peerDependencies:
@@ -4980,7 +4980,7 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.17.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.68.0)':
+  '@opennextjs/cloudflare@1.17.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.68.1)':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@dotenvx/dotenvx': 1.31.0
@@ -4991,7 +4991,7 @@ snapshots:
       glob: 12.0.0
       next: 16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       ts-tqdm: 0.8.6
-      wrangler: 4.68.0
+      wrangler: 4.68.1
       yargs: 18.0.0
     transitivePeerDependencies:
       - aws-crt
@@ -6964,7 +6964,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20260302.0
       '@cloudflare/workerd-windows-64': 1.20260302.0
 
-  wrangler@4.68.0:
+  wrangler@4.68.1:
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.2
       '@cloudflare/unenv-preset': 2.14.0(unenv@2.0.0-rc.24)(workerd@1.20260302.0)
