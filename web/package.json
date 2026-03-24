@@ -23,7 +23,7 @@
     "drizzle-kit": "0.31.10",
     "hono-takibi": "0.9.992",
     "npm-run-all2": "8.0.4",
-    "typescript": "5.9.3",
+    "typescript": "6.0.2",
     "vitest": "4.1.1",
     "wrangler": "4.76.0"
   },

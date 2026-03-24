@@ -1,7 +1,7 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { handle } from 'hono/vercel'
 import { ZodError } from 'zod'
-import packageJson from '../../../../package.json' assert { type: 'json' }
+import packageJson from '../../../../package.json' with { type: 'json' }
 import {
   BadRequestError,
   ConflictError,
