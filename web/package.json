@@ -8,7 +8,7 @@
   "dependencies": {
     "@hono/zod-openapi": "1.2.3",
     "@opennextjs/cloudflare": "1.18.0",
-    "drizzle-orm": "0.45.1",
+    "drizzle-orm": "0.45.2",
     "hono": "4.12.9",
     "next": "16.2.1",
     "prettier": "3.8.1",
