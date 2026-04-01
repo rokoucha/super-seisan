@@ -59,7 +59,7 @@ function formatSeisanDetail(
           createdAt: item.currency.createdAt.toISOString(),
           updatedAt: item.currency.updatedAt.toISOString(),
         }
-      : null,
+      : undefined,
     exempts: item.exempts.map((e) => ({
       ...e.participant,
       createdAt: e.participant.createdAt.toISOString(),
@@ -82,12 +82,33 @@ function formatSeisanDetail(
     updatedAt: c.updatedAt.toISOString(),
   }))
 
+  const result = calculateSettlement(
+    items.map((item) => ({
+      ...item,
+      currency: item.currency ?? null,
+    })),
+    participants,
+    seisan.id,
+  )
+
   return {
     ...seisan,
     items,
     participants,
     currencies,
-    result: calculateSettlement(items, participants, seisan.id),
+    result: {
+      ...result,
+      details: result.details.map((detail) => ({
+        ...detail,
+        items: detail.items.map((detailItem) => ({
+          ...detailItem,
+          source: {
+            ...detailItem.source,
+            currency: detailItem.source.currency ?? undefined,
+          },
+        })),
+      })),
+    },
     createdAt: seisan.createdAt.toISOString(),
     updatedAt: seisan.updatedAt.toISOString(),
   }

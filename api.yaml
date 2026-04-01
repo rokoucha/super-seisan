@@ -287,78 +287,6 @@ paths:
                 required:
                   - current
                   - incoming
-              example:
-                current:
-                  id: 03fe8970-affc-44b5-9fa7-034be6aaa937
-                  name: モロヘイヤと鴨肉のパイ
-                  icon: ♠️
-                  payer:
-                    id: 57738884-0c1c-4472-8333-f32c891d87ef
-                    name: 武35
-                    icon: 🎾
-                    createdAt: "2026-01-21T15:05:38.352Z"
-                    updatedAt: "2026-01-21T15:05:38.352Z"
-                  price: 188.15
-                  currency:
-                    id: a0d79935-2024-4224-8670-86925c026d09
-                    code: ジブラルタルポンド
-                    rate: 566.09
-                    createdAt: "2026-01-21T15:05:38.352Z"
-                    updatedAt: "2026-01-21T15:05:38.352Z"
-                  amount: 7
-                  total: 659.75
-                  exempts:
-                    - id: 3be97f07-f8be-4537-9aa8-41714ac5407d
-                      name: 蓮.小林94
-                      icon: 🤏🏿
-                      createdAt: "2026-01-21T15:05:38.353Z"
-                      updatedAt: "2026-01-21T15:05:38.353Z"
-                    - id: f72476ff-dee3-48f9-b01b-074b40ff837c
-                      name: 静子67
-                      icon: 🐐
-                      createdAt: "2026-01-21T15:05:38.353Z"
-                      updatedAt: "2026-01-21T15:05:38.354Z"
-                  version: "8304860782890431"
-                  createdAt: "2026-01-21T15:05:38.354Z"
-                  updatedAt: "2026-01-21T15:05:38.354Z"
-                incoming:
-                  id: 4c8e7210-d33a-4623-a888-53e11112fa15
-                  name: 照り焼きチキン
-                  icon: 🙇🏿
-                  payer:
-                    id: e234be33-487d-404e-b1ac-439c2046982b
-                    name: 正子.山本
-                    icon: 🙅🏽‍♂️
-                    createdAt: "2026-01-21T15:05:38.354Z"
-                    updatedAt: "2026-01-21T15:05:38.354Z"
-                  price: 912.05
-                  currency:
-                    id: da136d09-3a87-4def-ac71-6c9928b994fa
-                    code: トリニダード・トバゴドル
-                    rate: 777.69
-                    createdAt: "2026-01-21T15:05:38.354Z"
-                    updatedAt: "2026-01-21T15:05:38.354Z"
-                  amount: 3
-                  total: 72
-                  exempts:
-                    - id: 5f1119fc-51e1-4959-a807-88c65c823088
-                      name: 湊.山本86
-                      icon: 🐼
-                      createdAt: "2026-01-21T15:05:38.355Z"
-                      updatedAt: "2026-01-21T15:05:38.355Z"
-                    - id: 8848ddde-27a1-4794-9fb7-56665ef0c71a
-                      name: 朝陽.松本
-                      icon: 😕
-                      createdAt: "2026-01-21T15:05:38.355Z"
-                      updatedAt: "2026-01-21T15:05:38.355Z"
-                    - id: 85513dff-0c1f-44e5-acab-bb60095eec62
-                      name: 大雅.中村77
-                      icon: 🌅
-                      createdAt: "2026-01-21T15:05:38.355Z"
-                      updatedAt: "2026-01-21T15:05:38.355Z"
-                  version: "6136408544774357"
-                  createdAt: "2026-01-21T15:05:38.355Z"
-                  updatedAt: "2026-01-21T15:05:38.355Z"
           headers: {}
       security: []
     delete:
@@ -602,10 +530,8 @@ components:
           type: number
           description: 単価
         currency:
-          anyOf:
-            - $ref: "#/components/schemas/Currency"
-            - type: "null"
           description: 通貨
+          $ref: "#/components/schemas/Currency"
         amount:
           type: integer
           description: 個数
@@ -666,6 +592,7 @@ components:
         currencies:
           type: array
           items:
+            description: 通貨
             $ref: "#/components/schemas/Currency"
           description: 通貨
         result:
