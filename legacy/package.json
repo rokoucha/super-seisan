@@ -20,8 +20,8 @@
     "@mantine/core": "6.0.22",
     "@mantine/hooks": "6.0.22",
     "protobufjs": "8.0.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
     "@types/react": "19.2.14",
