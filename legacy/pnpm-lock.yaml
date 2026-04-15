@@ -46,8 +46,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1(vite@8.0.8(@types/node@25.6.0))
       prettier:
-        specifier: 3.8.2
-        version: 3.8.2
+        specifier: 3.8.3
+        version: 3.8.3
       protobufjs-cli:
         specifier: 2.0.1
         version: 2.0.1(protobufjs@8.0.1)
@@ -842,8 +842,8 @@ packages:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.8.2:
-    resolution: {integrity: sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1833,7 +1833,7 @@ snapshots:
 
   prelude-ls@1.1.2: {}
 
-  prettier@3.8.2: {}
+  prettier@3.8.3: {}
 
   protobufjs-cli@2.0.1(protobufjs@8.0.1):
     dependencies:

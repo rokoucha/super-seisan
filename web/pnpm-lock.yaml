@@ -24,8 +24,8 @@ importers:
         specifier: 16.2.3
         version: 16.2.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       prettier:
-        specifier: 3.8.2
-        version: 3.8.2
+        specifier: 3.8.3
+        version: 3.8.3
       react:
         specifier: 19.2.5
         version: 19.2.5
@@ -3228,8 +3228,8 @@ packages:
     resolution: {integrity: sha512-7a70Nsot+EMX9fFU3064K/kdHWZqGVY+BADLyXc8Dfv+mTLLVl6JzJpPaCZ2kQL9gIJvKXSLMHhqdRRjwQeFtw==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.8.2:
-    resolution: {integrity: sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5819,7 +5819,7 @@ snapshots:
       is-unicode-supported: 2.1.0
       mustache: 4.2.0
       picocolors: 1.1.1
-      prettier: 3.8.2
+      prettier: 3.8.3
       semver: 7.7.4
       tar: 7.5.13
       temporal-polyfill: 0.3.2
@@ -6857,7 +6857,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.8.2: {}
+  prettier@3.8.3: {}
 
   proxy-addr@2.0.7:
     dependencies:
