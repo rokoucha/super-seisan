@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.3.0
-        version: 1.3.0(hono@4.12.12)(zod@4.3.6)
+        version: 1.3.0(hono@4.12.14)(zod@4.3.6)
       '@opennextjs/cloudflare':
         specifier: 1.19.1
         version: 1.19.1(next@16.2.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(wrangler@4.82.2)
@@ -18,8 +18,8 @@ importers:
         specifier: 0.45.2
         version: 0.45.2
       hono:
-        specifier: 4.12.12
-        version: 4.12.12
+        specifier: 4.12.14
+        version: 4.12.14
       next:
         specifier: 16.2.3
         version: 16.2.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -2799,8 +2799,8 @@ packages:
     resolution: {integrity: sha512-5u9W6bwFhyIf0OVM226DAOSgIT9RLQ6xazZLf05W11abwpqMcIffAuDQKkkDB0EFjRFngiBO5gG1sqlpafSkPw==}
     hasBin: true
 
-  hono@4.12.12:
-    resolution: {integrity: sha512-p1JfQMKaceuCbpJKAPKVqyqviZdS0eUxH9v82oWo1kb9xjQ5wA6iP3FNVAPDFlz5/p7d45lO+BpSk1tuSZMF4Q==}
+  hono@4.12.14:
+    resolution: {integrity: sha512-am5zfg3yu6sqn5yjKBNqhnTX7Cv+m00ox+7jbaKkrLMRJ4rAdldd1xPd/JzbBWspqaQv6RSTrgFN95EsfhC+7w==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -4895,17 +4895,17 @@ snapshots:
   '@esbuild/win32-x64@0.27.7':
     optional: true
 
-  '@hono/zod-openapi@1.3.0(hono@4.12.12)(zod@4.3.6)':
+  '@hono/zod-openapi@1.3.0(hono@4.12.14)(zod@4.3.6)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 8.5.0(zod@4.3.6)
-      '@hono/zod-validator': 0.7.6(hono@4.12.12)(zod@4.3.6)
-      hono: 4.12.12
+      '@hono/zod-validator': 0.7.6(hono@4.12.14)(zod@4.3.6)
+      hono: 4.12.14
       openapi3-ts: 4.5.0
       zod: 4.3.6
 
-  '@hono/zod-validator@0.7.6(hono@4.12.12)(zod@4.3.6)':
+  '@hono/zod-validator@0.7.6(hono@4.12.14)(zod@4.3.6)':
     dependencies:
-      hono: 4.12.12
+      hono: 4.12.14
       zod: 4.3.6
 
   '@img/colour@1.1.0': {}
@@ -6512,7 +6512,7 @@ snapshots:
       - '@typespec/xml'
       - openapi-types
 
-  hono@4.12.12: {}
+  hono@4.12.14: {}
 
   http-errors@2.0.1:
     dependencies:
