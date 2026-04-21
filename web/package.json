@@ -24,7 +24,7 @@
     "hono-takibi": "0.9.996",
     "npm-run-all2": "8.0.4",
     "typescript": "6.0.3",
-    "vitest": "4.1.4",
+    "vitest": "4.1.5",
     "wrangler": "4.84.0"
   },
   "scripts": {
