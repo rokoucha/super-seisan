@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.3.0
-        version: 1.3.0(hono@4.12.16)(zod@4.4.2)
+        version: 1.3.0(hono@4.12.16)(zod@4.4.3)
       '@opennextjs/cloudflare':
         specifier: 1.19.5
         version: 1.19.5(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(wrangler@4.87.0)
@@ -33,8 +33,8 @@ importers:
         specifier: 19.2.5
         version: 19.2.5(react@19.2.5)
       zod:
-        specifier: 4.4.2
-        version: 4.4.2
+        specifier: 4.4.3
+        version: 4.4.3
     devDependencies:
       '@types/node':
         specifier: 25.6.0
@@ -3715,8 +3715,8 @@ packages:
   youch@4.1.0-beta.10:
     resolution: {integrity: sha512-rLfVLB4FgQneDr0dv1oddCVZmKjcJ6yX6mS4pU82Mq/Dt9a3cLZQ62pDBL4AUO+uVrCvtWz3ZFUL2HFAFJ/BXQ==}
 
-  zod@4.4.2:
-    resolution: {integrity: sha512-IynmDyxsEsb9RKzO3J9+4SxXnl2FTFSzNBaKKaMV6tsSk0rw9gYw9gs+JFCq/qk2LCZ78KDwyj+Z289TijSkUw==}
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
 snapshots:
 
@@ -3778,10 +3778,10 @@ snapshots:
       '@ast-grep/napi-win32-ia32-msvc': 0.40.5
       '@ast-grep/napi-win32-x64-msvc': 0.40.5
 
-  '@asteasolutions/zod-to-openapi@8.5.0(zod@4.4.2)':
+  '@asteasolutions/zod-to-openapi@8.5.0(zod@4.4.3)':
     dependencies:
       openapi3-ts: 4.5.0
-      zod: 4.4.2
+      zod: 4.4.3
 
   '@aws-crypto/crc32@5.2.0':
     dependencies:
@@ -4920,18 +4920,18 @@ snapshots:
   '@esbuild/win32-x64@0.27.7':
     optional: true
 
-  '@hono/zod-openapi@1.3.0(hono@4.12.16)(zod@4.4.2)':
+  '@hono/zod-openapi@1.3.0(hono@4.12.16)(zod@4.4.3)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 8.5.0(zod@4.4.2)
-      '@hono/zod-validator': 0.7.6(hono@4.12.16)(zod@4.4.2)
+      '@asteasolutions/zod-to-openapi': 8.5.0(zod@4.4.3)
+      '@hono/zod-validator': 0.7.6(hono@4.12.16)(zod@4.4.3)
       hono: 4.12.16
       openapi3-ts: 4.5.0
-      zod: 4.4.2
+      zod: 4.4.3
 
-  '@hono/zod-validator@0.7.6(hono@4.12.16)(zod@4.4.2)':
+  '@hono/zod-validator@0.7.6(hono@4.12.16)(zod@4.4.3)':
     dependencies:
       hono: 4.12.16
-      zod: 4.4.2
+      zod: 4.4.3
 
   '@img/colour@1.1.0': {}
 
@@ -5436,7 +5436,7 @@ snapshots:
 
   '@scalar/openapi-types@0.5.4':
     dependencies:
-      zod: 4.4.2
+      zod: 4.4.3
 
   '@scalar/openapi-upgrader@0.1.11':
     dependencies:
@@ -6536,7 +6536,7 @@ snapshots:
       oxfmt: 0.45.0
       ts-morph: 28.0.0
       typescript: 6.0.3
-      zod: 4.4.2
+      zod: 4.4.3
     transitivePeerDependencies:
       - '@types/node'
       - '@typespec/events'
@@ -7348,4 +7348,4 @@ snapshots:
       cookie: 1.1.1
       youch-core: 0.3.3
 
-  zod@4.4.2: {}
+  zod@4.4.3: {}
