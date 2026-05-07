@@ -10,7 +10,7 @@
     "@opennextjs/cloudflare": "1.19.7",
     "drizzle-orm": "0.45.2",
     "hono": "4.12.18",
-    "next": "16.2.4",
+    "next": "16.2.5",
     "prettier": "3.8.3",
     "react": "19.2.5",
     "react-dom": "19.2.5",
