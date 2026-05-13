@@ -49,8 +49,8 @@ importers:
         specifier: 3.8.3
         version: 3.8.3
       protobufjs-cli:
-        specifier: 2.2.0
-        version: 2.2.0(protobufjs@8.2.0)
+        specifier: 2.2.1
+        version: 2.2.1(protobufjs@8.2.0)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -817,12 +817,12 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  protobufjs-cli@2.2.0:
-    resolution: {integrity: sha512-vpGt6STprj8FFm5x5w0mOrIISgtmoMKZt0X74N7Lyd0VWNHX6pDPp0iF0MEegSnwkeErh0wdFfIQfbhcgUaBdw==}
+  protobufjs-cli@2.2.1:
+    resolution: {integrity: sha512-bjDsUy8P7KFURTvNTe+bnTnkLVUDKT5lJnWnI+o5ZgcJz+Yfxw5ZAVPNKb8cuK9x9ONS9N7kkDFV1UjQ3ATQfQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     peerDependencies:
-      protobufjs: '>=8.1.0 <9'
+      protobufjs: '>=8.2.1 <9'
 
   protobufjs@8.2.0:
     resolution: {integrity: sha512-oI+GC9iPxrQEr6wragljFKH46/r3rNsm6eg7F2fp6kBUMnf6/mesDRdBuF4gK+OyaKJ8N4C1B9s9cCeYdqFikg==}
@@ -1782,7 +1782,7 @@ snapshots:
 
   prettier@3.8.3: {}
 
-  protobufjs-cli@2.2.0(protobufjs@8.2.0):
+  protobufjs-cli@2.2.1(protobufjs@8.2.0):
     dependencies:
       chalk: 4.1.2
       escodegen: 1.14.3
