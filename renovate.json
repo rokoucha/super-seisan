@@ -5,9 +5,10 @@
     "config:recommended",
     "helpers:pinGitHubActionDigests"
   ],
+  "automerge": true,
+  "automergeType": "branch",
   "lockFileMaintenance": {
     "enabled": true
   },
-  "automerge": true,
-  "automergeType": "branch"
+  "minimumReleaseAge": "1 day"
 }
