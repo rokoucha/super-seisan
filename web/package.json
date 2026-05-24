@@ -22,7 +22,7 @@
     "@types/react-dom": "19.2.3",
     "drizzle-kit": "0.31.10",
     "hono-takibi": "0.9.9994",
-    "npm-run-all2": "9.0.0",
+    "npm-run-all2": "9.0.1",
     "typescript": "6.0.3",
     "vitest": "4.1.7",
     "wrangler": "4.93.1"
