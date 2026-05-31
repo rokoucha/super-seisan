@@ -27,8 +27,8 @@ importers:
         specifier: 6.0.22
         version: 6.0.22(react@19.2.6)
       protobufjs:
-        specifier: 8.4.2
-        version: 8.4.2
+        specifier: 8.5.0
+        version: 8.5.0
       react:
         specifier: 19.2.6
         version: 19.2.6
@@ -50,7 +50,7 @@ importers:
         version: 3.8.3
       protobufjs-cli:
         specifier: 2.5.0
-        version: 2.5.0(protobufjs@8.4.2)
+        version: 2.5.0(protobufjs@8.5.0)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -818,8 +818,8 @@ packages:
     peerDependencies:
       protobufjs: ^8.5.0
 
-  protobufjs@8.4.2:
-    resolution: {integrity: sha512-64rfNzkWOZAIazXzpBFPWq6F9up6gMvTzjE2oWIzApx2N/dqVUEE7+bCn2+40780dFVtKOUab8QfxJ6KJDWbqA==}
+  protobufjs@8.5.0:
+    resolution: {integrity: sha512-df1jWDPA5VIBNRtuAHjqr09f2qN5D4Vke1wYqOQg1XJ7ZDpA7BD6L7E4tyChgGRLB5hqk2m79Zsy0WHwV9a84A==}
     engines: {node: '>=12.0.0'}
 
   punycode.js@2.3.1:
@@ -1767,7 +1767,7 @@ snapshots:
 
   prettier@3.8.3: {}
 
-  protobufjs-cli@2.5.0(protobufjs@8.4.2):
+  protobufjs-cli@2.5.0(protobufjs@8.5.0):
     dependencies:
       chalk: 4.1.2
       escodegen: 1.14.3
@@ -1776,12 +1776,12 @@ snapshots:
       glob: 8.1.0
       jsdoc: 4.0.5
       minimist: 1.2.8
-      protobufjs: 8.4.2
+      protobufjs: 8.5.0
       semver: 7.8.0
       tmp: 0.2.5
       uglify-js: 3.19.3
 
-  protobufjs@8.4.2:
+  protobufjs@8.5.0:
     dependencies:
       long: 5.3.2
 
