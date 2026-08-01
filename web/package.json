@@ -9,7 +9,7 @@
     "@hono/zod-openapi": "1.5.1",
     "@opennextjs/cloudflare": "1.20.2",
     "drizzle-orm": "0.45.2",
-    "hono": "4.12.32",
+    "hono": "4.12.33",
     "next": "16.2.12",
     "prettier": "3.9.6",
     "react": "19.2.8",
