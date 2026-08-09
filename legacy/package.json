@@ -19,7 +19,7 @@
     "@emotion/utils": "1.4.2",
     "@mantine/core": "6.0.22",
     "@mantine/hooks": "6.0.22",
-    "protobufjs": "8.7.1",
+    "protobufjs": "8.7.2",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
