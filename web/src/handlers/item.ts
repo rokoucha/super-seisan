@@ -47,12 +47,17 @@ export const updateItemInSeisanHandler: RouteHandler<
         current.currency)
       : undefined
     const exemptParticipants = input.exemptIds
-      .map((participantId) =>
+      .map((participantId: (typeof input.exemptIds)[number]) =>
         seisan.participants.find(
           (participant) => participant.id === participantId,
         ),
       )
-      .filter((participant) => participant !== undefined)
+      .filter(
+        (
+          participant: (typeof seisan.participants)[number] | undefined,
+        ): participant is (typeof seisan.participants)[number] =>
+          participant !== undefined,
+      )
 
     const incoming = {
       ...current,
