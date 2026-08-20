@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.6.0
-        version: 1.6.0(hono@4.13.2)(zod@4.4.3)
+        version: 1.6.0(hono@4.13.3)(zod@4.4.3)
       '@opennextjs/cloudflare':
         specifier: 1.20.2
         version: 1.20.2(next@16.3.1(@types/node@25.9.5)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@10.2.2)(wrangler@4.123.0)
@@ -18,8 +18,8 @@ importers:
         specifier: 0.45.2
         version: 0.45.2
       hono:
-        specifier: 4.13.2
-        version: 4.13.2
+        specifier: 4.13.3
+        version: 4.13.3
       next:
         specifier: 16.3.1
         version: 16.3.1(@types/node@25.9.5)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -2840,8 +2840,8 @@ packages:
     resolution: {integrity: sha512-OY6P9cEINemUflfjtDh0DX69D1jL48FeAiBLwzxlXv0lz9sMq1MDFJLHoMaQMgPSaFnBS6JrDlfkjCXFfeMwYg==}
     hasBin: true
 
-  hono@4.13.2:
-    resolution: {integrity: sha512-JydRilDRkYBQMt9qR9U92mXxmbGqsqSn/IKOrh4e7/gEbn+0zSr8igTu0obwJoNGN4sez28DIql7FBHWydoJpA==}
+  hono@4.13.3:
+    resolution: {integrity: sha512-r8AO2mYHoLxSHkgafNeC/BXyb2vWRxD3jem4Ts+ptav8oTG5FIRifAjuJEmZI4bSvvc2ns0GxmIYiZnHqN3mMw==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -4724,17 +4724,17 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@hono/zod-openapi@1.6.0(hono@4.13.2)(zod@4.4.3)':
+  '@hono/zod-openapi@1.6.0(hono@4.13.3)(zod@4.4.3)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.4.3)
-      '@hono/zod-validator': 0.9.0(hono@4.13.2)(zod@4.4.3)
-      hono: 4.13.2
+      '@hono/zod-validator': 0.9.0(hono@4.13.3)(zod@4.4.3)
+      hono: 4.13.3
       openapi3-ts: 4.5.0
       zod: 4.4.3
 
-  '@hono/zod-validator@0.9.0(hono@4.13.2)(zod@4.4.3)':
+  '@hono/zod-validator@0.9.0(hono@4.13.3)(zod@4.4.3)':
     dependencies:
-      hono: 4.13.2
+      hono: 4.13.3
       zod: 4.4.3
 
   '@img/colour@1.1.0': {}
@@ -6309,7 +6309,7 @@ snapshots:
       - svelte
       - vite-plus
 
-  hono@4.13.2: {}
+  hono@4.13.3: {}
 
   http-errors@2.0.1:
     dependencies:
