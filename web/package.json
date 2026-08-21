@@ -6,7 +6,7 @@
   "type": "module",
   "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621",
   "dependencies": {
-    "@hono/zod-openapi": "1.6.0",
+    "@hono/zod-openapi": "1.6.1",
     "@opennextjs/cloudflare": "1.20.2",
     "drizzle-orm": "0.45.2",
     "hono": "4.13.3",
