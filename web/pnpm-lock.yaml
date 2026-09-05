@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@hono/zod-openapi':
-        specifier: 1.6.2
-        version: 1.6.2(hono@4.13.5)(zod@4.5.4)
+        specifier: 1.6.3
+        version: 1.6.3(hono@4.13.5)(zod@4.5.4)
       '@opennextjs/cloudflare':
         specifier: 1.20.6
         version: 1.20.6(next@16.3.4(@types/node@25.9.5)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@10.2.2)(wrangler@4.129.0)
@@ -1018,8 +1018,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@hono/zod-openapi@1.6.2':
-    resolution: {integrity: sha512-ktnBqVgvIlopiiB9ab6hqoYefhcb0DUZU5QJ1F5UtDu8w6+cIORENz93sTZT6G0mQNes0/TbbadfrOpdehioPA==}
+  '@hono/zod-openapi@1.6.3':
+    resolution: {integrity: sha512-VYR82Y60plu8g3pN60OUXMVKpmxh3R04Qs++3DY9vtwZ9/sA/BRY0PcRIR+Z37/3itWtM7pYwT9bKiH9JhqV6Q==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=4.10.0'
@@ -4706,7 +4706,7 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@hono/zod-openapi@1.6.2(hono@4.13.5)(zod@4.5.4)':
+  '@hono/zod-openapi@1.6.3(hono@4.13.5)(zod@4.5.4)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.5.4)
       '@hono/zod-validator': 0.9.1(hono@4.13.5)(zod@4.5.4)
@@ -6132,6 +6132,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.4
 
+  fdir@6.5.0(picomatch@4.0.7):
+    optionalDependencies:
+      picomatch: 4.0.7
+
   finalhandler@2.1.1(supports-color@10.2.2):
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
@@ -6863,8 +6867,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   tinypool@2.1.0: {}
 
@@ -6935,10 +6939,10 @@ snapshots:
   vite@8.0.13(@types/node@25.9.5)(esbuild@0.28.1)(terser@5.16.9)(tsx@4.22.0)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.32.0
-      picomatch: 4.0.4
+      picomatch: 4.0.7
       postcss: 8.5.23
       rolldown: 1.0.1
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 25.9.5
       esbuild: 0.28.1
