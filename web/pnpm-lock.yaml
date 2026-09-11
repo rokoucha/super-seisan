@@ -114,7 +114,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.6.3
-        version: 1.6.3(hono@4.13.7)(zod@4.6.1)
+        version: 1.6.3(hono@4.13.7)(zod@4.6.2)
       '@opennextjs/cloudflare':
         specifier: 1.20.6
         version: 1.20.6(next@16.3.4(@types/node@25.9.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.130.0)
@@ -137,8 +137,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(react@19.3.0)
       zod:
-        specifier: 4.6.1
-        version: 4.6.1
+        specifier: 4.6.2
+        version: 4.6.2
     devDependencies:
       '@types/node':
         specifier: 25.9.6
@@ -3944,8 +3944,8 @@ packages:
   youch@4.1.0-beta.10:
     resolution: {integrity: sha512-rLfVLB4FgQneDr0dv1oddCVZmKjcJ6yX6mS4pU82Mq/Dt9a3cLZQ62pDBL4AUO+uVrCvtWz3ZFUL2HFAFJ/BXQ==}
 
-  zod@4.6.1:
-    resolution: {integrity: sha512-341aRWQsve0rvronKNTqZpjmzdbUDlFuzHaI/XLg/Ej82qffDJRRfBTCuv7+9q/rMjB6LSLyEBnW4InJeMtt/Q==}
+  zod@4.6.2:
+    resolution: {integrity: sha512-lh5RCAGFa1Cm2hjtNwLQhSs/AsqdWnTQaBER9fEwN/88pSh7KOtJavtBx/0VlkN/uFd61SwYmljLMDAsHlvzBQ==}
 
 snapshots:
 
@@ -4007,10 +4007,10 @@ snapshots:
       '@ast-grep/napi-win32-ia32-msvc': 0.40.5
       '@ast-grep/napi-win32-x64-msvc': 0.40.5
 
-  '@asteasolutions/zod-to-openapi@9.1.0(zod@4.6.1)':
+  '@asteasolutions/zod-to-openapi@9.1.0(zod@4.6.2)':
     dependencies:
       openapi3-ts: 4.6.1
-      zod: 4.6.1
+      zod: 4.6.2
 
   '@aws-crypto/crc32@5.2.0':
     dependencies:
@@ -4974,18 +4974,18 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@hono/zod-openapi@1.6.3(hono@4.13.7)(zod@4.6.1)':
+  '@hono/zod-openapi@1.6.3(hono@4.13.7)(zod@4.6.2)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.6.1)
-      '@hono/zod-validator': 0.9.1(hono@4.13.7)(zod@4.6.1)
+      '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.6.2)
+      '@hono/zod-validator': 0.9.1(hono@4.13.7)(zod@4.6.2)
       hono: 4.13.7
       openapi3-ts: 4.6.1
-      zod: 4.6.1
+      zod: 4.6.2
 
-  '@hono/zod-validator@0.9.1(hono@4.13.7)(zod@4.6.1)':
+  '@hono/zod-validator@0.9.1(hono@4.13.7)(zod@4.6.2)':
     dependencies:
       hono: 4.13.7
-      zod: 4.6.1
+      zod: 4.6.2
 
   '@img/colour@1.1.0': {}
 
@@ -7460,4 +7460,4 @@ snapshots:
       cookie: 1.1.1
       youch-core: 0.3.3
 
-  zod@4.6.1: {}
+  zod@4.6.2: {}
