@@ -1,8 +1,11 @@
 allowBuilds:
   esbuild: false
+  msgpackr-extract: false
   sharp: false
   workerd: false
 onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
+overrides:
+  '@effect/platform-node-shared': 4.0.0-rc.112
