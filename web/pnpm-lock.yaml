@@ -210,8 +210,8 @@ importers:
         specifier: 0.31.10
         version: 0.31.10
       hono-takibi:
-        specifier: 0.9.99999
-        version: 0.9.99999(@types/node@25.9.6)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))))(openapi-types@12.1.3)(redis@6.2.1)
+        specifier: 0.10.0
+        version: 0.10.0(@types/node@25.9.6)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))))(openapi-types@12.1.3)(redis@6.2.1)
       npm-run-all2:
         specifier: 9.0.3
         version: 9.0.3
@@ -2919,8 +2919,8 @@ packages:
     resolution: {integrity: sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==}
     engines: {node: '>= 0.4'}
 
-  hono-takibi@0.9.99999:
-    resolution: {integrity: sha512-WSnQfzKsKUZPQP6CHZru+2QwQbQTymlE2TJHLsvOX23wFydfcJ61MOWl9hjKW/TvhRTpXws50kmp8aeAKe93mA==}
+  hono-takibi@0.10.0:
+    resolution: {integrity: sha512-qiTmaskljO/cIX5HLIsQMN0H9OD0UW0zqvhaBVIZeLjJ0g01OVXQqnc9mPsEEIgzwFHfB52Hy3FN0tXqE5wQ4w==}
     hasBin: true
 
   hono@4.13.7:
@@ -6358,7 +6358,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono-takibi@0.9.99999(@types/node@25.9.6)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))))(openapi-types@12.1.3)(redis@6.2.1):
+  hono-takibi@0.10.0(@types/node@25.9.6)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.6))))(openapi-types@12.1.3)(redis@6.2.1):
     dependencies:
       '@apidevtools/swagger-parser': 12.1.0(openapi-types@12.1.3)
       '@effect/platform-node': 4.0.0-rc.112(effect@4.0.0-rc.112)(redis@6.2.1)
