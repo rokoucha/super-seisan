@@ -8,4 +8,4 @@ onlyBuiltDependencies:
   - sharp
   - workerd
 overrides:
-  '@effect/platform-node-shared': 4.0.0-rc.112
+  '@effect/platform-node-shared': 4.0.0-rc.115
