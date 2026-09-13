@@ -10,5 +10,12 @@
   "lockFileMaintenance": {
     "enabled": true
   },
-  "minimumReleaseAge": "1 day"
+  "minimumReleaseAge": "1 day",
+  "packageRules": [
+    {
+      "description": "Keep hono-takibi's Effect dependencies on compatible versions",
+      "matchPackageNames": ["@effect/platform-node-shared"],
+      "enabled": false
+    }
+  ]
 }
