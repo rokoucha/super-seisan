@@ -207,8 +207,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
       drizzle-kit:
-        specifier: 0.31.10
-        version: 0.31.10
+        specifier: 0.31.11
+        version: 0.31.11
       hono-takibi:
         specifier: 0.12.0
         version: 0.12.0(@types/node@25.9.8)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))))(openapi-types@12.1.3)(redis@6.2.1)
@@ -2591,8 +2591,8 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  drizzle-kit@0.31.10:
-    resolution: {integrity: sha512-7OZcmQUrdGI+DUNNsKBn1aW8qSoKuTH7d0mYgSP8bAzdFzKoovxEFnoGQp2dVs82EOJeYycqRtciopszwUf8bw==}
+  drizzle-kit@0.31.11:
+    resolution: {integrity: sha512-YCYqxTLIB2OCqf6w9/Vef13baBVbwQIPcbT4Y56AfO6B9ajZhDhD8Jkveg/hJvT/iuMloKD/IYYkyMMNhr7Kqg==}
     hasBin: true
 
   drizzle-orm@0.45.2:
@@ -5995,7 +5995,7 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  drizzle-kit@0.31.10:
+  drizzle-kit@0.31.11:
     dependencies:
       '@drizzle-team/brocli': 0.10.2
       '@esbuild-kit/esm-loader': 2.6.5
