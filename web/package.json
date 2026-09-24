@@ -11,7 +11,7 @@
     "drizzle-orm": "0.45.3",
     "hono": "4.13.8",
     "next": "16.3.6",
-    "prettier": "3.9.8",
+    "prettier": "3.9.9",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "zod": "4.6.5"
