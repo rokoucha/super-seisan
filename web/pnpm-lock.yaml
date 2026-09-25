@@ -171,7 +171,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.6.3
-        version: 1.6.3(hono@4.13.8)(zod@4.6.5)
+        version: 1.6.3(hono@4.13.9)(zod@4.6.5)
       '@opennextjs/cloudflare':
         specifier: 1.20.6
         version: 1.20.6(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.135.0(@types/node@25.9.8))
@@ -179,8 +179,8 @@ importers:
         specifier: 0.45.3
         version: 0.45.3
       hono:
-        specifier: 4.13.8
-        version: 4.13.8
+        specifier: 4.13.9
+        version: 4.13.9
       next:
         specifier: 16.3.6
         version: 16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -2895,8 +2895,8 @@ packages:
     resolution: {integrity: sha512-mOKs3pVWPj27Hm/K51b8y4tUZkEUW+GpK1ycwihl+XAEJNKJSHapo1bnOibJqCZB/XpED0KEyg+zH3m8m17Syw==}
     hasBin: true
 
-  hono@4.13.8:
-    resolution: {integrity: sha512-/Gng7NfoykZl2pjukW5Z6+8Yxm3BPRf86GTbQnt0SbySkvax4fyL4H3HhY1cCpBGmiW9XDRFzRV+CXK2W8QudQ==}
+  hono@4.13.9:
+    resolution: {integrity: sha512-7dMkQmZoC4E6F7AtaQSPhlWAdnBti+j7rreMZl8QB4jFiEhP9TWbGWUMi8WYzBCgmgulxuvLQupKqo+Co6Omyg==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -4823,17 +4823,17 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@hono/zod-openapi@1.6.3(hono@4.13.8)(zod@4.6.5)':
+  '@hono/zod-openapi@1.6.3(hono@4.13.9)(zod@4.6.5)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.6.5)
-      '@hono/zod-validator': 0.9.1(hono@4.13.8)(zod@4.6.5)
-      hono: 4.13.8
+      '@hono/zod-validator': 0.9.1(hono@4.13.9)(zod@4.6.5)
+      hono: 4.13.9
       openapi3-ts: 4.6.1
       zod: 4.6.5
 
-  '@hono/zod-validator@0.9.1(hono@4.13.8)(zod@4.6.5)':
+  '@hono/zod-validator@0.9.1(hono@4.13.9)(zod@4.6.5)':
     dependencies:
-      hono: 4.13.8
+      hono: 4.13.9
       zod: 4.6.5
 
   '@img/colour@1.1.0': {}
@@ -6313,7 +6313,7 @@ snapshots:
       - utf-8-validate
       - vite-plus
 
-  hono@4.13.8: {}
+  hono@4.13.9: {}
 
   http-errors@2.0.1:
     dependencies:
