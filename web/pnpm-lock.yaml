@@ -171,7 +171,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 1.6.3
-        version: 1.6.3(hono@4.13.9)(zod@4.6.5)
+        version: 1.6.3(hono@4.13.10)(zod@4.6.5)
       '@opennextjs/cloudflare':
         specifier: 1.20.6
         version: 1.20.6(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.142.0(@types/node@25.9.8))
@@ -179,8 +179,8 @@ importers:
         specifier: 0.45.3
         version: 0.45.3
       hono:
-        specifier: 4.13.9
-        version: 4.13.9
+        specifier: 4.13.10
+        version: 4.13.10
       next:
         specifier: 16.3.6
         version: 16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -2895,8 +2895,8 @@ packages:
     resolution: {integrity: sha512-2F9dvhkBTlFG/tiuLPotQhBxu/nKMO5UrE6lXTBwOR8FG6ELtQai7wS7b7nH38zJL8bg5nY6xKFylxYeW3pxYw==}
     hasBin: true
 
-  hono@4.13.9:
-    resolution: {integrity: sha512-7dMkQmZoC4E6F7AtaQSPhlWAdnBti+j7rreMZl8QB4jFiEhP9TWbGWUMi8WYzBCgmgulxuvLQupKqo+Co6Omyg==}
+  hono@4.13.10:
+    resolution: {integrity: sha512-dQuLsa5oO+47QVMVMaaD9cIv8ctmVtK1iRvwWngkfloFJMeFeuoUFDswIqZGxmGX3hrRzREgEArjkK9OgsQEhA==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -4817,17 +4817,17 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@hono/zod-openapi@1.6.3(hono@4.13.9)(zod@4.6.5)':
+  '@hono/zod-openapi@1.6.3(hono@4.13.10)(zod@4.6.5)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.6.5)
-      '@hono/zod-validator': 0.9.1(hono@4.13.9)(zod@4.6.5)
-      hono: 4.13.9
+      '@hono/zod-validator': 0.9.1(hono@4.13.10)(zod@4.6.5)
+      hono: 4.13.10
       openapi3-ts: 4.6.1
       zod: 4.6.5
 
-  '@hono/zod-validator@0.9.1(hono@4.13.9)(zod@4.6.5)':
+  '@hono/zod-validator@0.9.1(hono@4.13.10)(zod@4.6.5)':
     dependencies:
-      hono: 4.13.9
+      hono: 4.13.10
       zod: 4.6.5
 
   '@img/colour@1.1.0': {}
@@ -6307,7 +6307,7 @@ snapshots:
       - utf-8-validate
       - vite-plus
 
-  hono@4.13.9: {}
+  hono@4.13.10: {}
 
   http-errors@2.0.1:
     dependencies:
