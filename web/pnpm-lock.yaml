@@ -173,8 +173,8 @@ importers:
         specifier: 1.6.3
         version: 1.6.3(hono@4.13.10)(zod@4.6.5)
       '@opennextjs/cloudflare':
-        specifier: 1.20.6
-        version: 1.20.6(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.143.0(@types/node@25.9.8))
+        specifier: 1.20.7
+        version: 1.20.7(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.143.0(@types/node@25.9.8))
       drizzle-orm:
         specifier: 0.45.3
         version: 0.45.3
@@ -1619,17 +1619,17 @@ packages:
     resolution: {integrity: sha512-csY4qcR7jUwiZmkreNTJhcypQfts2aY2CK+a+rXgXUImZiZiySh0FvwHjRnlqWKvg+y6ae9lHFzDRjBTmqlTIQ==}
     engines: {node: '>=16.0.0'}
 
-  '@opennextjs/aws@4.1.4':
-    resolution: {integrity: sha512-L5Yle38qg6p1DY3yS8FXO2840pXW5XlAR6XM71TtIYs0Kh7eQE/a+j4T/DR+VgUQSxbAWw3J2Wnar08xPhOS+w==}
+  '@opennextjs/aws@4.1.6':
+    resolution: {integrity: sha512-J5mzpWo6duetc3ZtcyBxrUqtD6Dwh8msRcMTNQdvpsgTUjEFp03AJmSOnJ/7BKkuF791YTQgjk4iJYIIYLmKqA==}
     hasBin: true
     peerDependencies:
-      next: '>=15.5.24 <16 || >=16.3.3'
+      next: '>=15.5.26 <16 || >=16.3.6'
 
-  '@opennextjs/cloudflare@1.20.6':
-    resolution: {integrity: sha512-Jxa+Uv72uBMp4JHNMDFuZ5C0ypcnQUmpsp0+aNGfSw6ssb2Hqosk2ebadyvYyh7BkDwcxMkHXGdyJen3Sq0UAw==}
+  '@opennextjs/cloudflare@1.20.7':
+    resolution: {integrity: sha512-obZ5l96+MUmGqKd7akJlT9tv0XAvaUDDJj13MyGTVTzA+lbal8kNRoUwei08rtu1Gv+anASAwwMP3dvzcZx+Jw==}
     hasBin: true
     peerDependencies:
-      next: '>=15.5.24 <16 || >=16.3.3'
+      next: '>=15.5.26 <16 || >=16.3.6'
       rclone.js: ^0.6.6
       wrangler: ^4.125.0
     peerDependenciesMeta:
@@ -3772,10 +3772,6 @@ packages:
     resolution: {integrity: sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=23}
 
-  yargs@18.0.0:
-    resolution: {integrity: sha512-4UEqdc2RYGHZc7Doyqkrqiln3p9X2DZVxaGbwhn2pi7MrRagKaOcIKe8L3OxYcbhXLgLFUS3zAYuQjKBQgmuNg==}
-    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
-
   yargs@18.1.0:
     resolution: {integrity: sha512-2rAgRKu54VsHkqI0/tYkmluGXHD4KW7yZoycuqDQ15QOTnc2VVfy0nN/1eMhnQLO00A+dwtK20xuCnc1YGeUyg==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=23}
@@ -4458,10 +4454,10 @@ snapshots:
       dotenv: 16.6.1
       eciesjs: 0.4.18
       execa: 5.1.1
-      fdir: 6.5.0(picomatch@4.0.4)
+      fdir: 6.5.0(picomatch@4.0.7)
       ignore: 5.3.2
       object-treeify: 1.1.33
-      picomatch: 4.0.4
+      picomatch: 4.0.7
       which: 4.0.0
 
   '@drizzle-team/brocli@0.10.2': {}
@@ -5143,7 +5139,7 @@ snapshots:
     dependencies:
       gzip-size: 6.0.0
 
-  '@opennextjs/aws@4.1.4(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)':
+  '@opennextjs/aws@4.1.6(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@aws-sdk/client-cloudfront': 3.984.0
@@ -5166,11 +5162,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opennextjs/cloudflare@1.20.6(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.143.0(@types/node@25.9.8))':
+  '@opennextjs/cloudflare@1.20.7(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.143.0(@types/node@25.9.8))':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@dotenvx/dotenvx': 1.31.0
-      '@opennextjs/aws': 4.1.4(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)
+      '@opennextjs/aws': 4.1.6(next@16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)
       ci-info: 4.4.0
       cloudflare: 4.5.0
       comment-json: 4.6.2
@@ -5179,7 +5175,7 @@ snapshots:
       next: 16.3.6(@types/node@25.9.8)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       ts-tqdm: 0.8.6
       wrangler: 4.143.0(@types/node@25.9.8)
-      yargs: 18.0.0
+      yargs: 18.1.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6171,10 +6167,6 @@ snapshots:
       path-expression-matcher: 1.5.0
       strnum: 2.3.0
 
-  fdir@6.5.0(picomatch@4.0.4):
-    optionalDependencies:
-      picomatch: 4.0.4
-
   fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
       picomatch: 4.0.7
@@ -7079,15 +7071,6 @@ snapshots:
   yaml@2.9.0: {}
 
   yargs-parser@22.0.0: {}
-
-  yargs@18.0.0:
-    dependencies:
-      cliui: 9.0.1
-      escalade: 3.2.0
-      get-caller-file: 2.0.5
-      string-width: 7.2.0
-      y18n: 5.0.8
-      yargs-parser: 22.0.0
 
   yargs@18.1.0:
     dependencies:
