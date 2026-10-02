@@ -210,8 +210,8 @@ importers:
         specifier: 0.31.11
         version: 0.31.11
       hono-takibi:
-        specifier: 0.16.0
-        version: 0.16.0(@types/node@25.9.8)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))))(openapi-types@12.1.3)(redis@6.2.1)
+        specifier: 0.17.0
+        version: 0.17.0(@types/node@25.9.8)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))))(openapi-types@12.1.3)(redis@6.2.1)
       npm-run-all2:
         specifier: 9.0.3
         version: 9.0.3
@@ -574,11 +574,11 @@ packages:
     peerDependencies:
       effect: ^4.0.0-rc.116
 
-  '@effect/platform-node@4.0.0-rc.116':
-    resolution: {integrity: sha512-uA66Nh998OcChBVX83tQDkBDvQQcVaMXodP9gNGWVeIwWWquy7bzIkAq/fMZGKs/BVFhFQ0XCp3VIqYjnXu5ng==}
+  '@effect/platform-node@4.0.0-rc.117':
+    resolution: {integrity: sha512-WbPcvQDkqXFnCeG6LohJ9eVNapCDhZbCpezhYKxm0IsZEk7swakRh7RkC1t2CXzd3hGmszTv2k9e/pXyZuL+wQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      effect: ^4.0.0-rc.116
+      effect: ^4.0.0-rc.117
       redis: '>=5.0.0 <7.0.0'
 
   '@emnapi/core@1.10.0':
@@ -2352,11 +2352,6 @@ packages:
 
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
-    peerDependencies:
-      ajv: ^8.0.0
-    peerDependenciesMeta:
-      ajv:
-        optional: true
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
@@ -2674,8 +2669,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  effect@4.0.0-rc.116:
-    resolution: {integrity: sha512-nawqJHSjHV8XIBRZNZ+D7cLZpN3kkSjzy6aiT9ofKENsl7xAMFKEoDa0itN5JFl3GUQ1PIN1T1HNlva5+xyO/A==}
+  effect@4.0.0-rc.117:
+    resolution: {integrity: sha512-UUyi9QiOW4nySFIBM3KnYbNMd9EZliOdKfBcyLD0mPMPheO2fkuXS5y0opjWc9oqzlJxPQICEGm8gGw3kh9j/w==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -2891,8 +2886,8 @@ packages:
     resolution: {integrity: sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==}
     engines: {node: '>= 0.4'}
 
-  hono-takibi@0.16.0:
-    resolution: {integrity: sha512-2F9dvhkBTlFG/tiuLPotQhBxu/nKMO5UrE6lXTBwOR8FG6ELtQai7wS7b7nH38zJL8bg5nY6xKFylxYeW3pxYw==}
+  hono-takibi@0.17.0:
+    resolution: {integrity: sha512-v1JFFYTESjguGD4CDnQVcBVIp4+CQtSAcBthovba7QWMtuwBF/Mk6t8EyEW36qwUV/hPylhGHNeN9glGVXiYSw==}
     hasBin: true
 
   hono@4.13.12:
@@ -4466,19 +4461,19 @@ snapshots:
     dependencies:
       '@noble/ciphers': 1.3.0
 
-  '@effect/platform-node-shared@4.0.0-rc.116(effect@4.0.0-rc.116)':
+  '@effect/platform-node-shared@4.0.0-rc.116(effect@4.0.0-rc.117)':
     dependencies:
       '@types/ws': 8.18.1
-      effect: 4.0.0-rc.116
+      effect: 4.0.0-rc.117
       ws: 8.21.3
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@effect/platform-node@4.0.0-rc.116(effect@4.0.0-rc.116)(redis@6.2.1)':
+  '@effect/platform-node@4.0.0-rc.117(effect@4.0.0-rc.117)(redis@6.2.1)':
     dependencies:
-      '@effect/platform-node-shared': 4.0.0-rc.116(effect@4.0.0-rc.116)
-      effect: 4.0.0-rc.116
+      '@effect/platform-node-shared': 4.0.0-rc.116(effect@4.0.0-rc.117)
+      effect: 4.0.0-rc.117
       redis: 6.2.1
       undici: 8.10.2
     transitivePeerDependencies:
@@ -5346,7 +5341,7 @@ snapshots:
       '@scalar/openapi-upgrader': 0.2.15
       ajv: 8.20.0
       ajv-draft-04: 1.0.0(ajv@8.20.0)
-      ajv-formats: 3.0.1(ajv@8.20.0)
+      ajv-formats: 3.0.1
       jsonpointer: 5.0.1
       leven: 4.1.0
       yaml: 2.9.0
@@ -5743,8 +5738,8 @@ snapshots:
     optionalDependencies:
       ajv: 8.20.0
 
-  ajv-formats@3.0.1(ajv@8.20.0):
-    optionalDependencies:
+  ajv-formats@3.0.1:
+    dependencies:
       ajv: 8.20.0
 
   ajv@8.20.0:
@@ -5935,7 +5930,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  effect@4.0.0-rc.116: {}
+  effect@4.0.0-rc.117: {}
 
   emoji-regex@10.6.0: {}
 
@@ -6273,13 +6268,13 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono-takibi@0.16.0(@types/node@25.9.8)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))))(openapi-types@12.1.3)(redis@6.2.1):
+  hono-takibi@0.17.0(@types/node@25.9.8)(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))))(openapi-types@12.1.3)(redis@6.2.1):
     dependencies:
       '@apidevtools/swagger-parser': 13.1.0(openapi-types@12.1.3)
-      '@effect/platform-node': 4.0.0-rc.116(effect@4.0.0-rc.116)(redis@6.2.1)
+      '@effect/platform-node': 4.0.0-rc.117(effect@4.0.0-rc.117)(redis@6.2.1)
       '@typespec/compiler': 1.16.0(@types/node@25.9.8)
       '@typespec/openapi3': 1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8)))(@typespec/openapi@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))(@typespec/http@1.16.0(@typespec/compiler@1.16.0(@types/node@25.9.8))))
-      effect: 4.0.0-rc.116
+      effect: 4.0.0-rc.117
       oxfmt: 0.68.0
       ts-morph: 28.0.0
     transitivePeerDependencies:
