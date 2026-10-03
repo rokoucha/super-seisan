@@ -7,7 +7,7 @@
   "packageManager": "pnpm@12.8.1+sha512.f64ba907507f5ceafe06c8d38e6052d0179444580ec1279ddd5bfc11cb48aa8a2644b66598e07e761da84872a9fc57d5f902b87fa49d024198d558612aabbe45",
   "dependencies": {
     "@hono/zod-openapi": "1.6.3",
-    "@opennextjs/cloudflare": "1.20.7",
+    "@opennextjs/cloudflare": "1.20.8",
     "drizzle-orm": "0.45.3",
     "hono": "4.13.12",
     "next": "16.3.8",
