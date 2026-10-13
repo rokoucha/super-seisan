@@ -207,8 +207,8 @@ importers:
         specifier: 3.9.10
         version: 3.9.10
       protobufjs-cli:
-        specifier: 2.7.0
-        version: 2.7.0(protobufjs@8.8.0)
+        specifier: 2.7.1
+        version: 2.7.1(protobufjs@8.8.0)
       typescript:
         specifier: 7.0.2
         version: 7.0.2
@@ -1034,12 +1034,12 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  protobufjs-cli@2.7.0:
-    resolution: {integrity: sha512-wjrZPibf/U73dDJMh9jCqjyeDH7t6+OMD16vKp/Z1CY7yyVE/pX5a9EvCq89p3ADHo+KyaLknA5lxyaaM252KA==}
+  protobufjs-cli@2.7.1:
+    resolution: {integrity: sha512-qYCu9hK0Gkm5RwaVgkUoVe9cEME/DKS1yK6ibMy+3fBxlIuxy5HjEtLzg/S/GEl1AyAHZL1/ho3m7WdsgatwNw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     peerDependencies:
-      protobufjs: ^8.8.0
+      protobufjs: ^8.8.1
 
   protobufjs@8.8.0:
     resolution: {integrity: sha512-N3xhQ5yyBx3vQq4gubBfASzYhJGNzeDbjqBpu61g7UVylsN/qyffU96TKWD3GbbLOKF82VGNRNvv1+BFgE31Eg==}
@@ -1956,7 +1956,7 @@ snapshots:
 
   prettier@3.9.10: {}
 
-  protobufjs-cli@2.7.0(protobufjs@8.8.0):
+  protobufjs-cli@2.7.1(protobufjs@8.8.0):
     dependencies:
       escodegen: 2.1.0
       espree: 9.6.1
