@@ -174,7 +174,7 @@ importers:
         version: 1.6.3(hono@4.13.13)(zod@4.6.7)
       '@opennextjs/cloudflare':
         specifier: 1.20.11
-        version: 1.20.11(next@16.4.0(@types/node@25.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.149.0(@types/node@25.9.9))
+        version: 1.20.11(next@16.4.0(@types/node@25.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.150.0(@types/node@25.9.9))
       drizzle-orm:
         specifier: 0.45.4
         version: 0.45.4
@@ -222,8 +222,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4(@types/node@25.9.9)(vite@8.0.13(@types/node@25.9.9)(esbuild@0.28.1)(terser@5.36.0)(tsx@4.22.0)(yaml@2.9.0))
       wrangler:
-        specifier: 4.149.0
-        version: 4.149.0(@types/node@25.9.9)
+        specifier: 4.150.0
+        version: 4.150.0(@types/node@25.9.9)
 
 packages:
 
@@ -3239,8 +3239,8 @@ packages:
     resolution: {integrity: sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==}
     engines: {node: '>=18'}
 
-  miniflare@5.20261006.1-alpha:
-    resolution: {integrity: sha512-6ylv8tamkrspDI2R/cAYfv+YWmfGNdXe76Pi9TauEUWsFVXn3LNF9Yk8oduzf1a+TYsSRYTqlOE7+nGGRsMHdw==}
+  miniflare@5.20261006.2-beta:
+    resolution: {integrity: sha512-agufWI3mXF8xGzry2/sOF8Im8AoYs04DWBCLDWDmd4QtMSGEo9IgrPmYOwsCmQA3K3MbLzsvr01GpWc8x3Duqw==}
     engines: {node: '>=22.0.0'}
 
   minimatch@10.2.5:
@@ -3835,8 +3835,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.149.0:
-    resolution: {integrity: sha512-OzK7xmB5r5iLKb3cIT3783g13fe6T7xyeKu9LEdUyl+DKAM2KP/jkjnE0OUhyw+mB/XJM9ycjgF3MWm8PR9amg==}
+  wrangler@4.150.0:
+    resolution: {integrity: sha512-Mf3MiCoGXszX965MtKcOSe8whSyFBL2qpCp+DiSwH94+0FNYveSPQPVRRlMAMH8lkln8PECcSW1do6hnelwPZA==}
     engines: {node: '>=22.0.0'}
     hasBin: true
     peerDependencies:
@@ -5342,7 +5342,7 @@ snapshots:
   '@jridgewell/trace-mapping@0.3.9':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
@@ -5417,7 +5417,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opennextjs/cloudflare@1.20.11(next@16.4.0(@types/node@25.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.149.0(@types/node@25.9.9))':
+  '@opennextjs/cloudflare@1.20.11(next@16.4.0(@types/node@25.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.150.0(@types/node@25.9.9))':
     dependencies:
       '@ast-grep/napi': 0.45.3
       '@dotenvx/dotenvx': 2.34.1
@@ -5429,7 +5429,7 @@ snapshots:
       glob: 13.0.6
       next: 16.4.0(@types/node@25.9.9)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       ts-tqdm: 0.8.6
-      wrangler: 4.149.0(@types/node@25.9.9)
+      wrangler: 4.150.0(@types/node@25.9.9)
       yargs: 18.2.0
     transitivePeerDependencies:
       - encoding
@@ -6678,7 +6678,7 @@ snapshots:
     dependencies:
       mime-db: 1.54.0
 
-  miniflare@5.20261006.1-alpha(@types/node@25.9.9):
+  miniflare@5.20261006.2-beta(@types/node@25.9.9):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       sharp: 0.35.5(@types/node@25.9.9)
@@ -7297,13 +7297,13 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20261006.1
       '@cloudflare/workerd-windows-64': 1.20261006.1
 
-  wrangler@4.149.0(@types/node@25.9.9):
+  wrangler@4.150.0(@types/node@25.9.9):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.5.0
       '@cloudflare/unenv-preset': 2.16.2(unenv@2.0.0-rc.24)(workerd@1.20261006.1)
       blake3-wasm: 2.1.5
       esbuild: 0.28.2
-      miniflare: 5.20261006.1-alpha(@types/node@25.9.9)
+      miniflare: 5.20261006.2-beta(@types/node@25.9.9)
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.24
       workerd: 1.20261006.1
