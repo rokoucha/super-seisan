@@ -210,8 +210,8 @@ importers:
         specifier: 0.31.11
         version: 0.31.11
       hono-takibi:
-        specifier: 0.24.0
-        version: 0.24.0(@types/node@25.9.9)(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9)))(@typespec/openapi@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))))(openapi-types@12.1.3)(redis@6.2.1)
+        specifier: 0.26.0
+        version: 0.26.0(@types/node@25.9.9)(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9)))(@typespec/openapi@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))))(openapi-types@12.1.3)(redis@6.2.1)
       npm-run-all2:
         specifier: 9.0.4
         version: 9.0.4
@@ -1985,10 +1985,6 @@ packages:
     resolution: {integrity: sha512-efisAg9MiVk8h53zdlWHLyv6Sye1srwy/s6EYBzuxtn5SfVG1NNjIqJBhHaZSe0/DbdJf00RgKHyxpWxNd+D1Q==}
     engines: {node: '>=22'}
 
-  '@scalar/openapi-types@0.9.5':
-    resolution: {integrity: sha512-czrz/zkVm1oPzrpYo3hI/iymfiw1s4dgJiQtwNi2U77Sqf3EQOGKsif4VNRa5suWMYRuPaFx5EiFM1FNEV4Whg==}
-    engines: {node: '>=22'}
-
   '@scalar/openapi-types@0.9.8':
     resolution: {integrity: sha512-pGcpkZObsGBC7nRKYte+6gstoe0C4hp7B2UWQYjg5To1wE68s3OHVvin+muL3tn3ZAoahXeJAkn1+aEcMi802w==}
     engines: {node: '>=22'}
@@ -2426,6 +2422,11 @@ packages:
 
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
@@ -2951,8 +2952,8 @@ packages:
     resolution: {integrity: sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==}
     engines: {node: '>= 0.4'}
 
-  hono-takibi@0.24.0:
-    resolution: {integrity: sha512-+zuPOk/Ylus4qToHjG0gH29jwdkBFaHeZOn/2XqlbLvl9XFcmvOAQkEfon2mpaWOsmEDaZdqGy02kS3GPQLnmw==}
+  hono-takibi@0.26.0:
+    resolution: {integrity: sha512-jpkUOCHPegIyd+L6qvS9+QXaz9bB+6n5Uv6Y59MQE37Dfa8C+yin9EyZi4HmAZmVoEfcc6zE+Mchl2UlyydbGQ==}
     hasBin: true
 
   hono@4.13.14:
@@ -5402,8 +5403,6 @@ snapshots:
       '@scalar/types': 0.24.0
       yaml: 2.9.1
 
-  '@scalar/openapi-types@0.9.5': {}
-
   '@scalar/openapi-types@0.9.8': {}
 
   '@scalar/openapi-upgrader@0.4.5':
@@ -5773,7 +5772,7 @@ snapshots:
     dependencies:
       '@scalar/json-magic': 0.13.4
       '@scalar/openapi-parser': 0.29.14
-      '@scalar/openapi-types': 0.9.5
+      '@scalar/openapi-types': 0.9.8
       '@scalar/types': 0.19.0
       '@typespec/asset-emitter': 0.79.3(@typespec/compiler@1.17.0(@types/node@25.9.9))
       '@typespec/compiler': 1.17.0(@types/node@25.9.9)
@@ -6330,7 +6329,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono-takibi@0.24.0(@types/node@25.9.9)(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9)))(@typespec/openapi@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))))(openapi-types@12.1.3)(redis@6.2.1):
+  hono-takibi@0.26.0(@types/node@25.9.9)(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9)))(@typespec/openapi@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))(@typespec/http@1.17.0(@typespec/compiler@1.17.0(@types/node@25.9.9))))(openapi-types@12.1.3)(redis@6.2.1):
     dependencies:
       '@apidevtools/swagger-parser': 13.1.0(openapi-types@12.1.3)
       '@effect/platform-node': 4.0.5(effect@4.0.5)(redis@6.2.1)
