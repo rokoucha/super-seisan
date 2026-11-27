@@ -175,6 +175,14 @@ describe('Item API E2E', () => {
       const seisanId = 'uuid-item-123'
       const itemId = 'item-1'
       const now = new Date()
+      const currency = {
+        id: 'currency-1',
+        seisanId,
+        code: 'USD',
+        rate: 150,
+        createdAt: now,
+        updatedAt: now,
+      }
       const mockSeisan = {
         id: seisanId,
         name: 'テスト精算',
@@ -191,7 +199,7 @@ describe('Item API E2E', () => {
             updatedAt: now,
           },
         ],
-        currencies: [],
+        currencies: [currency],
         items: [
           {
             id: itemId,
@@ -200,7 +208,7 @@ describe('Item API E2E', () => {
             icon: '🍢',
             payerId: 'participant-1',
             price: 1800,
-            currencyId: null,
+            currencyId: currency.id,
             amount: 2,
             total: 3600,
             version: 3,
@@ -214,7 +222,7 @@ describe('Item API E2E', () => {
               createdAt: now,
               updatedAt: now,
             },
-            currency: null,
+            currency,
             exempts: [],
           },
         ],
@@ -231,7 +239,7 @@ describe('Item API E2E', () => {
         icon: '🍢',
         payerId: 'participant-1',
         price: 1800,
-        currencyId: null,
+        currencyId: currency.id,
         amount: 2,
         total: 3600,
         version: 3,
@@ -264,9 +272,11 @@ describe('Item API E2E', () => {
       }
       expect(data.current.id).toBe(itemId)
       expect(data.current.version).toBe(3)
+      expect(data.current).toHaveProperty('currency.id', currency.id)
       expect(data.incoming.id).toBe(itemId)
       expect(data.incoming.name).toBe('上書き更新')
       expect(data.incoming.version).toBe(2)
+      expect(data.incoming).not.toHaveProperty('currency')
     })
   })
 

@@ -38,13 +38,14 @@ export const updateItemInSeisanHandler: RouteHandler<
       throw err
     }
 
+    const { currency: currentCurrency, ...currentItem } = current
     const payer =
       seisan.participants.find(
         (participant) => participant.id === input.payerId,
       ) ?? current.payer
     const currency = input.currencyId
       ? (seisan.currencies.find((c) => c.id === input.currencyId) ??
-        current.currency)
+        currentCurrency)
       : undefined
     const exemptParticipants = input.exemptIds
       .map((participantId: (typeof input.exemptIds)[number]) =>
@@ -60,12 +61,12 @@ export const updateItemInSeisanHandler: RouteHandler<
       )
 
     const incoming = {
-      ...current,
+      ...currentItem,
       name: input.name,
       icon: input.icon,
       payer,
       price: input.price,
-      currency,
+      ...(currency ? { currency } : {}),
       amount: input.amount,
       total: input.total,
       exempts: input.exemptIds.length > 0 ? exemptParticipants : [],
