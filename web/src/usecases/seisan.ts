@@ -46,20 +46,22 @@ export async function getSeisan(id: string) {
 function formatSeisanDetail(
   seisan: NonNullable<Awaited<ReturnType<typeof seisanRepository.get>>>,
 ) {
-  const items = seisan.items.map((item) => ({
+  const items = seisan.items.map(({ currency, ...item }) => ({
     ...item,
     payer: {
       ...item.payer,
       createdAt: item.payer.createdAt.toISOString(),
       updatedAt: item.payer.updatedAt.toISOString(),
     },
-    currency: item.currency
+    ...(currency
       ? {
-          ...item.currency,
-          createdAt: item.currency.createdAt.toISOString(),
-          updatedAt: item.currency.updatedAt.toISOString(),
+          currency: {
+            ...currency,
+            createdAt: currency.createdAt.toISOString(),
+            updatedAt: currency.updatedAt.toISOString(),
+          },
         }
-      : undefined,
+      : {}),
     exempts: item.exempts.map((e) => ({
       ...e.participant,
       createdAt: e.participant.createdAt.toISOString(),
@@ -100,13 +102,12 @@ function formatSeisanDetail(
       ...result,
       details: result.details.map((detail) => ({
         ...detail,
-        items: detail.items.map((detailItem) => ({
-          ...detailItem,
-          source: {
-            ...detailItem.source,
-            currency: detailItem.source.currency ?? undefined,
-          },
-        })),
+        items: detail.items.map(
+          ({ source: { currency, ...source }, ...item }) => ({
+            ...item,
+            source: { ...source, ...(currency ? { currency } : {}) },
+          }),
+        ),
       })),
     },
     createdAt: seisan.createdAt.toISOString(),
